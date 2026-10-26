@@ -1,13 +1,57 @@
 # Polyspoon
 
-**Polyspoon is an open-source alternative to Polyfork.** Recipes (small TypeScript programs) turn into editable, low-poly 3D models that you can customise and export as GLB/OBJ/FBX/USDZ for Unity, Godot and other engines. It includes:
+**Polyspoon is an open-source, AI-powered 3D asset community and an open alternative to Polyfork.**
 
-- an offline **toolkit** and agent bundle for authoring and customising recipes,
-- a **Unity editor package** (`integrations/unity`),
-- a **hosted member app** (Cloudflare Worker + D1 + private object storage) with a login-gated catalog where every model is **independently human-reviewed** before publication,
-- **community features**: creator profiles, follows, votes, points and levels, leaderboards, cosmetic unlocks and curated collections. These are recognition only and never grant review or moderator rights.
+## Vision
 
-Configuration for the hosted service is read from environment variables and private files; see [.env.example](.env.example). No credentials are included in this repository.
+We want to grow a large, open 3D asset community where people and their AI coding agents create, share and improve models together. Polyspoon starts with **low-poly procedural assets** and will expand to assets of every style and level of detail over time. The code, recipes and formats are open, so the community owns what it builds.
+
+## What it does
+
+- **Turns recipes into editable 3D models.** A recipe is a small TypeScript program. You can change its parameters, colours and presets, save designs, and rebuild the model reproducibly.
+- **Is built for AI agents.** There is an agent toolkit and bundle (`integrations/agents`), a local MCP server, and agent-readable files: a [coding-agent brief](docs/authoring/coding-agent.md), an [authoring guide](docs/authoring/guide.md) and a `*.controls.json` control manifest for each model.
+- **Supports several export formats.** GLB is the source of truth. OBJ (zipped with MTL), binary FBX and USDZ are also available, along with saved-design JSON, procedural/snapshot `.mjs` modules and editable source ZIPs. See [export formats](docs/specs/export-formats.md).
+- **Works in game engines.** A Unity editor package lives in `integrations/unity`. Godot and other engines import the GLB/OBJ/FBX output (see *Choose an output* below).
+
+## Contribution and moderation
+
+- **Anyone can sign up** through an email magic link and submit models.
+- **Every model is reviewed by a person before it is accepted.** Submissions go through a review queue and are published only after an independent human approves them. See [open review](docs/specs/open-review.md) and [review guidance](docs/contributing/review.md).
+- **Members can become moderators.** Accounts have member, moderator and admin roles. Moderators handle the review queue, reports and appeals ([marketplace moderation](docs/specs/marketplace-moderation.md)).
+- **Models stay behind login.** The hosted catalog and its downloads are only available to signed-in members.
+
+## Community
+
+Creator profiles, following, an activity feed, votes and favourites, comments, notifications, points, levels, badges, leaderboards, cosmetic unlocks and curated collections. See [community](docs/specs/community.md) and [collections](docs/specs/collections.md).
+
+All of these are **purely cosmetic recognition**. Points, levels, cosmetics, collections or popularity never skip review, grant publish rights or confer moderator rights. Moderator access is an explicit role assignment.
+
+## Architecture
+
+- **Frontend:** Vite and Three.js. The local toolkit and editor (`src/`) and the hosted member app (`hosted/`).
+- **Hosted API:** a Cloudflare Worker (`server/`) with **D1** (SQLite) for accounts, submissions, reviews, community data and a score cache. Schema lives in `migrations/`.
+- **Private object storage** (Supabase Storage, S3-style) holds submitted files and releases. Downloads are served only after authentication.
+- **Email:** magic-link sign-in through Resend, with a local mail sink for development.
+- **Processor:** `processor/` validates and converts submissions.
+
+## Quick start
+
+```sh
+npm ci --ignore-scripts --no-audit --no-fund
+npm run dev        # local toolkit / editor
+npm test           # unit tests
+```
+
+The hosted service reads its configuration from environment variables listed in [.env.example](.env.example), which contains names only. No credentials are included in this repository. For deployment, see [release operations](docs/release.md) and [hosted release operations](docs/specs/hosted-release-operations.md).
+
+## Where the docs live
+
+- `docs/authoring/`: the agent brief, authoring guide and procedural modules
+- `docs/specs/`: feature specs (formats, review, moderation, community, hosted app, Unity bridge, …)
+- `docs/contributing/`: review guidance; also see [CONTRIBUTING.md](CONTRIBUTING.md)
+- [OUTPUTS.md](OUTPUTS.md), [docs/licensing.md](docs/licensing.md), [LICENSE](LICENSE) (Apache-2.0)
+
+## Local toolkit details
 
 Polyspoon is a local procedural model toolkit and catalog. Point your own coding agent at this checkout and request an asset. The current catalog contains fourteen model families with editable construction, colors, saved designs and GLB export.
 
