@@ -1,0 +1,13 @@
+ALTER TABLE asset_version ADD COLUMN verification_profile TEXT NOT NULL DEFAULT 'legacy' CHECK(verification_profile IN ('legacy','receipts-v1'));
+CREATE TRIGGER immutable_verification_profile BEFORE UPDATE OF verification_profile ON asset_version BEGIN SELECT RAISE(ABORT,'immutable_verification_profile'); END;
+ALTER TABLE version_artifact ADD COLUMN failure_revision INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE version_artifact ADD COLUMN verified_revision INTEGER;
+ALTER TABLE version_artifact ADD COLUMN verification_error TEXT;
+CREATE TABLE artifact_receipt(version_id TEXT NOT NULL,path TEXT NOT NULL,sha256 TEXT NOT NULL,bytes INTEGER NOT NULL,failure_revision INTEGER NOT NULL,verified_at INTEGER NOT NULL,PRIMARY KEY(version_id,path,failure_revision),FOREIGN KEY(version_id,path) REFERENCES version_artifact(version_id,path));
+CREATE TRIGGER immutable_receipt_update BEFORE UPDATE ON artifact_receipt BEGIN SELECT RAISE(ABORT,'immutable_receipt'); END;
+CREATE TRIGGER immutable_receipt_delete BEFORE DELETE ON artifact_receipt BEGIN SELECT RAISE(ABORT,'immutable_receipt'); END;
+ALTER TABLE review_attachment ADD COLUMN failure_revision INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE review_attachment ADD COLUMN verified_revision INTEGER;
+ALTER TABLE review_attachment ADD COLUMN verified_at INTEGER;
+ALTER TABLE review_attachment ADD COLUMN verification_error TEXT;
+CREATE TRIGGER immutable_attachment_descriptor BEFORE UPDATE OF owner_id,sha256,bytes ON review_attachment BEGIN SELECT RAISE(ABORT,'immutable_attachment'); END;

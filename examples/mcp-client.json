@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "woodland-workshop": {
+      "command": "node",
+      "args": [
+        "--import",
+        "/path/to/polyspoon/node_modules/tsx/dist/loader.mjs",
+        "/path/to/polyspoon/src/mcp/stdio.ts",
+        "--output-dir",
+        "/path/to/polyspoon/exports"
+      ]
+    }
+  }
+}

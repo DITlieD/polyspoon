@@ -1,0 +1,10 @@
+PRAGMA foreign_keys=ON;
+UPDATE asset_version SET state='withdrawn' WHERE state IN ('approved','published');
+UPDATE agent_token SET revoked_at=unixepoch()*1000 WHERE revoked_at IS NULL;
+DELETE FROM session;
+UPDATE processor SET enabled=0 WHERE enabled!=0;
+UPDATE processing_profile SET enabled=0 WHERE enabled!=0;
+DELETE FROM capability;
+INSERT INTO member_restriction(user_id,reason,restricted_at,revision) SELECT user_id,'Access requires operator verification after database recovery',unixepoch()*1000,lower(hex(randomblob(16))) FROM member WHERE status='active' ON CONFLICT(user_id) DO UPDATE SET reason=excluded.reason,restricted_at=excluded.restricted_at,revision=excluded.revision;
+UPDATE member SET status='suspended' WHERE status!='suspended';
+INSERT INTO audit_event(id,actor_id,action,target,data,created_at) VALUES(lower(hex(randomblob(16))),NULL,'database_recovery_quarantined','recovery','{"publication":"withdrawn","authority":"disabled"}',unixepoch()*1000);

@@ -1,0 +1,167 @@
+{
+  "duplicate-declaration": {
+    "exitCode": 1,
+    "failureCode": "glb_unsupported_extension",
+    "terminated": true,
+    "remainingTasks": [],
+    "effectiveLimits": {
+      "cpu.max": "100000 100000",
+      "memory.max": "2147483648",
+      "memory.swap.max": "0",
+      "pids.max": "64"
+    },
+    "wallMs": 318,
+    "oomKillCount": 0,
+    "pidLimitEvents": 0
+  },
+  "external-buffer": {
+    "exitCode": 1,
+    "failureCode": "glb_external_resource",
+    "terminated": true,
+    "remainingTasks": [],
+    "effectiveLimits": {
+      "cpu.max": "100000 100000",
+      "memory.max": "2147483648",
+      "memory.swap.max": "0",
+      "pids.max": "64"
+    },
+    "wallMs": 285,
+    "oomKillCount": 0,
+    "pidLimitEvents": 0
+  },
+  "external-image": {
+    "exitCode": 1,
+    "failureCode": "glb_external_resource",
+    "terminated": true,
+    "remainingTasks": [],
+    "effectiveLimits": {
+      "cpu.max": "100000 100000",
+      "memory.max": "2147483648",
+      "memory.swap.max": "0",
+      "pids.max": "64"
+    },
+    "wallMs": 284,
+    "oomKillCount": 0,
+    "pidLimitEvents": 0
+  },
+  "misplaced-unlit": {
+    "exitCode": 1,
+    "failureCode": "glb_unsupported_extension",
+    "terminated": true,
+    "remainingTasks": [],
+    "effectiveLimits": {
+      "cpu.max": "100000 100000",
+      "memory.max": "2147483648",
+      "memory.swap.max": "0",
+      "pids.max": "64"
+    },
+    "wallMs": 362,
+    "oomKillCount": 0,
+    "pidLimitEvents": 0
+  },
+  "nonempty-unlit": {
+    "exitCode": 1,
+    "failureCode": "glb_unsupported_extension",
+    "terminated": true,
+    "remainingTasks": [],
+    "effectiveLimits": {
+      "cpu.max": "100000 100000",
+      "memory.max": "2147483648",
+      "memory.swap.max": "0",
+      "pids.max": "64"
+    },
+    "wallMs": 319,
+    "oomKillCount": 0,
+    "pidLimitEvents": 0
+  },
+  "opaque-extras": {
+    "exitCode": 0,
+    "failureCode": null,
+    "terminated": true,
+    "remainingTasks": [],
+    "effectiveLimits": {
+      "cpu.max": "100000 100000",
+      "memory.max": "2147483648",
+      "memory.swap.max": "0",
+      "pids.max": "64"
+    },
+    "wallMs": 481,
+    "oomKillCount": 0,
+    "pidLimitEvents": 0
+  },
+  "oversized-image": {
+    "exitCode": 1,
+    "failureCode": "glb_image_limit",
+    "terminated": true,
+    "remainingTasks": [],
+    "effectiveLimits": {
+      "cpu.max": "100000 100000",
+      "memory.max": "2147483648",
+      "memory.swap.max": "0",
+      "pids.max": "64"
+    },
+    "wallMs": 274,
+    "oomKillCount": 0,
+    "pidLimitEvents": 0
+  },
+  "undeclared-unlit": {
+    "exitCode": 1,
+    "failureCode": "glb_unsupported_extension",
+    "terminated": true,
+    "remainingTasks": [],
+    "effectiveLimits": {
+      "cpu.max": "100000 100000",
+      "memory.max": "2147483648",
+      "memory.swap.max": "0",
+      "pids.max": "64"
+    },
+    "wallMs": 370,
+    "oomKillCount": 0,
+    "pidLimitEvents": 0
+  },
+  "unknown-extension": {
+    "exitCode": 1,
+    "failureCode": "glb_unsupported_extension",
+    "terminated": true,
+    "remainingTasks": [],
+    "effectiveLimits": {
+      "cpu.max": "100000 100000",
+      "memory.max": "2147483648",
+      "memory.swap.max": "0",
+      "pids.max": "64"
+    },
+    "wallMs": 268,
+    "oomKillCount": 0,
+    "pidLimitEvents": 0
+  },
+  "unused-unlit": {
+    "exitCode": 1,
+    "failureCode": "glb_unsupported_extension",
+    "terminated": true,
+    "remainingTasks": [],
+    "effectiveLimits": {
+      "cpu.max": "100000 100000",
+      "memory.max": "2147483648",
+      "memory.swap.max": "0",
+      "pids.max": "64"
+    },
+    "wallMs": 298,
+    "oomKillCount": 0,
+    "pidLimitEvents": 0
+  },
+  "valid-styled": {
+    "exitCode": 0,
+    "failureCode": null,
+    "terminated": true,
+    "remainingTasks": [],
+    "effectiveLimits": {
+      "cpu.max": "100000 100000",
+      "memory.max": "2147483648",
+      "memory.swap.max": "0",
+      "pids.max": "64"
+    },
+    "wallMs": 590,
+    "oomKillCount": 0,
+    "pidLimitEvents": 0
+  }
+}

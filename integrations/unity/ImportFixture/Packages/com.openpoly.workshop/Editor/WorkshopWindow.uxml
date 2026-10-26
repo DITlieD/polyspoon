@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+  <ui:Style src="WorkshopWindow.uss" />
+  <ui:VisualElement name="workshop" class="workshop">
+    <ui:Label text="Polyspoon" class="title" />
+    <ui:TextField name="repository" label="Source checkout" />
+    <ui:TextField name="node" label="Node executable" />
+    <ui:Button name="connect" text="Load local catalog" />
+    <ui:DropdownField name="recipe" label="Recipe" />
+    <ui:DropdownField name="preset" label="Preset" />
+    <ui:Label name="description" class="description" />
+    <ui:Label name="selection" />
+    <ui:ScrollView name="controls" class="controls" />
+    <ui:Label text="Rebuild regenerates direct edits inside Generated. Keep your additions beside that child." class="description" />
+    <ui:VisualElement class="actions">
+      <ui:Button name="build" text="Build new asset" />
+      <ui:Button name="rebuild" text="Rebuild selected" />
+      <ui:Button name="cancel" text="Cancel" />
+    </ui:VisualElement>
+    <ui:Label name="status" text="Choose your local checkout and load the catalog." class="description" />
+  </ui:VisualElement>
+</ui:UXML>

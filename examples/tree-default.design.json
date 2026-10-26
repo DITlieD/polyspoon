@@ -1,0 +1,12 @@
+{
+  "formatVersion": 1,
+  "family": "tree",
+  "familyVersion": "0.1.0",
+  "requested": {},
+  "applied": {
+    "height": 4.5,
+    "spread": 3.8,
+    "seed": 7,
+    "colorway": "forest"
+  }
+}

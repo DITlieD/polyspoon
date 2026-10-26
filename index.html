@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#f7f9fc"><meta name="description" content="Polyspoon: editable procedural 3D models for your own agent and project. polyspoon.com local preview."><meta name="application-name" content="Polyspoon"><meta property="og:site_name" content="Polyspoon · polyspoon.com"><meta property="og:title" content="Polyspoon · Editable 3D models"><meta property="og:description" content="Customize a model or author a recipe with your own agent. Keep editable source and export to your project."><link rel="icon" type="image/png" href="/brand/supplied-v1/clean/logo.png"><title>Polyspoon | polyspoon.com</title></head>
+<body>
+<div id="app">
+<header class="topbar">
+  <a class="brand" href="/" title="Polyspoon home" aria-label="Polyspoon home"><span class="brand-art brand-logo"><img src="/brand/supplied-v1/clean/logo.png" alt=""></span><span class="brand-art brand-wordmark"><img src="/brand/supplied-v1/clean/wordmark.png" alt="Polyspoon"></span></a>
+  <label class="sr-only" for="family">Asset family</label><select id="family" aria-label="Asset family"></select>
+  <label class="sr-only" for="preset">Preset</label><select id="preset" aria-label="Preset"></select>
+  <div class="history"><button id="undo" title="Undo (Ctrl Z)" aria-label="Undo">↶</button><button id="redo" title="Redo (Ctrl Shift Z)" aria-label="Redo">↷</button></div>
+  <div class="document-actions"><button id="load">Load</button><button id="save">Save design</button><button id="export" class="primary">Export GLB</button></div>
+  <input id="file" type="file" accept=".json,application/json" hidden>
+</header>
+<main>
+  <nav class="tool-rail" aria-label="Edit asset"><button data-group="shape" aria-pressed="true"><span aria-hidden="true">◇</span>Shape</button><button data-group="construction" aria-pressed="false"><span aria-hidden="true">⊞</span>Build</button><button data-group="colors" aria-pressed="false"><span aria-hidden="true">◒</span>Colors</button><button id="show-workshop" title="View the arranged scene"><span aria-hidden="true">▦</span>Scene</button></nav>
+  <aside id="inspector" class="inspector" aria-label="Asset controls">
+    <div class="inspector-heading"><div><span id="asset-title">Work lantern</span><h1 id="group-title">Shape</h1></div><button id="collapse" aria-label="Collapse inspector" title="Collapse inspector">‹</button></div>
+    <div id="controls"></div>
+    <p id="error" role="alert" hidden></p>
+    <div class="inspector-footer"><button id="reset">Reset design</button><span id="preset-description"></span></div>
+  </aside>
+  <section class="viewport" aria-label="Interactive asset preview">
+    <div id="canvas-host"></div>
+    <div class="view-tools" aria-label="Preview settings">
+      <select id="view" aria-label="Camera view"><option value="oblique">Isometric</option><option value="front">Front</option><option value="left">Side</option><option value="rear">Back</option><option value="top">Top</option></select>
+      <select id="mode" aria-label="Display mode"><option value="shaded">Shaded</option><option value="clay">Clay</option><option value="color">Colors</option><option value="silhouette">Silhouette</option></select>
+      <label title="Show mesh edges"><input id="wireframe" type="checkbox">Wire</label>
+      <button id="frame" title="Frame asset">Frame</button><button id="fullscreen" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button>
+    </div>
+    <button id="back-editor" hidden>Return to asset</button>
+    <div class="selection-note" id="selection-note" hidden></div>
+    <div class="orbit-help">Drag to orbit · Scroll to zoom · Click a part to edit its color</div>
+  </section>
+</main>
+<footer class="statusbar"><span id="view-status">Live preview</span><span id="dimensions"></span><span><b id="triangles"></b> triangles</span><span id="notice" role="status">Save a design file to keep your work.</span></footer>
+</div>
+<script type="module" src="/src/studio/main.ts"></script>
+</body></html>

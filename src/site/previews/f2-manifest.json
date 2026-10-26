@@ -1,0 +1,443 @@
+{
+  "formatVersion": 1,
+  "capture": "canonical-recipe-render",
+  "records": [
+    {
+      "family": "planter",
+      "file": "planter-raised-box.png",
+      "sha256": "ce20bec8cd8b09d9fb365fd37a372ba650206519b34e45d10be355f5b284ed22",
+      "capture": "evidence/revision7/catalog/neutral-final/planter/planter-raised-box.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "planter",
+        "familyVersion": "1.0.0",
+        "requested": {},
+        "applied": {
+          "width": 1.1,
+          "depth": 0.5,
+          "height": 0.5,
+          "boardCount": 3,
+          "feet": true,
+          "colorway": "oak",
+          "color.wood": "#b88654",
+          "color.frame": "#604532"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "planter",
+      "file": "planter-herb-trough.png",
+      "sha256": "bb3015ab468a0dc95941b103180ea8cb661cf2f0ac838e551f11cfdad26b7c88",
+      "capture": "evidence/revision7/catalog/neutral-final/planter/planter-herb-trough.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "planter",
+        "familyVersion": "1.0.0",
+        "requested": {
+          "width": 1.5,
+          "depth": 0.4,
+          "height": 0.3,
+          "boardCount": 2,
+          "feet": false
+        },
+        "applied": {
+          "width": 1.5,
+          "depth": 0.4,
+          "height": 0.3,
+          "boardCount": 2,
+          "feet": false,
+          "colorway": "oak",
+          "color.wood": "#b88654",
+          "color.frame": "#604532"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "planter",
+      "file": "planter-patio-box.png",
+      "sha256": "b123af413805194d4958d1e01aa1c8dffd8ebe2a770b6e71702b2dda1f21acfa",
+      "capture": "evidence/revision7/catalog/neutral-final/planter/planter-patio-box.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "planter",
+        "familyVersion": "1.0.0",
+        "requested": {
+          "width": 0.7,
+          "depth": 0.7,
+          "height": 0.8,
+          "boardCount": 5,
+          "feet": true,
+          "colorway": "painted"
+        },
+        "applied": {
+          "width": 0.7,
+          "depth": 0.7,
+          "height": 0.8,
+          "boardCount": 5,
+          "feet": true,
+          "colorway": "painted",
+          "color.wood": "#8ca58b",
+          "color.frame": "#384a42"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "treasure-chest",
+      "file": "treasure-chest-oak.png",
+      "sha256": "c6bc9c14020116014b7dc7a27bf27edc648790d8c006c4a1742365c03b491141",
+      "capture": "evidence/revision7/catalog/neutral-final/treasure-chest/treasure-chest-oak.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "treasure-chest",
+        "familyVersion": "1.0.0",
+        "requested": {},
+        "applied": {
+          "width": 1.2,
+          "depth": 0.7,
+          "bodyHeight": 0.58,
+          "lidRise": 0.28,
+          "lidAngle": 0,
+          "boardCount": 4,
+          "bandInset": 0.2,
+          "latch": true,
+          "color.wood": "#a86b37",
+          "color.frame": "#343a3e",
+          "color.brass": "#c79535"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "treasure-chest",
+      "file": "treasure-chest-small.png",
+      "sha256": "3f3399dd582a3ef2b8162f90a9f7752cc79eef4c314dd52bfd4e0ac24e40f1dc",
+      "capture": "evidence/revision7/catalog/neutral-final/treasure-chest/treasure-chest-small.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "treasure-chest",
+        "familyVersion": "1.0.0",
+        "requested": {
+          "width": 0.7,
+          "depth": 0.45,
+          "bodyHeight": 0.35,
+          "lidRise": 0.15,
+          "boardCount": 3,
+          "lidAngle": 85
+        },
+        "applied": {
+          "width": 0.7,
+          "depth": 0.45,
+          "bodyHeight": 0.35,
+          "lidRise": 0.15,
+          "lidAngle": 85,
+          "boardCount": 3,
+          "bandInset": 0.2,
+          "latch": true,
+          "color.wood": "#a86b37",
+          "color.frame": "#343a3e",
+          "color.brass": "#c79535"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "treasure-chest",
+      "file": "treasure-chest-large.png",
+      "sha256": "bfe1b5a68b00a2dad1b276bbc93e924bdfe6672ee89797e46285e0c47bd3e57c",
+      "capture": "evidence/revision7/catalog/neutral-final/treasure-chest/treasure-chest-large.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "treasure-chest",
+        "familyVersion": "1.0.0",
+        "requested": {
+          "width": 1.8,
+          "depth": 1,
+          "bodyHeight": 0.8,
+          "lidRise": 0.4,
+          "boardCount": 6,
+          "latch": false
+        },
+        "applied": {
+          "width": 1.8,
+          "depth": 1,
+          "bodyHeight": 0.8,
+          "lidRise": 0.4,
+          "lidAngle": 0,
+          "boardCount": 6,
+          "bandInset": 0.2,
+          "latch": false,
+          "color.wood": "#a86b37",
+          "color.frame": "#343a3e",
+          "color.brass": "#c79535"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "wheelbarrow",
+      "file": "wheelbarrow-farm.png",
+      "sha256": "60fa991ae0f7f7874005e71955efec016d85f622baaefb948f5a13b670519f87",
+      "capture": "evidence/revision7/catalog/neutral-final/wheelbarrow/wheelbarrow-farm.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "wheelbarrow",
+        "familyVersion": "1.0.0",
+        "requested": {},
+        "applied": {
+          "trayWidth": 0.68,
+          "trayLength": 0.92,
+          "trayDepth": 0.3,
+          "wheelRadius": 0.23,
+          "colorway": "oak",
+          "boardCount": 3,
+          "wheelStyle": "solid",
+          "color.wood": "#b58a55",
+          "color.frame": "#725033",
+          "color.iron": "#41464a"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "wheelbarrow",
+      "file": "wheelbarrow-garden.png",
+      "sha256": "bf60ad088dcd1a076539be5f2c7f5702140756e987acbc17bb48e5bb8c0c794f",
+      "capture": "evidence/revision7/catalog/neutral-final/wheelbarrow/wheelbarrow-garden.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "wheelbarrow",
+        "familyVersion": "1.0.0",
+        "requested": {
+          "trayWidth": 0.5,
+          "trayLength": 0.65,
+          "trayDepth": 0.2,
+          "wheelRadius": 0.16,
+          "colorway": "painted",
+          "boardCount": 2,
+          "wheelStyle": "spoked"
+        },
+        "applied": {
+          "trayWidth": 0.5,
+          "trayLength": 0.65,
+          "trayDepth": 0.2,
+          "wheelRadius": 0.16,
+          "colorway": "painted",
+          "boardCount": 2,
+          "wheelStyle": "spoked",
+          "color.wood": "#849782",
+          "color.frame": "#554532",
+          "color.iron": "#343c40"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "wheelbarrow",
+      "file": "wheelbarrow-heavy.png",
+      "sha256": "baa7e2fd6310d6c7fba21fae63244775bb40e4ffcd1e0abcc5ef0a8435bc90ab",
+      "capture": "evidence/revision7/catalog/neutral-final/wheelbarrow/wheelbarrow-heavy.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "wheelbarrow",
+        "familyVersion": "1.0.0",
+        "requested": {
+          "trayWidth": 0.95,
+          "trayLength": 1.3,
+          "trayDepth": 0.45,
+          "wheelRadius": 0.34,
+          "boardCount": 5
+        },
+        "applied": {
+          "trayWidth": 0.95,
+          "trayLength": 1.3,
+          "trayDepth": 0.45,
+          "wheelRadius": 0.34,
+          "colorway": "oak",
+          "boardCount": 5,
+          "wheelStyle": "solid",
+          "color.wood": "#b58a55",
+          "color.frame": "#725033",
+          "color.iron": "#41464a"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "stone-well",
+      "file": "stone-well-village.png",
+      "sha256": "6990469519ab8f54553644da5eb1c19ed4b9f3da466315f38fd5523fec583814",
+      "capture": "evidence/revision7/catalog/neutral-final/stone-well/stone-well-village.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "stone-well",
+        "familyVersion": "1.0.0",
+        "requested": {},
+        "applied": {
+          "diameter": 2.2,
+          "wallHeight": 0.95,
+          "roofSize": 1.35,
+          "roof": true,
+          "bucket": true,
+          "windlass": true,
+          "bucketDrop": 0,
+          "color.stone": "#898880",
+          "color.coping": "#b2ac96",
+          "color.timber": "#62432e",
+          "color.roof": "#a77342",
+          "color.iron": "#343b3b",
+          "color.rope": "#bca879"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "stone-well",
+      "file": "stone-well-courtyard.png",
+      "sha256": "cbe23aab282b6216a3c73ae81ec0d4e348b72526b2852bfe3aca40a1b08bc8d0",
+      "capture": "evidence/revision7/catalog/neutral-final/stone-well/stone-well-courtyard.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "stone-well",
+        "familyVersion": "1.0.0",
+        "requested": {
+          "diameter": 1.8,
+          "wallHeight": 0.7,
+          "roofSize": 1.2,
+          "roof": false,
+          "bucketDrop": 0.35
+        },
+        "applied": {
+          "diameter": 1.8,
+          "wallHeight": 0.7,
+          "roofSize": 1.2,
+          "roof": false,
+          "bucket": true,
+          "windlass": true,
+          "bucketDrop": 0.35,
+          "color.stone": "#898880",
+          "color.coping": "#b2ac96",
+          "color.timber": "#62432e",
+          "color.roof": "#a77342",
+          "color.iron": "#343b3b",
+          "color.rope": "#bca879"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "stone-well",
+      "file": "stone-well-market.png",
+      "sha256": "cc514bb83cb2f451510ecb1bd452448b72c1ab7fa8a82a24a7071c33f8e13406",
+      "capture": "evidence/revision7/catalog/neutral-final/stone-well/stone-well-market.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "stone-well",
+        "familyVersion": "1.0.0",
+        "requested": {
+          "diameter": 3,
+          "wallHeight": 1.25,
+          "roofSize": 1.5,
+          "bucket": false
+        },
+        "applied": {
+          "diameter": 3,
+          "wallHeight": 1.25,
+          "roofSize": 1.5,
+          "roof": true,
+          "bucket": false,
+          "windlass": true,
+          "bucketDrop": 0,
+          "color.stone": "#898880",
+          "color.coping": "#b2ac96",
+          "color.timber": "#62432e",
+          "color.roof": "#a77342",
+          "color.iron": "#343b3b",
+          "color.rope": "#bca879"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "conifer",
+      "file": "conifer-woodland.png",
+      "sha256": "6ecfeea740618b7d526c8cd5e49ae2818db8f63bc9d7cbaa36a8d350fdb422ac",
+      "capture": "evidence/revision7/catalog/neutral-final/conifer/conifer-woodland.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "conifer",
+        "familyVersion": "1.0.0",
+        "requested": {},
+        "applied": {
+          "height": 6,
+          "crownSpread": 3.8,
+          "seed": 317,
+          "tierCount": 8,
+          "color.bark": "#70523a",
+          "color.needles": "#365c43",
+          "color.tips": "#55754c",
+          "color.shade": "#284c3c"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "conifer",
+      "file": "conifer-slender.png",
+      "sha256": "5ab6d80763763b3f9ac4ab8a32d1c26a6923631da0504ba9ab30bcaa1319a007",
+      "capture": "evidence/revision7/catalog/neutral-final/conifer/conifer-slender.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "conifer",
+        "familyVersion": "1.0.0",
+        "requested": {
+          "height": 9,
+          "crownSpread": 3,
+          "seed": 901,
+          "tierCount": 10
+        },
+        "applied": {
+          "height": 9,
+          "crownSpread": 3,
+          "seed": 901,
+          "tierCount": 10,
+          "color.bark": "#70523a",
+          "color.needles": "#365c43",
+          "color.tips": "#55754c",
+          "color.shade": "#284c3c"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    },
+    {
+      "family": "conifer",
+      "file": "conifer-windswept.png",
+      "sha256": "cc6bd78370230521b0b6ea7593f88143635e4855d68b4588410b425000260080",
+      "capture": "evidence/revision7/catalog/neutral-final/conifer/conifer-windswept.png",
+      "configuration": {
+        "formatVersion": 1,
+        "family": "conifer",
+        "familyVersion": "1.0.0",
+        "requested": {
+          "height": 4.5,
+          "crownSpread": 4.7,
+          "seed": 42,
+          "tierCount": 5
+        },
+        "applied": {
+          "height": 4.5,
+          "crownSpread": 4.7,
+          "seed": 42,
+          "tierCount": 5,
+          "color.bark": "#70523a",
+          "color.needles": "#365c43",
+          "color.tips": "#55754c",
+          "color.shade": "#284c3c"
+        }
+      },
+      "sourceHash": "91b2c1f6365769b3c43b027acc573823b3411749f97b55cd686002a90c1658c5"
+    }
+  ]
+}

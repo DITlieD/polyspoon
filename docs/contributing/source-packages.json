@@ -1,0 +1,133 @@
+{
+  "formatVersion": 1,
+  "recipes": {
+    "work-lantern": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored starter implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for work-lantern; external material and private edits excluded."
+    },
+    "cottage": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored starter implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for cottage; external material and private edits excluded."
+    },
+    "tree": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored starter implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for tree; external material and private edits excluded."
+    },
+    "fence": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored starter implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for fence; external material and private edits excluded."
+    },
+    "crate": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored starter implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for crate; external material and private edits excluded."
+    },
+    "boulder": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored starter implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for boulder; external material and private edits excluded."
+    },
+    "bench": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored starter implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for bench; external material and private edits excluded."
+    },
+    "planter": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored starter implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for planter; external material and private edits excluded.",
+      "sourceOrigin": {
+        "kind": "original-project-recipe",
+        "archiveSha256": "5977753535b057dbb60c3db7cd58c09ed01883c09ac9b9b9b8372ec5e308d273",
+        "entrySha256": "f68b66d4be91aba23f12c8db505f706ed8367cb08b1d486e6bf341eb4554a994",
+        "productionEntry": "examples/recipes/planter/index.ts"
+      }
+    },
+    "treasure-chest": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored starter implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for treasure-chest; external material and private edits excluded.",
+      "sourceOrigin": {
+        "kind": "original-project-recipe",
+        "archiveSha256": "6e672a79f32a33d602b833bf5b01bbdcb0b3b0c814d2d126ab1e3041d49ca940",
+        "entrySha256": "66291b1a97f22a0c5e07127d6ca85db738fefade5f6411ca955845be4b4d774b",
+        "productionEntry": "examples/recipes/treasure-chest/index.ts"
+      }
+    },
+    "wheelbarrow": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored starter implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for wheelbarrow; external material and private edits excluded.",
+      "sourceOrigin": {
+        "kind": "original-project-recipe",
+        "archiveSha256": "f53cfc8f512ca9df1dbeff0767a9484bfdb09f2f0f62ab6982b42693fe904393",
+        "entrySha256": "cfc3f47ee30dd475cf87a041ce2e5ed411303538463727556d56ab3e7adc64ef",
+        "productionEntry": "examples/recipes/wheelbarrow/index.ts"
+      }
+    },
+    "stone-well": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored starter implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for stone-well; external material and private edits excluded.",
+      "sourceOrigin": {
+        "kind": "original-project-recipe",
+        "archiveSha256": "39a4193b99dca0a234e7a410e90488bf90cafe1b70c2ad56f15167a983148a79",
+        "entrySha256": "b02862aff107b482685b7590b2c7b926722d5de0eabb7b5fb748ff885053ee17",
+        "productionEntry": "examples/recipes/stone-well/index.ts"
+      }
+    },
+    "conifer": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored starter implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for conifer; external material and private edits excluded.",
+      "sourceOrigin": {
+        "kind": "original-project-recipe",
+        "archiveSha256": "0ea190d9255231d4b8f10b62ca7e63c5f6e508893923ff174ec87a1ffbb756dd",
+        "entrySha256": "4c825bdea53dbe65f210e2e5aa43c41dd52a99594add6a1f2e9e3390600757e7",
+        "productionEntry": "examples/recipes/conifer/index.ts"
+      }
+    },
+    "stylized-humanoid": {
+      "author": "Polyspoon project authors",
+      "statement": "Original project-authored recipe implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for stylized-humanoid; external material and private edits excluded."
+    },
+    "stylized-fox": {
+      "author": "Polyspoon project authors",
+      "statement": "Original project-authored recipe implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for stylized-fox; external material and private edits excluded."
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Polyspoon · Environments</title></head>
+<body>
+<main class="environment-editor">
+<aside><a class="environment-brand" href="/" aria-label="Polyspoon home"></a><h1>Environments</h1><p>Shape a landscape. Place your saved assets.</p>
+<label>Load scene<input id="scene-file" type="file" accept=".json,application/json"></label>
+<label>Seed<input id="terrain-seed" type="number" min="0" max="4294967295" step="1"></label>
+<label>Height amplitude (m)<input id="terrain-amplitude" type="number" min="0" max="12" step="0.1"></label>
+<details open><summary>Roads</summary>
+<label>Selected road<select id="road-selection"></select></label>
+<div class="actions"><button id="add-road">Add road</button><button id="remove-road">Remove road</button></div>
+<label>Width (m)<input id="road-width" type="number" min="0.25" max="8" step="0.25"></label>
+<label>Path points (x, z metres)<textarea id="road-path" rows="4" placeholder="2, 3&#10;12, 3"></textarea></label>
+<p class="hint">One x, z pair per line. Two to eight points. The entire ribbon must lie on terrain.</p></details>
+<details><summary>Boundary-limited water</summary>
+<label>Selected patch<select id="water-selection"></select></label>
+<div class="actions"><button id="add-water">Add water</button><button id="remove-water">Remove water</button></div>
+<div class="field-pair"><label>Centre X<input id="water-x" type="number" step="0.25"></label><label>Centre Z<input id="water-z" type="number" step="0.25"></label></div>
+<div class="field-pair"><label>Width (m)<input id="water-width" type="number" min="0.25" max="64" step="0.25"></label><label>Depth (m)<input id="water-depth" type="number" min="0.25" max="64" step="0.25"></label></div>
+<label>Elevation (m)<input id="water-elevation" type="number" min="-20" max="32" step="0.1"></label><p class="hint">Flat water clips where terrain rises above its elevation. Wet areas reaching the rectangular extent end at a straight boundary. The full extent needs terrain support.</p></details>
+<details><summary>Catalog placements</summary>
+<label>Selected asset<select id="placement-selection"></select></label>
+<label>Catalog family<select id="placement-family"></select></label>
+<div class="actions"><button id="add-placement">Add asset</button><button id="remove-placement">Remove asset</button></div>
+<div class="field-pair"><label>Position X<input id="placement-x" type="number" step="0.25"></label><label>Position Z<input id="placement-z" type="number" step="0.25"></label></div>
+<label>Yaw (degrees)<input id="placement-yaw" type="number" min="-360" max="360" step="5"></label>
+<label>Maximum slope (degrees)<input id="placement-maxSlopeDegrees" type="number" min="0" max="89" step="1"></label>
+<label>Maximum support variation (m)<input id="placement-maxSupportVariation" type="number" min="0" max="1" step="0.05"></label>
+<button id="frame-selected-asset">Frame selected asset</button>
+<output id="placement-support"></output></details>
+<div class="actions scene-actions"><button id="new-scene">New scene</button><button id="frame-scene">Frame scene</button><button id="save-scene">Save scene</button><button id="export-scene">Export GLB</button></div>
+<p id="environment-status" role="status" aria-live="polite"></p><p class="scope">Upright placements use bounded footprint support. Roads follow terrain triangles. Water uses fixed elevation and clipped shores.</p>
+</aside><section id="environment-viewport" aria-label="Environment preview"><output id="surface-query">Point at the terrain to inspect height and slope.</output></section>
+</main><script type="module" src="/src/environment/preview.ts"></script>
+</body></html>

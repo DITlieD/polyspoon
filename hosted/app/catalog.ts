@@ -1,0 +1,71 @@
+import {modelReport} from './member-safety.ts';
+import records from 'virtual:hosted-trusted-recipes';
+import {matchTrustedRecipe} from './runtime-identity.ts';
+import {brandArtwork} from '../../src/site/brand.ts';
+import {el,link,input,button,status,heading,empty,action,when} from '../shared/dom.ts';
+import {verifyArtifact,explain,ApiFailure} from '../shared/http.ts';
+import {readCatalogFilters,catalogSearch,catalogFilterForm} from './discovery.ts';
+import type {Context,ModelDetail,Artifact,CatalogPage} from './types.ts';
+import {downloadLabel} from './download-labels.ts';
+import {modelCommunity} from './community.ts';
+const voteLabel=(count:number)=>count+' '+(count===1?'vote':'votes');
+const bytesLabel=(size:number)=>size<1024?size+' B':size<1024*1024?(size/1024).toFixed(1)+' KB':(size/1024/1024).toFixed(1)+' MB';
+export async function catalog(context:Context){
+ let active=true,revision=0;const pending=new Set<AbortController>(),observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){observer.unobserve(entry.target);void previews.get(entry.target)?.();}},{rootMargin:'160px'}),previews=new Map<Element,()=>Promise<void>>();context.resources.add(()=>{active=false;revision++;observer.disconnect();for(const request of pending)request.abort();});
+ const filters=readCatalogFilters(new URLSearchParams(location.search)),root=el('section','hosted-catalog'),layout=el('div','hosted-catalog-layout'),sidebar=el('aside'),content=el('section'),summary=status('Loading models…'),results=el('div'),paging=el('nav','actions'),form=catalogFilterForm(filters,{types:[],styles:[]});sidebar.setAttribute('aria-label','Model filters');paging.setAttribute('aria-label','Model pages');sidebar.append(form);content.append(summary,results,paging);layout.append(sidebar,content);root.append(heading('Find your next model.','Browse individual published models by name, type and style. Keep the editable source for your next change.'),layout);
+ async function refresh(){
+  const current=++revision;summary.textContent='Loading models…';content.setAttribute('aria-busy','true');results.replaceChildren();paging.replaceChildren();observer.disconnect();previews.clear();
+  try{
+   const data=await context.api.json<CatalogPage>('/api/catalog'+catalogSearch(filters));if(!active||current!==revision)return;
+   sidebar.replaceChildren(catalogFilterForm(filters,{types:data.facets.types.map(facet=>[facet.value,facet.label+' ('+facet.count+')']),styles:data.facets.styles.map(facet=>[facet.value,facet.label+' ('+facet.count+')'])}));
+   const labels=(value:string|null,kind:'types'|'styles')=>data.facets[kind].find(facet=>facet.value===(value??'unclassified'))?.label??'Unclassified';
+   summary.textContent=data.models.length?'Showing '+(data.offset+1)+'–'+(data.offset+data.models.length)+' of '+data.total+' '+(data.total===1?'model.':'models.'):'0 models on this page.';
+   const grid=el('div','hosted-model-grid');results.append(grid);
+   for(const model of data.models){
+    const target='/asset/'+encodeURIComponent(model.id)+catalogSearch(filters),visual=el('div','hosted-model-visual'),placeholder=el('div','hosted-model-placeholder',brandArtwork('logo'),el('span','','No preview published'));visual.append(placeholder);
+    const category=el('span','pill',labels(model.type,'types')),card=el('article','hosted-model-card',visual,el('div','hosted-model-copy',category,el('h2','',link(model.title,target)),el('p','muted',labels(model.style,'styles')),el('p','muted',(model.kind==='preset'?'Preset':'Editable recipe')+' · '+voteLabel(model.votes)),link('Open model',target,'button-secondary')));grid.append(card);
+    if(model.preview){
+     const file=model.preview;placeholder.lastElementChild!.textContent='Preview loading…';
+     previews.set(visual,async()=>{const request=new AbortController();pending.add(request);let url:string|undefined;try{const bytes=await context.api.bytes('/api/catalog/'+encodeURIComponent(model.id)+'/files?path='+encodeURIComponent(file.path),{signal:request.signal});await verifyArtifact(bytes,file);if(!active||current!==revision)return;url=context.resources.create(new Blob([Uint8Array.from(bytes)],{type:file.media_type}));const image=el('img');image.alt=model.title+' published preview';image.src=url;await image.decode();if(!active||current!==revision){context.resources.release(url);return;}visual.replaceChildren(image);}catch{if(url)context.resources.release(url);if(active&&current===revision)placeholder.lastElementChild!.textContent='Preview unavailable';}finally{pending.delete(request);}});observer.observe(visual);
+    }
+   }
+   if(!data.models.length){const filtered=!!(filters.query||filters.type||filters.style),pastPage=data.offset>0;results.append(empty(pastPage?'No models on this page':filtered?'No matching models':'The catalog is getting ready.',pastPage?'Published models can change while you browse. Return to the first page.':filtered?'Try fewer filters or clear them to see every published model.':'Published models will appear here after their review and release.'),link(pastPage?'Return to first page':'Clear filters and show all models',pastPage?'/catalog'+catalogSearch({...filters,offset:'0'}):'/catalog','button-secondary'));}
+   if(data.offset>0)paging.append(link('Previous','/catalog'+catalogSearch({...filters,offset:String(Math.max(0,data.offset-data.limit))}),'button-secondary'));if(data.nextOffset!==null)paging.append(link('Next','/catalog'+catalogSearch({...filters,offset:String(data.nextOffset)}),'button-secondary'));paging.querySelector('a')?.setAttribute('aria-label',data.offset>0?'Previous models page':'Next models page');if(data.offset>0&&data.nextOffset!==null)paging.lastElementChild!.setAttribute('aria-label','Next models page');
+  }catch(error){if(!active||current!==revision)return;summary.textContent=error instanceof ApiFailure?({invalid_catalog_type:'Choose an available model type.',invalid_catalog_style:'Choose an available model style.',invalid_catalog_offset:'Choose a valid models page.',invalid_catalog_query:'Check the model filters and try again.',query_too_long:'Use a model name of up to 100 characters.'} as Record<string,string>)[error.code]??explain(error):explain(error);const retry=button('Retry models','button-secondary');retry.addEventListener('click',()=>void refresh());results.replaceChildren(retry);}
+  finally{if(active&&current===revision)content.setAttribute('aria-busy','false');}
+ }
+ void refresh();return root;
+}
+async function checkedBytes(context:Context,id:string,file:Artifact){
+ const bytes=await context.api.bytes('/api/catalog/'+encodeURIComponent(id)+'/files?path='+encodeURIComponent(file.path));await verifyArtifact(bytes,file);return bytes;
+}
+export async function model(context:Context,id:string){
+ const data=await context.api.json<ModelDetail>('/api/catalog/'+encodeURIComponent(id)),root=el('section'),feedback=status();
+ root.append(link('Back to models','/catalog'+catalogSearch(readCatalogFilters(new URLSearchParams(location.search))),'back-link'),heading(data.title,'A published '+(data.kind==='preset'?'preset':'editable recipe')+'. Downloads retain their source notices.'),feedback);
+ if(matchTrustedRecipe(records,data)&&data.artifacts.some(file=>file.path==='selected.design.json'))root.append(link('Customize this model','/asset/'+id+'?edit=1','button'));
+ else root.append(el('p','muted','Customization is unavailable for this recipe version. Verified published downloads remain available.'));
+ const preview=el('div','private-preview published-preview'),previewStatus=status('Looking for a published preview…');preview.append(previewStatus);
+ const body=el('div','panel',el('span','pill',data.kind==='preset'?'Preset':'Editable recipe'),el('p','muted','Published '+when(data.published_at)));
+ body.prepend(await modelCommunity(context,id));
+ const vote=button(data.voted?'Remove my vote':'Vote for this model','button-secondary'),votes=el('span','muted',voteLabel(data.votes));
+ vote.addEventListener('click',()=>void action(vote,feedback,async()=>{
+  const result=await context.api.json<{votes:number}>('/api/catalog/'+encodeURIComponent(data.asset_id)+'/vote',{method:data.voted?'DELETE':'PUT',...(data.voted?{}:{body:'{}'})});data.voted=!data.voted;vote.textContent=data.voted?'Remove my vote':'Vote for this model';votes.textContent=voteLabel(result.votes);feedback.textContent=data.voted?'Your vote is saved.':'Your vote was removed.';
+ }));body.append(el('div','actions',vote,votes),el('h2','','Take it into your project'));
+ const files=data.artifacts.filter(file=>data.delivery?.primary.includes(file.path)),downloads=el('ul','download-list');
+ for(const file of files){
+  const label=downloadLabel(file.path)??(file.path.endsWith('.zip')?(data.capabilities.includes('download:source')&&files.filter(candidate=>candidate.path.endsWith('.zip')).length===1?'Download editable source':'Download ZIP'):file.path.endsWith('.design.json')?'Save design':file.path.split('/').at(-1)??'Download file');
+  const download=button(label,'button-secondary');download.addEventListener('click',()=>void action(download,feedback,async()=>{
+   const bytes=await checkedBytes(context,id,file),url=context.resources.create(new Blob([Uint8Array.from(bytes)],{type:file.media_type})),a=link('',url);a.download=file.path.split('/').at(-1)??'download';a.click();feedback.textContent='Verified download ready: '+a.download+'.';
+  }));download.title=file.path;downloads.append(el('li','',download,el('span','muted',bytesLabel(file.bytes))));
+ }
+ if(files.length)body.append(downloads);
+ if(!files.length)body.append(el('p','muted','This published model has no downloadable artifacts listed.'));
+ root.append(el('div','split published-model',preview,body));root.append(modelReport(context,id));
+ const details=el('details','',el('summary','','Saved design details'),el('pre','file-list',JSON.stringify(data.design,null,2)));root.append(details);
+ const image=data.artifacts.find(file=>file.path===data.delivery?.preview);
+ if(image){
+  try{const bytes=await checkedBytes(context,id,image),img=el('img');img.alt=data.title+' published preview';img.src=context.resources.create(new Blob([Uint8Array.from(bytes)],{type:/\.jpe?g$/i.test(image.path)?'image/jpeg':/\.webp$/i.test(image.path)?'image/webp':'image/png'}));preview.replaceChildren(img);}
+  catch(error){previewStatus.textContent='The verified preview is unavailable. Downloads remain checked separately.';}
+ }else previewStatus.textContent='No image preview was published for this model.';
+ return root;
+}

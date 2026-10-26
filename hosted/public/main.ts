@@ -1,0 +1,43 @@
+import '../shared/style.css';
+import './home.css';
+import {createAgentSetup} from '../../src/site/docs.ts';
+import {MarketplaceClient,explain} from '../shared/http.ts';
+import {el,link,field,input,status,heading,shell} from '../shared/dom.ts';
+import {hero,pillars,howItWorks,contribute,moderation,comparison,faq,type Step} from './content.ts';
+const main=shell([['How it works','/#how'],['Contribute','/#contribute'],['FAQ','/#faq'],['Toolkit','/docs'],['Sign in','/sign-in']]);
+const route=location.pathname;
+if(route==='/sign-in'){
+ const panel=el('section','panel narrow'),form=el('form'),email=input('email','email'),name=input('name','text',false),send=el('button','button','Email me a sign-in link'),feedback=status();send.type='submit';email.autocomplete='email';name.autocomplete='name';
+ form.append(field('Email address',email),field('Your name (optional)',name),send,feedback);
+ panel.append(heading('Your next model starts here.','Sign in with a single-use email link. The same link creates a member account if you are new.'),form,el('p','muted','Use the link in your inbox within five minutes. No password needed.'));
+ if(new URLSearchParams(location.search).has('error')){feedback.textContent='That sign-in link has expired or could not be used. Request a fresh link.';feedback.classList.add('error');}
+ if(new URLSearchParams(location.search).get('reason')==='session-expired')feedback.textContent='Your session ended. Sign in again to continue.';
+ form.addEventListener('submit',async event=>{
+  event.preventDefault();send.disabled=true;feedback.textContent='Sending your sign-in link…';feedback.classList.remove('error');
+  try{await new MarketplaceClient(location.origin).json('/api/auth/sign-in/magic-link',{method:'POST',body:JSON.stringify({email:email.value.trim(),...(name.value.trim()?{name:name.value.trim()}:{}),callbackURL:'/catalog',newUserCallbackURL:'/catalog',errorCallbackURL:'/sign-in'})});feedback.textContent='Check your inbox for a sign-in link. You can close this page and open the link on this device.';}
+  catch(error){feedback.textContent=explain(error);feedback.classList.add('error');}finally{send.disabled=false;}
+ });main.append(panel);
+}else if(route==='/docs'){
+ main.append(heading('Give your agent a good starting point.','One project-local bundle supplies the open-source skill and model engine. Your agent handles setup and checks the result.'),createAgentSetup(),el('section','public-note',el('h2','','Local toolkit, your own files.'),el('p','muted','The public toolkit runs in your project. Hosted catalog access uses a verified member session. Installing the toolkit does not create an account or grant review or publication authority.'),link('Sign in to browse models','/sign-in','button-secondary')),el('section','public-note',el('h2','','Formats and controls.'),el('p','muted','Local builds and member downloads come as GLB, OBJ + MTL (zip), binary FBX 7.4 and USDZ. Every format is in meters with +Y up; FBX declares 1 unit = 1 m. Rigs and animation clips stay in the GLB; the other formats carry the static mesh and base-colour materials. Each model also has a controls JSON listing every knob with its range, default, unit and current value.'),el('pre','file-list','node .polyspoon/runtime.mjs build --family bench --out exports/bench-01 --formats all'),el('p','muted','Agents can start from '),link('llms.txt','/llms.txt','button-secondary'),link('prompt.txt','/prompt.txt','button-secondary')),el('section','public-note',el('h2','','Contribute a model.'),el('p','muted','Build and verify the model locally with your agent, then sign in and submit it. Automatic checks rebuild it in isolation, and an independent human reviewer checks visuals, portability, source and provenance before it is published. Every model gets this full review, however many you have published.'),el('ol','timeline',...contribute.map(item=>el('li','',el('h3','',item.title),el('p','muted',item.body))))),el('section','public-note',el('h2','','Reviewers and moderators.'),el('p','muted','Administrators invite trusted contributors to review submissions or moderate reports and appeals. Roles are never granted by signup, votes or payment.'),link('Read the FAQ','/#faq','button-secondary')));
+}else if(route==='/legal'){
+ main.append(heading('Use the right license for each file.','Source software, parameter content and third-party dependencies have separate license scopes.'),el('section','panel',el('p','','The public toolkit includes its software license, notices and scoped default-design license. Preserve them with your project.'),el('p','','For hosted downloads, inspect the published artifact and its notices. Membership and votes do not grant permission to relicense another creator’s work.'),link('Open toolkit setup','/docs','button-secondary')));
+}else if(route==='/help'){
+ main.append(heading('A little help to keep making.','Start with the local toolkit, or use your verified email to access the member catalog.'),el('section','panel',el('h2','','Having trouble signing in?'),el('p','','Request a fresh email link. Links expire after five minutes and can be used only once. If email delivery is unavailable, try again later.'),link('Request a sign-in link','/sign-in','button-secondary')),el('section','panel',el('h2','','Bring the toolkit to your agent'),el('p','','Choose your app on the toolkit page and copy the setup request. The single archive includes the local engine and instructions.'),link('Set up your agent','/docs','button-secondary')));
+}else{
+ const steps=(items:Step[],kind='card')=>el('div','grid',...items.map(item=>el('article',kind,el('h3','',item.title),el('p','muted',item.body))));
+ const section=(id:string,eyebrow:string,title:string,lead:string,...body:Node[])=>{const node=el('section','home-section',el('p','eyebrow',eyebrow),el('h2','',title),el('p','muted section-lead',lead),...body);node.id=id;return node;};
+ const image=el('img');image.src='/brand/courtyard.png';image.alt='A timber cottage and courtyard built from editable Polyspoon models';image.width=1440;image.height=960;
+ const table=el('table','compare');const head=el('tr','',el('th','',''),el('th','','Polyspoon'),el('th','','Polyfork'));table.append(el('thead','',head),el('tbody','',...comparison.map(([row,ours,theirs])=>el('tr','',el('th','',row),el('td','',ours),el('td','',theirs)))));
+ const questions=el('div','faq',...faq.map(item=>{const d=el('details','',el('summary','',item.question),el('p','muted',item.answer));return d;}));
+ main.append(
+  el('section','hero',el('div','',el('p','eyebrow',hero.eyebrow),el('h1','',hero.title),el('p','muted hero-lead',hero.lead),el('div','actions',link('Get the free toolkit','/docs','button'),link('Join and browse models','/sign-in','button-secondary'))),image),
+  el('div','grid pillars',...pillars.map(item=>el('article','card',el('h3','',item.title),el('p','muted',item.body)))),
+  section('how','How it works','From a request to a model in your project.','Your agent does the work locally with the open-source toolkit. You keep everything it makes.',steps(howItWorks)),
+  section('contribute','Contribute','Anyone can make models. People check them.','Sign up with your email, build a model with your agent and submit it. Here is what happens next.',el('ol','timeline',...contribute.map(item=>el('li','',el('h3','',item.title),el('p','muted',item.body)))),el('div','actions',link('Read the toolkit guide','/docs','button-secondary'),link('Sign in to submit','/sign-in','button-secondary'))),
+  section('community','Community','How people become reviewers and moderators.','Trust is earned through contributions and granted by people, never by signup, votes or payment.',steps(moderation)),
+  section('compare','Compared','An open alternative to Polyfork.','Both make low-poly models you can reshape. Polyspoon keeps the generator open and lets the community build the catalog.',el('div','table-wrap',table)),
+  section('open-source','Open source','Yours to read, run and change.','The engine, recipes and agent toolkit are released under the Apache License 2.0. Models carry their own licence and notices, which travel with every download.',el('div','actions',link('Download the toolkit','/agent-bundles/polyspoon-agent-3.zip','button'),link('Licences','/legal','button-secondary'))),
+  section('faq','FAQ','Questions people ask.','',questions),
+  el('section','home-cta',el('h2','','Start with one model.'),el('p','muted','Give your agent the toolkit and ask for a bench, a cottage or a walking fox.'),el('div','actions',link('Get the free toolkit','/docs','button'),link('Join Polyspoon','/sign-in','button-secondary')))
+ );
+}

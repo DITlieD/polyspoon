@@ -1,0 +1,13 @@
+{
+  "formatVersion": 1,
+  "family": "boulder",
+  "familyVersion": "0.1.0",
+  "requested": {},
+  "applied": {
+    "width": 1.6,
+    "height": 1,
+    "depth": 1.2,
+    "lean": 0.08,
+    "colorway": "forest"
+  }
+}

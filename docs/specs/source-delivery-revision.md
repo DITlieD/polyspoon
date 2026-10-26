@@ -1,0 +1,9 @@
+# Source delivery revision
+
+Recipe versions and geometry remain unchanged. Current source delivery uses manifest/index format 2, an explicit deliveryRevision of 2, and FAMILY-RECIPEVERSION-source.2.zip. Legacy format 1 implies delivery revision 1 and retains FAMILY-RECIPEVERSION.zip. Only these supported identity pairs and exact paths are accepted. Legacy archives validate against frozen legacy runner/build text; arbitrary or mismatched runners remain rejected.
+
+The revised runner loads and validates saved designs through loadDesign, builds through designInput, and copies only the returned migration notice to build.config before export. Geometry, appearance and canonical configuration must match the repository export path. Fresh/default/reset inputs have no migration notice. Forged or tampered notices fail through the existing loader.
+
+Packaging prepares all requested artifacts, checks existing paths and bytes before writing, rejects changed bytes at any existing revision filename, and treats identical artifacts as idempotent. A conflict preserves every existing archive and the index, without creating earlier prepared archives. Index publication uses an exclusively created sibling file and atomic rename after successful artifact writes. Index updates preserve old archive files. Final all-family publication is outside this candidate task. A bounded family-selection argument permits evidence-only replay without regenerating the full catalog, and rejects the default public output.
+
+Tests cover legacy archive validation, supported and rejected delivery identities, immutable conflict/idempotency, browser naming with existing recovery/readiness protections, and actual extraction/installation/compilation of a cottage candidate. Replay compares migrated colored, fresh/default and reset input against repository geometry/configuration/appearance and GLB hashes. It rejects forged notices before export. Public bytes remain unchanged.

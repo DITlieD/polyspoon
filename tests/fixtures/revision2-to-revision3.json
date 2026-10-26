@@ -1,0 +1,79 @@
+[
+  {
+    "formatVersion": 1,
+    "family": "cottage",
+    "familyVersion": "0.2.0",
+    "requested": {
+      "width": 3.6,
+      "roofRise": 1.2,
+      "shutters": false,
+      "workBay": "left",
+      "color.roof": "#123456"
+    },
+    "applied": {
+      "width": 3.6,
+      "depth": 4,
+      "wallHeight": 2.8,
+      "roofRise": 1.2,
+      "chimney": true,
+      "beamWeight": "stout",
+      "eaveOverhang": 0.4,
+      "workBay": "left",
+      "shutters": false,
+      "roofCharacter": 0.45,
+      "detail": "inspection",
+      "colorway": "forest",
+      "color.plaster": "#e2d6b8",
+      "color.roof": "#123456",
+      "color.timber": "#594739",
+      "color.wood": "#966c48",
+      "color.recess": "#34433e",
+      "color.stone": "#7d8279",
+      "color.hardware": "#b99247"
+    }
+  },
+  {
+    "formatVersion": 1,
+    "family": "tree",
+    "familyVersion": "0.3.0",
+    "requested": {
+      "growth": "young",
+      "lean": -0.08,
+      "seed": 65535,
+      "color.foliage": "#123456"
+    },
+    "applied": {
+      "height": 4.5,
+      "spread": 3.8,
+      "seed": 65535,
+      "growth": "young",
+      "lean": -0.08,
+      "colorway": "forest",
+      "color.timber": "#594739",
+      "color.foliage": "#123456",
+      "color.foliageShade": "#536c48",
+      "color.foliageLight": "#899863"
+    }
+  },
+  {
+    "formatVersion": 1,
+    "family": "boulder",
+    "familyVersion": "0.3.0",
+    "requested": {
+      "form": "standing",
+      "seed": 91,
+      "lean": -0.15,
+      "color.stone": "#123456"
+    },
+    "applied": {
+      "width": 1.6,
+      "height": 1,
+      "depth": 1.2,
+      "lean": -0.15,
+      "form": "standing",
+      "seed": 91,
+      "colorway": "forest",
+      "color.stone": "#123456"
+    }
+  }
+]

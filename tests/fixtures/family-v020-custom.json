@@ -1,0 +1,81 @@
+{
+  "tree": {
+    "formatVersion": 1,
+    "family": "tree",
+    "familyVersion": "0.2.0",
+    "requested": {
+      "height": 3,
+      "spread": 2.4,
+      "seed": 18,
+      "colorway": "ember"
+    },
+    "applied": {
+      "height": 3,
+      "spread": 2.4,
+      "seed": 18,
+      "colorway": "ember",
+      "color.timber": "#604234",
+      "color.foliage": "#a0894c",
+      "color.foliageShade": "#79693f",
+      "color.foliageLight": "#b7a364"
+    }
+  },
+  "fence": {
+    "formatVersion": 1,
+    "family": "fence",
+    "familyVersion": "0.2.0",
+    "requested": {
+      "length": 4.8,
+      "height": 1.5,
+      "bays": 3,
+      "colorway": "ember"
+    },
+    "applied": {
+      "length": 4.8,
+      "height": 1.5,
+      "bays": 3,
+      "colorway": "ember",
+      "color.timber": "#604234",
+      "color.wood": "#a1784d"
+    }
+  },
+  "crate": {
+    "formatVersion": 1,
+    "family": "crate",
+    "familyVersion": "0.2.0",
+    "requested": {
+      "width": 1.3,
+      "height": 0.4,
+      "depth": 0.8,
+      "colorway": "ember"
+    },
+    "applied": {
+      "width": 1.3,
+      "height": 0.4,
+      "depth": 0.8,
+      "colorway": "ember",
+      "color.wood": "#a1784d",
+      "color.timber": "#604234"
+    }
+  },
+  "boulder": {
+    "formatVersion": 1,
+    "family": "boulder",
+    "familyVersion": "0.2.0",
+    "requested": {
+      "width": 2.6,
+      "height": 0.65,
+      "depth": 1.8,
+      "lean": -0.14,
+      "colorway": "ember"
+    },
+    "applied": {
+      "width": 2.6,
+      "height": 0.65,
+      "depth": 1.8,
+      "lean": -0.14,
+      "colorway": "ember",
+      "color.stone": "#928071"
+    }
+  }
+}

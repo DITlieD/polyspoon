@@ -1,0 +1,59 @@
+// Public landing copy. Plain data only: the public build must not import catalog, recipe or preview modules.
+export type Step={title:string;body:string};
+export type Faq={question:string;answer:string};
+
+export const hero={
+ eyebrow:'Open source · Apache-2.0',
+ title:'Editable 3D models your agent can remake.',
+ lead:'Polyspoon is an open-source alternative to Polyfork. Every model is a recipe, a small program with typed controls, so you and your coding agent can reshape it, keep the source and export it to Unity, Godot, Blender, three.js or any glTF engine.',
+};
+
+export const pillars:Step[]=[
+ {title:'Recipes, not frozen meshes',body:'Each model is code with named controls for size, construction, parts and colours. Change a value and the model rebuilds. The default design reproduces the published model exactly.'},
+ {title:'Made for your own agent',body:'One open-source bundle gives Codex, Claude Code, Cursor or any coding agent the engine and the skill. It builds, checks and exports locally. No Polyspoon account, API key or paid service needed.'},
+ {title:'Community-made, human-reviewed',body:'Anyone can sign up and contribute. Every model is checked by an independent human reviewer before it can be published, and every published model keeps its source, licence and review record.'},
+];
+
+export const howItWorks:Step[]=[
+ {title:'1. Give your agent the toolkit',body:'Download the single toolkit archive from the docs page. Your agent installs the project skill and the local engine in your project.'},
+ {title:'2. Ask for a model',body:'Describe what you need. The agent picks or writes a recipe, sets its controls and renders previews to check the result.'},
+ {title:'3. Edit it as a design',body:'Shape, parts and colours are saved as a small design file next to the recipe, so you can change them again later instead of starting over.'},
+ {title:'4. Export to your engine',body:'Get GLB, OBJ + MTL, FBX or USDZ for Unity, Godot, Unreal, Blender, three.js or Apple Quick Look, in meters with +Y up, together with a controls file, the editable design, the recipe source and the licence notices.'},
+];
+
+export const contribute:Step[]=[
+ {title:'Make it locally',body:'Start from a preset of an existing recipe or write an original recipe with your agent. Use the authoring guide, then run the verification command so technical checks and renders are recorded.'},
+ {title:'Submit it',body:'Sign in with your email and submit the model from the member site. Files stay private while they are processed and reviewed.'},
+ {title:'Automatic checks',body:'Submitted recipes run in an isolated processor that rebuilds them and checks geometry, files, sizes and integrity. Submitted code never runs on the website itself.'},
+ {title:'Human review',body:'An independent reviewer checks the visuals, portability, source and provenance. You cannot review your own model. Every model, from every contributor, gets this full human review.'},
+ {title:'Published',body:'Approved models appear in the member catalog with their source, licence and review record. Members can customise, download and vote on them.'},
+];
+
+export const moderation:Step[]=[
+ {title:'Members',body:'Anyone with a verified email can browse, customise, download, vote and report problems.'},
+ {title:'Contributors',body:'Members who submit models. A good track record of accepted models is how contributors become known to the review team.'},
+ {title:'Reviewers and moderators',body:'Trusted contributors are invited to review or moderate by an administrator. Moderators handle reports, withdraw problem models and decide appeals. They cannot act on their own content or grant roles.'},
+ {title:'Fair process',body:'Every report needs a reason, every decision is recorded, and restricted members can appeal. Nobody can buy, vote or sign up their way into review or publication.'},
+];
+
+export const comparison:Array<[string,string,string]>=[
+ ['Source code','Open source (Apache-2.0)','Closed'],
+ ['Who makes models','Anyone, with human review','The Polyfork team'],
+ ['Editable controls','Every model is a recipe','Remixable assets only'],
+ ['Keep the generator','Yes: recipe source with every download','ES module per asset'],
+ ['Export formats','GLB, OBJ + MTL, FBX and USDZ','GLB, FBX, USDZ and OBJ'],
+ ['Machine-readable model files','Controls JSON per model, plus llms.txt and prompt.txt','JSON per model, plus llms.txt and prompt.txt'],
+ ['Works offline with your agent','Yes, local toolkit','Uses the hosted CDN and API'],
+ ['Price','Free','Low poly free, HD on a paid plan'],
+];
+
+export const faq:Faq[]=[
+ {question:'What is Polyspoon?',answer:'An open-source toolkit and community catalog of editable, recipe-based 3D models. A recipe is a small program with typed controls that rebuilds the model when you change it.'},
+ {question:'How is it different from Polyfork?',answer:'Polyfork is a closed catalog made by one team. Polyspoon is open source, anyone can contribute recipes, every published model is human-reviewed, and you always get the editable recipe, not only a mesh.'},
+ {question:'Do I need an account?',answer:'Not for the local toolkit: download it and use it with your own agent. The hosted catalog, downloads, votes and submissions need a free member account created from a one-time email link.'},
+ {question:'Which engines are supported?',answer:'Every model downloads as GLB, OBJ + MTL, FBX (binary 7.4) or USDZ, so Unity, Godot, Unreal, Blender, three.js and Apple Quick Look can all open it. All formats use meters with +Y up. Two characters, a humanoid and a fox, keep their skeletons and walk and idle clips in the GLB.'},
+ {question:'Can my agent read a model’s controls?',answer:'Yes. Each model comes with a controls JSON file listing every knob with its range, default, unit and current value, plus materials and real-world size. The toolkit writes the same file for local builds, and polyspoon.com/llms.txt and /prompt.txt explain the project to agents.'},
+ {question:'How do I become a moderator?',answer:'Contribute good models and help with reports. Administrators invite trusted contributors to review or moderate. Roles cannot be requested through signup or votes.'},
+ {question:'Is it free?',answer:'Yes. The toolkit and source are Apache-2.0, and membership is free. Each model shows its own licence and notices; keep them with your project.'},
+ {question:'Where is the source code?',answer:'The toolkit archive contains the full engine and recipe sources. A public GitHub repository is being prepared for launch.'},
+];

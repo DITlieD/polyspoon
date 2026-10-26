@@ -1,0 +1,488 @@
+{
+  "acceptedSourceHash": "e5fb802ea89dc13ce6da5e3a2e067e8acadf55fb85d4e1c72615633e9d9b017d",
+  "geometrySourceChecks": [
+    {
+      "path": "examples/recipes/bench/index.ts",
+      "geometrySha256": "5439e4487beb9c1d4de2cd6c3eca15d4939b923ce3844b051e1c2a9576c02a55",
+      "unchanged": true
+    },
+    {
+      "path": "examples/recipes/planter/index.ts",
+      "geometrySha256": "d7b5308d052298e5fb4d80f38290a84f857f58a7616118295cce89cdeafe9de3",
+      "unchanged": true
+    },
+    {
+      "path": "examples/recipes/treasure-chest/index.ts",
+      "geometrySha256": "50e6560e89e095c706dfd41b6d2a830ac5fe6351958de35346b288fe4513d845",
+      "unchanged": true
+    },
+    {
+      "path": "examples/recipes/wheelbarrow/index.ts",
+      "geometrySha256": "8c80f5e1984cacb82ab11daf7ed983b81269c51c943e85e02387264272f2495a",
+      "unchanged": true
+    },
+    {
+      "path": "examples/recipes/stone-well/index.ts",
+      "geometrySha256": "0d0a25ac382e99940c1a70d53e700dbcbbc1f74bb76bcb3291a521c6c77b871f",
+      "unchanged": true
+    },
+    {
+      "path": "examples/recipes/conifer/index.ts",
+      "geometrySha256": "2cfe8e5cea66785552e3ff25419cf4ca68a0aab2c46ada1950b5f2407bb2e3d4",
+      "unchanged": true
+    },
+    {
+      "path": "src/lantern/generator.ts",
+      "sha256": "d97476a03c6597c0422abdc4c48dad16b2ec52f76101ebbbd98cded89117ecc5",
+      "unchanged": true
+    },
+    {
+      "path": "src/families/cottage.ts",
+      "sha256": "0714a3cf86972ad423fa0883677e797069638566600977bd6474784c1b8f6aec",
+      "unchanged": true
+    },
+    {
+      "path": "src/families/tree.ts",
+      "sha256": "d8782885092fe97bfae5713b99c2ad66607526a0170d952522bf1386ed3369f9",
+      "unchanged": true
+    },
+    {
+      "path": "src/families/fence.ts",
+      "sha256": "49f8409703a7c01c7473bef846e5a562ec5aa7b8243b55f7775f7add0eecda02",
+      "unchanged": true
+    },
+    {
+      "path": "src/families/crate.ts",
+      "sha256": "f427ffe54d70aabdc9e40299f0753d561ada3503efdbb05ded77b77738ce151e",
+      "unchanged": true
+    },
+    {
+      "path": "src/families/boulder.ts",
+      "sha256": "f24399e4ff802b0bb372f2ab71702fc3dc5c7c67a88a13a5efd962d694eea523",
+      "unchanged": true
+    }
+  ],
+  "cases": [
+    {
+      "family": "work-lantern",
+      "version": "0.6.0",
+      "input": {},
+      "geometryHash": "27073676a0c3b3934b76d7b8cf4a18a45c4b1e6dbd18269ae468d1a3fe9a018d",
+      "materialsHash": "cfe6fe0a35c7ed6b0341f2e269d21c2597faa588f38e4d87d64215d3f944d9bb",
+      "config": {
+        "formatVersion": 1,
+        "family": "work-lantern",
+        "familyVersion": "0.6.0",
+        "requested": {},
+        "applied": {
+          "bodyWidth": 0.32,
+          "bodyHeight": 0.26,
+          "handleClearance": 0.115,
+          "frameWeight": "heavy",
+          "guardLayout": "sparse",
+          "detail": "inspection",
+          "colorway": "forest",
+          "color.body": "#526750",
+          "color.enclosure": "#eee1bf",
+          "color.structure": "#303b35",
+          "color.accent": "#d2a449",
+          "enclosureProfile": "octagonal",
+          "hoodFlare": 0.18,
+          "handleProfile": "arched",
+          "guardCount": 4,
+          "construction": "rustic",
+          "hoodRise": 1,
+          "carryHoop": "oval"
+        }
+      },
+      "dimensions": [
+        0.40639999508857727,
+        0.7413318753242493,
+        0.33324798941612244
+      ],
+      "parts": 22
+    },
+    {
+      "family": "cottage",
+      "version": "0.6.0",
+      "input": {},
+      "geometryHash": "0b625315d3559c1d7d6b9be58e8e9b20ebd8c12e44a36257b340f93a969e62f9",
+      "materialsHash": "b63de1884764fa562d4e6b6d482b3902888c5400f11f7b98283085e53879e7e2",
+      "config": {
+        "formatVersion": 1,
+        "family": "cottage",
+        "familyVersion": "0.6.0",
+        "requested": {},
+        "applied": {
+          "width": 5,
+          "depth": 4,
+          "wallHeight": 2.8,
+          "roofRise": 1.4,
+          "chimney": true,
+          "beamWeight": "stout",
+          "eaveOverhang": 0.4,
+          "workBay": "right",
+          "shutters": true,
+          "roofCharacter": 0.45,
+          "detail": "inspection",
+          "roofCover": "thatch",
+          "roofThickness": 0.24,
+          "framingStyle": "diagonal",
+          "windowLayout": "paired",
+          "bayDepth": 1.65,
+          "weathering": 0.3,
+          "timberTone": 0.35,
+          "toneVariation": 0.06,
+          "beamSection": 1,
+          "ridgeSag": 1,
+          "colorway": "forest",
+          "color.plaster": "#e2d6b8",
+          "color.roof": "#b7a16b",
+          "color.timber": "#49382c",
+          "color.wood": "#966c48",
+          "color.recess": "#34433e",
+          "color.stone": "#7d8279",
+          "color.hardware": "#b99247"
+        }
+      },
+      "dimensions": [
+        6.787296295166016,
+        4.950000003576278,
+        5.010000013113022
+      ],
+      "parts": 246
+    },
+    {
+      "family": "tree",
+      "version": "0.6.0",
+      "input": {},
+      "geometryHash": "dffe037d466a207c37f6fff6fec9e74691b75b4083ae4a90e192ae6d7c27cea6",
+      "materialsHash": "8ff9a916e26231c73f7a202faf5c7cc880f168bb8b2488e8baba2d5ffbbeb085",
+      "config": {
+        "formatVersion": 1,
+        "family": "tree",
+        "familyVersion": "0.6.0",
+        "requested": {},
+        "applied": {
+          "height": 4.5,
+          "spread": 3.8,
+          "seed": 7,
+          "growth": "mature",
+          "lean": 0.055,
+          "forkHeight": 0.31,
+          "canopyFullness": 1,
+          "trunkGirth": 0.22,
+          "branchCount": 3,
+          "architecture": "spreading",
+          "season": "summer",
+          "colorway": "forest",
+          "color.timber": "#594739",
+          "color.foliage": "#587b42",
+          "color.foliageShade": "#426337",
+          "color.foliageLight": "#759050"
+        }
+      },
+      "dimensions": [
+        3.704999947547913,
+        4.500000019073486,
+        2.317999963760376
+      ],
+      "parts": 12
+    },
+    {
+      "family": "fence",
+      "version": "0.6.0",
+      "input": {},
+      "geometryHash": "c4feb1252fa69c42bf86992081980c693e05e1d8b3727dd31bc7a7e1e1ef9124",
+      "materialsHash": "8e98ddd83423e8d115d89fd1c6cbabbcfae44eff2aed1346383aaeb3e10e605c",
+      "config": {
+        "formatVersion": 1,
+        "family": "fence",
+        "familyVersion": "0.6.0",
+        "requested": {},
+        "applied": {
+          "length": 3,
+          "height": 1.1,
+          "bays": 2,
+          "railStyle": "two-rail",
+          "postHead": "chamfered",
+          "detail": "inspection",
+          "railCount": 2,
+          "memberWeight": "stout",
+          "infill": "open",
+          "picketSpacing": 0.16,
+          "weathering": 0.3,
+          "timberTone": 0.35,
+          "toneVariation": 0.06,
+          "colorway": "forest",
+          "color.timber": "#896039",
+          "color.wood": "#b68747"
+        }
+      },
+      "dimensions": [
+        3.17399999499321,
+        1.100000023841858,
+        0.17399999499320984
+      ],
+      "parts": 18
+    },
+    {
+      "family": "crate",
+      "version": "0.6.0",
+      "input": {},
+      "geometryHash": "7c189bc036949d844607994d6bc8057feae1d1136a1120481484c350d30470a3",
+      "materialsHash": "4644c2d2128854d332762ae176015db316a1d54b1fec0de9b8f00a2a5e8af620",
+      "config": {
+        "formatVersion": 1,
+        "family": "crate",
+        "familyVersion": "0.6.0",
+        "requested": {},
+        "applied": {
+          "width": 0.9,
+          "height": 0.7,
+          "depth": 0.7,
+          "lid": "open-top",
+          "brace": "plain",
+          "detail": "inspection",
+          "plankCourses": 4,
+          "slatGap": 0.035,
+          "frameWeight": "stout",
+          "toneVariation": 0.06,
+          "weathering": 0.3,
+          "timberTone": 0.35,
+          "colorway": "forest",
+          "color.wood": "#bd9458",
+          "color.timber": "#a57c48"
+        }
+      },
+      "dimensions": [
+        0.8999999981522561,
+        0.699999988079071,
+        0.7013000004470348
+      ],
+      "parts": 40
+    },
+    {
+      "family": "boulder",
+      "version": "0.6.0",
+      "input": {},
+      "geometryHash": "2a6743b72c77b6506e72cc5e7819e366f82eded76d76af28de0466e29436fc33",
+      "materialsHash": "53752392c23b93be4439a519a6af7d98556d5fd69f78cd0661f69bd939ce4a13",
+      "config": {
+        "formatVersion": 1,
+        "family": "boulder",
+        "familyVersion": "0.6.0",
+        "requested": {},
+        "applied": {
+          "width": 1.6,
+          "height": 0.95,
+          "depth": 1.2,
+          "lean": 0.08,
+          "form": "field",
+          "seed": 17,
+          "angularity": 0.7,
+          "crest": -0.12,
+          "shoulderHeight": 0.66,
+          "moss": "top",
+          "mossCoverage": 0.48,
+          "facetGrade": 1,
+          "burialDepth": 0.12,
+          "colorway": "forest",
+          "color.stone": "#7d8279",
+          "color.moss": "#66724b"
+        }
+      },
+      "dimensions": [
+        1.76478111743927,
+        0.8360000252723694,
+        1.3751806616783142
+      ],
+      "parts": 2
+    },
+    {
+      "family": "bench",
+      "version": "1.1.0",
+      "input": {},
+      "geometryHash": "4f3963ccccebc7de47b35d46c530cebdaa675566c8e9624bd389dbd2af433308",
+      "materialsHash": "98218f9355208a61b6474d1e6e216637a83e8dd6efc3eeec496c4e1b9b04b876",
+      "config": {
+        "formatVersion": 1,
+        "family": "bench",
+        "familyVersion": "1.1.0",
+        "requested": {},
+        "applied": {
+          "width": 1.6,
+          "depth": 0.45,
+          "seatHeight": 0.45,
+          "slatCount": 4,
+          "backrest": true,
+          "backHeight": 0.35,
+          "colorway": "oak",
+          "color.wood": "#b88654",
+          "color.frame": "#604532"
+        }
+      },
+      "dimensions": [
+        1.600000023841858,
+        0.8000000037252903,
+        0.4500000011324883
+      ],
+      "parts": 16
+    },
+    {
+      "family": "planter",
+      "version": "1.1.0",
+      "input": {},
+      "geometryHash": "982dd925fccf9519f63b0d6f33f0767cee76f502da5e1ebcb9a9e7beaed60d38",
+      "materialsHash": "3e59be85326304737b990a1bcf84cfbdf8c76059373f6c7c7a9d18d54f680a47",
+      "config": {
+        "formatVersion": 1,
+        "family": "planter",
+        "familyVersion": "1.1.0",
+        "requested": {},
+        "applied": {
+          "width": 1.1,
+          "depth": 0.5,
+          "height": 0.5,
+          "boardCount": 3,
+          "feet": true,
+          "colorway": "oak",
+          "color.wood": "#b88654",
+          "color.frame": "#604532"
+        }
+      },
+      "dimensions": [
+        1.1000000274181367,
+        0.5000000008195639,
+        0.5000000001490116
+      ],
+      "parts": 25
+    },
+    {
+      "family": "treasure-chest",
+      "version": "1.1.0",
+      "input": {},
+      "geometryHash": "4fdac7d924030612e208e726c1059738829b5921f9637344ae360c6bab58064e",
+      "materialsHash": "9955ea70125185e3f156dd9ad3e5d987db97f9854e5a6ae264d3210e720132f6",
+      "config": {
+        "formatVersion": 1,
+        "family": "treasure-chest",
+        "familyVersion": "1.1.0",
+        "requested": {},
+        "applied": {
+          "width": 1.2,
+          "depth": 0.7,
+          "bodyHeight": 0.58,
+          "lidRise": 0.28,
+          "lidAngle": 0,
+          "boardCount": 4,
+          "bandInset": 0.2,
+          "latch": true,
+          "color.wood": "#a86b37",
+          "color.frame": "#343a3e",
+          "color.brass": "#c79535"
+        }
+      },
+      "dimensions": [
+        1.2000000476837158,
+        0.8867059353739023,
+        0.7550000015459954
+      ],
+      "parts": 55
+    },
+    {
+      "family": "wheelbarrow",
+      "version": "1.1.0",
+      "input": {},
+      "geometryHash": "c4ee675d1d7195776efbd985ab18d2f36b7008749cdd3a3ffc762766fcd9f4c6",
+      "materialsHash": "9c873a25e938f09563ab6af435ea216fa3d13a08a9ce304e36f84b730ea4b884",
+      "config": {
+        "formatVersion": 1,
+        "family": "wheelbarrow",
+        "familyVersion": "1.1.0",
+        "requested": {},
+        "applied": {
+          "trayWidth": 0.68,
+          "trayLength": 0.92,
+          "trayDepth": 0.3,
+          "wheelRadius": 0.23,
+          "colorway": "oak",
+          "boardCount": 3,
+          "wheelStyle": "solid",
+          "color.wood": "#b58a55",
+          "color.frame": "#725033",
+          "color.iron": "#41464a"
+        }
+      },
+      "dimensions": [
+        0.7007982730865479,
+        0.9400000087171794,
+        2.005978803038597
+      ],
+      "parts": 51
+    },
+    {
+      "family": "stone-well",
+      "version": "1.1.0",
+      "input": {},
+      "geometryHash": "e9f6ca94e81787ed9a7f93572d7e7e17102df0ddc9b53cf927557926073933ba",
+      "materialsHash": "831adbb1e182a5e938f66766240e27ad5f526b6b4216589aebbcccc6ca8ad31c",
+      "config": {
+        "formatVersion": 1,
+        "family": "stone-well",
+        "familyVersion": "1.1.0",
+        "requested": {},
+        "applied": {
+          "diameter": 2.2,
+          "wallHeight": 0.95,
+          "roofSize": 1.35,
+          "roof": true,
+          "bucket": true,
+          "windlass": true,
+          "bucketDrop": 0,
+          "color.stone": "#898880",
+          "color.coping": "#b2ac96",
+          "color.timber": "#62432e",
+          "color.roof": "#a77342",
+          "color.iron": "#343b3b",
+          "color.rope": "#bca879"
+        }
+      },
+      "dimensions": [
+        2.9700000286102295,
+        3.237104892730713,
+        2.6150179651550234
+      ],
+      "parts": 129
+    },
+    {
+      "family": "conifer",
+      "version": "1.1.0",
+      "input": {},
+      "geometryHash": "ab301d42f933305afbc0ae52fb3b8bcbb4aa4a5f770f76686635510005010365",
+      "materialsHash": "9aca7a86bea71b6c943749a81a8cb69ab4c7dcd13d24621b121a2768af8d7064",
+      "config": {
+        "formatVersion": 1,
+        "family": "conifer",
+        "familyVersion": "1.1.0",
+        "requested": {},
+        "applied": {
+          "height": 6,
+          "crownSpread": 3.8,
+          "seed": 317,
+          "tierCount": 8,
+          "color.bark": "#70523a",
+          "color.needles": "#365c43",
+          "color.tips": "#55754c",
+          "color.shade": "#284c3c"
+        }
+      },
+      "dimensions": [
+        3.741443634033203,
+        6,
+        3.8000000715255737
+      ],
+      "parts": 109
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "woodland-workshop-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && npm run recipe:package && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx scripts/test-current.ts unit",
+    "export": "tsx scripts/cli.ts export",
+    "validate": "tsx scripts/cli.ts validate",
+    "render": "tsx scripts/render.ts",
+    "recipe:module": "tsx scripts/recipe-module.ts",
+    "recipe:package": "tsx scripts/recipe-package.ts",
+    "recipe:check": "tsx scripts/recipe-check.ts",
+    "recipe:render": "tsx scripts/recipe-render.ts",
+    "test:recipes": "tsx scripts/test-current.ts recipes",
+    "test:integration": "tsx scripts/test-current.ts integration",
+    "test:browser": "tsx scripts/test-current.ts browser",
+    "recipe:verify": "tsx scripts/recipe-verify.ts",
+    "recipe:review": "tsx scripts/recipe-review.ts",
+    "controls:manifest": "tsx scripts/model-controls.ts",
+    "deploy:preflight": "node --import tsx scripts/deploy-preflight.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.0",
+    "three": "0.186.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.3.0",
+    "@types/node": "26.6.4",
+    "@types/three": "0.186.0",
+    "esbuild": "0.28.2",
+    "gltf-validator": "2.0.0-dev.3.10",
+    "playwright-core": "1.63.0",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "vite": "8.3.2"
+  },
+  "license": "Apache-2.0"
+}

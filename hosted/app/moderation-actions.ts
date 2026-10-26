@@ -1,0 +1,13 @@
+import type {MarketplaceClient} from '../shared/http.ts';
+export class ModerationInputError extends Error {}
+export const reportCategories=[['unsafe','Unsafe content'],['rights','Rights or ownership'],['misleading','Misleading model'],['other','Other concern']] as const;
+function text(value:string,label:string){const checked=value.trim();if(!checked||checked.length>1000)throw new ModerationInputError(label+' must contain 1 to 1000 characters.');return checked;}
+function id(value:string){const checked=value.trim();if(!checked||checked.length>128)throw new ModerationInputError('Choose a valid record.');return encodeURIComponent(checked);}
+export async function reportModel(api:MarketplaceClient,version:string,category:string,reason:string){
+ if(!/^[a-f0-9]{64}$/.test(version)||!reportCategories.some(([key])=>key===category))throw new ModerationInputError('Choose a published model and report category.');return api.json<{id:string;status:string}>('/api/catalog/'+version+'/reports',{method:'POST',body:JSON.stringify({category,reason:text(reason,'Report reason')})});
+}
+export async function submitAppeal(api:MarketplaceClient,message:string){return api.json<{id:string;status:string}>('/api/account/appeals',{method:'POST',body:JSON.stringify({message:text(message,'Appeal message')})});}
+export async function resolveReport(api:MarketplaceClient,record:string,decision:string,reason:string){if(!['dismiss','withdraw'].includes(decision))throw new ModerationInputError('Choose a report decision.');return api.json('/api/moderation/reports/'+id(record)+'/resolve',{method:'POST',body:JSON.stringify({decision,reason:text(reason,'Decision reason')})});}
+export async function resolveAppeal(api:MarketplaceClient,record:string,decision:string,reason:string){if(!['uphold','reinstate'].includes(decision))throw new ModerationInputError('Choose an appeal decision.');return api.json('/api/moderation/appeals/'+id(record)+'/resolve',{method:'POST',body:JSON.stringify({decision,reason:text(reason,'Decision reason')})});}
+export async function addAddressBlock(api:MarketplaceClient,address:string,reason:string,expiresInSeconds:number){if(!Number.isSafeInteger(expiresInSeconds)||expiresInSeconds<60||expiresInSeconds>86400)throw new ModerationInputError('Choose an expiry between 1 minute and 24 hours.');return api.json('/api/admin/address-blocks',{method:'POST',body:JSON.stringify({address:text(address,'IP address'),reason:text(reason,'Block reason'),expiresInSeconds})});}
+export async function removeAddressBlock(api:MarketplaceClient,record:string){return api.json('/api/admin/address-blocks/'+id(record),{method:'DELETE'});}

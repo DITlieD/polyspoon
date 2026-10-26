@@ -1,0 +1,16 @@
+{
+  "status": "not-run",
+  "acceptance": {
+    "criterion": "Agent fulfills the asset request and delivers evidence of a usable asset for its stated target",
+    "humanFeedbackRequired": false,
+    "outsideContributionRequired": false
+  },
+  "knownCoverage": {
+    "originalSimplePlanterAgentTrial": "passed",
+    "broadArbitraryAssets": "not-proven",
+    "priorEvidence": "unchanged"
+  },
+  "requests": [],
+  "optionalFeedback": [],
+  "optionalContributions": []
+}

@@ -1,0 +1,5 @@
+ALTER TABLE member_appeal ADD COLUMN restriction_reason TEXT;
+ALTER TABLE member_appeal ADD COLUMN restricted_at INTEGER;
+UPDATE member_appeal SET restriction_reason=(SELECT reason FROM member_restriction WHERE user_id=member_id AND revision=restriction_revision),restricted_at=(SELECT restricted_at FROM member_restriction WHERE user_id=member_id AND revision=restriction_revision);
+CREATE VIEW appeal_state AS SELECT a.*,CASE WHEN a.status='open' AND NOT EXISTS(SELECT 1 FROM member m JOIN member_restriction r ON r.user_id=m.user_id WHERE m.user_id=a.member_id AND m.status='suspended' AND r.revision=a.restriction_revision) THEN 'superseded' ELSE a.status END AS current_status,CASE WHEN a.status='open' AND EXISTS(SELECT 1 FROM member m JOIN member_restriction r ON r.user_id=m.user_id WHERE m.user_id=a.member_id AND m.status='suspended' AND r.revision=a.restriction_revision) THEN 1 ELSE 0 END AS actionable FROM member_appeal a;
+CREATE TRIGGER immutable_appeal_restriction BEFORE UPDATE OF member_id,restriction_revision,restriction_reason,restricted_at,message,created_at ON member_appeal BEGIN SELECT RAISE(ABORT,'immutable_appeal_restriction'); END;

@@ -1,0 +1,13 @@
+{
+  "formatVersion": 1,
+  "family": "cottage",
+  "familyVersion": "0.1.0",
+  "requested": {},
+  "applied": {
+    "width": 5,
+    "depth": 4,
+    "wallHeight": 2.8,
+    "roofRise": 1.4,
+    "colorway": "forest"
+  }
+}

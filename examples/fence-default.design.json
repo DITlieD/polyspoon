@@ -1,0 +1,12 @@
+{
+  "formatVersion": 1,
+  "family": "fence",
+  "familyVersion": "0.1.0",
+  "requested": {},
+  "applied": {
+    "length": 3,
+    "height": 1.1,
+    "bays": 2,
+    "colorway": "forest"
+  }
+}

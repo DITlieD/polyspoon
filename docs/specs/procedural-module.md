@@ -1,0 +1,13 @@
+# Synchronous procedural modules
+
+Inputs: each registered family produces `<id>/<recipe-version>/asset.mjs`, `asset.d.mts`, metadata and a browser example. `createAsset(parameters = {})` accepts the family's typed optional controls and optional canonical appearance. Omitted controls use family defaults. Overrides form a complete new request, rather than merging with a preset or previous call. Current designs use their exact `requested` parameters and optional `appearance`; `applied` values remain canonical validation results.
+
+Output: a synchronous Three Group with an independent geometry/material lifetime. The group carries its canonical saved design in `userData.design`. Serializable metadata includes identity, recipe version, controls, defaults, presets, palettes, constraints, source digests and pinned Three dependency. Bundling follows registered source entries and the existing canonical `buildAsset` path. Three is external so the consumer supplies one pinned instance. No GLB parse, repository checkout or consumer compilation is required.
+
+Errors: unknown fields, malformed types, out-of-domain values, invalid relationships and appearance use the same canonical failures. Website links are unavailable for missing, stale, duplicate, incorrect-size or digest-mismatched artifacts. Module downloads are accurately labeled family defaults; a current-design snippet and downloadable JSON preserve current edits.
+
+Compatibility: existing Snapshot .mjs remains static and labeled. Source ZIP and saved-design migration behavior remain unchanged. The module exports `disposeAsset(group)` for consumer-owned geometry and materials; remove the group from the scene first. Resources are never shared across calls. Metadata does not establish visual or semantic-joint acceptance.
+
+Affected calls: `scripts/recipe-package.ts` and the production build publish modules through shared package machinery; `src/site/source-download.ts` mounts a separate procedural download beside source ZIP; `src/site/workspace.ts` already refreshes downloads after edits. A narrow `src/catalog/build.ts` adapter is shared by catalog and selected registered source entries. Canonical recipe registration, geometry and appearance remain authoritative.
+
+Verification: package and UI failure tests, all twelve families against independent canonical geometry/material snapshots for defaults, structural variants, colors and appearance, clean external Node consumer, pinned local-Three browser import example, production typecheck/build and relevant recipe checks. Browser operation and visual acceptance remain with the main reviewer.

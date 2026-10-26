@@ -1,0 +1,1 @@
+INSERT INTO catalog_recipe_metadata(recipe_id,recipe_version,model_type,style_id) VALUES ('stylized-humanoid','1.0.0','character','faceted-low-poly'), ('stylized-fox','1.1.0','animal','faceted-low-poly');

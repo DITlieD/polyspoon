@@ -1,0 +1,389 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "formatVersion",
+    "profile",
+    "status",
+    "binding",
+    "runtime",
+    "policy",
+    "execution",
+    "checks",
+    "coverage",
+    "artifacts",
+    "firstFailure",
+    "limits"
+  ],
+  "properties": {
+    "formatVersion": {
+      "const": 1
+    },
+    "profile": {
+      "const": "package-replay-v1"
+    },
+    "status": {
+      "enum": [
+        "passed",
+        "failed",
+        "unsupported",
+        "cancelled"
+      ]
+    },
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "versionId",
+        "subjectId",
+        "artifactManifestHash",
+        "reportSha256",
+        "sourcePackageSha256",
+        "selectedDesignSha256"
+      ],
+      "properties": {
+        "versionId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "subjectId": {
+          "$ref": "#/$defs/digest"
+        },
+        "artifactManifestHash": {
+          "$ref": "#/$defs/digest"
+        },
+        "reportSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "sourcePackageSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "selectedDesignSha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capsuleSha256",
+        "harnessSha256",
+        "dependencyManifestSha256",
+        "nodeVersion"
+      ],
+      "properties": {
+        "capsuleSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "harnessSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "dependencyManifestSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "nodeVersion": {
+          "const": "22.22.1"
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "sha256"
+      ],
+      "properties": {
+        "id": {
+          "const": "linux-bwrap-cgroup-v1"
+        },
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "terminated",
+        "wallMs",
+        "stages"
+      ],
+      "properties": {
+        "terminated": {
+          "type": "boolean"
+        },
+        "wallMs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "stages": {
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "exitCode",
+              "terminated"
+            ],
+            "properties": {
+              "id": {
+                "enum": [
+                  "input-check",
+                  "compile",
+                  "replay-a",
+                  "replay-b",
+                  "validate"
+                ]
+              },
+              "exitCode": {
+                "type": "integer"
+              },
+              "terminated": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "sandbox-policy",
+              "input-integrity",
+              "source-package",
+              "case-bindings",
+              "compile",
+              "replay-repeat",
+              "glb-schema",
+              "geometry-finite",
+              "config-binding",
+              "deterministic-output",
+              "process-teardown"
+            ]
+          },
+          "status": {
+            "enum": [
+              "passed",
+              "failed",
+              "unsupported",
+              "not-run"
+            ]
+          }
+        }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requiredCaseIds",
+        "completedCaseIds"
+      ],
+      "properties": {
+        "requiredCaseIds": {
+          "$ref": "#/$defs/cases"
+        },
+        "completedCaseIds": {
+          "$ref": "#/$defs/cases"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "outputs.zip": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifact"
+            },
+            {
+              "properties": {
+                "media_type": {
+                  "const": "application/zip"
+                },
+                "bytes": {
+                  "minimum": 128
+                }
+              }
+            }
+          ]
+        },
+        "validation.json": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifact"
+            },
+            {
+              "properties": {
+                "media_type": {
+                  "const": "application/json"
+                },
+                "bytes": {
+                  "minimum": 64
+                }
+              }
+            }
+          ]
+        },
+        "execution.json": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifact"
+            },
+            {
+              "properties": {
+                "media_type": {
+                  "const": "application/json"
+                },
+                "bytes": {
+                  "minimum": 64
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "firstFailure": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "check",
+        "code"
+      ],
+      "properties": {
+        "check": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "code": {
+          "enum": [
+            "input_manifest_invalid",
+            "input_digest_mismatch",
+            "source_package_invalid",
+            "required_case_unavailable",
+            "compile_failed",
+            "replay_process_failed",
+            "case_output_missing",
+            "case_output_invalid",
+            "output_limit_exceeded",
+            "glb_external_resource",
+            "glb_unsupported_extension",
+            "glb_image_limit",
+            "glb_invalid",
+            "geometry_invalid",
+            "configuration_mismatch",
+            "nondeterministic_output",
+            "execution_deadline_exceeded",
+            "memory_limit_exceeded",
+            "task_limit_exceeded",
+            "capture_limit_exceeded",
+            "sandbox_unavailable",
+            "runtime_identity_mismatch",
+            "supervisor_unavailable",
+            "process_teardown_unconfirmed",
+            "service_unavailable",
+            "lease_expired",
+            "cancelled"
+          ]
+        }
+      }
+    },
+    "limits": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "string",
+        "maxLength": 500
+      }
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "cases": {
+      "type": "array",
+      "maxItems": 64,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sha256",
+        "bytes",
+        "media_type"
+      ],
+      "properties": {
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2097152
+        },
+        "media_type": {
+          "enum": [
+            "application/json",
+            "application/zip",
+            "text/plain"
+          ]
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "passed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "artifacts": {
+            "required": [
+              "outputs.zip",
+              "validation.json",
+              "execution.json"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

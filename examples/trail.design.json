@@ -1,0 +1,17 @@
+{
+  "formatVersion": 1,
+  "family": "work-lantern",
+  "familyVersion": "1.0.0",
+  "requested": {
+    "bodyWidth": 0.24,
+    "bodyHeight": 0.285,
+    "handleClearance": 0.105,
+    "colorway": "ember"
+  },
+  "applied": {
+    "bodyWidth": 0.24,
+    "bodyHeight": 0.285,
+    "handleClearance": 0.105,
+    "colorway": "ember"
+  }
+}

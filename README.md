@@ -1,0 +1,159 @@
+# Polyspoon
+
+**Polyspoon is an open-source alternative to Polyfork.** Recipes (small TypeScript programs) turn into editable, low-poly 3D models that you can customise and export as GLB/OBJ/FBX/USDZ for Unity, Godot and other engines. It includes:
+
+- an offline **toolkit** and agent bundle for authoring and customising recipes,
+- a **Unity editor package** (`integrations/unity`),
+- a **hosted member app** (Cloudflare Worker + D1 + private object storage) with a login-gated catalog where every model is **independently human-reviewed** before publication,
+- **community features**: creator profiles, follows, votes, points and levels, leaderboards, cosmetic unlocks and curated collections. These are recognition only and never grant review or moderator rights.
+
+Configuration for the hosted service is read from environment variables and private files; see [.env.example](.env.example). No credentials are included in this repository.
+
+Polyspoon is a local procedural model toolkit and catalog. Point your own coding agent at this checkout and request an asset. The current catalog contains fourteen model families with editable construction, colors, saved designs and GLB export.
+
+The local toolkit needs no Polyspoon account, provider account, API key or inference service. Your chosen coding assistant may have its own requirements. The separate hosted service implements authenticated catalog access, submissions, review, moderation and verified delivery. It has been checked locally; production deployment is a separate operation. This checkout is not an installable public npm package; use its checked-out sources and pinned dependencies.
+
+## Ask your agent for an asset
+
+Give your agent [the coding-agent brief](docs/authoring/coding-agent.md) and describe the desired model, dimensions, style and target when known. It first selects and customizes an existing recipe. If the request needs different construction, it extends or authors a recipe using the [authoring guide](docs/authoring/guide.md).
+
+The agent owns setup, implementation, checks, renders, independent visual review, repairs and target import/use verification. It delivers the asset, saved design, editable source, reproduction inputs and known limits. The person making the request does not need to run commands or act as a tester. Optional human feedback does not replace those checks or become a mandatory gate.
+
+The existing catalog and recorded cases establish bounded coverage. They do not prove arbitrary model generation or compatibility with every target. The release contains product sources and reproducible inputs; historical research and review workspaces are excluded.
+
+## Run from the checkout
+
+Use Node.js 22.22.1, the version covered by the retained toolchain evidence. From this project directory:
+
+```sh
+npm ci --ignore-scripts --no-audit --no-fund
+npm run dev
+```
+
+Open the local URL printed by Vite. For a production build and local preview:
+
+```sh
+npm run typecheck
+node_modules/.bin/vite build
+node_modules/.bin/vite preview --host 127.0.0.1 --port 4173 --strictPort
+```
+
+These commands build the local studio using the existing indexed downloads. `npm run build` is a maintainer artifact-regeneration command and can reject changes to immutable source archives. Do not regenerate published bytes to make a release build pass. Use a free local port. See [release preparation](docs/release.md) for a clean snapshot and separate hosted build.
+
+The local Vite studio contains model and editor bytes for local use. It is not the authenticated hosted service and must not be published as that service. The hosted build separates its public pages from protected application assets; deployment must preserve its authentication gateway. Hosted rigged-character activation remains unavailable pending its integration checks.
+
+## Find an individual model
+
+The current discovery page is `/catalog`. Search matches model titles, IDs and descriptions. Filters and sorting describe individual models:
+
+- **Type** comes from `recipe.presentation.category`.
+- **Style** comes from the website-only map in `src/site/discovery.ts`. Unknown model IDs display **Unclassified**; styles are not inferred from titles or added to the recipe schema.
+- **Poseable parts** comes from the default build's semantic joint declarations. It means a supported rigid assembly can be posed, not that animation clips exist.
+- Sort by name or triangle count. Discovery state is kept in the URL and carried between model pages and the catalog.
+
+`kitIds` remains a legacy compatibility field. It does not organize current discovery. The former named-kit URL redirects to the catalog.
+
+| Route | Current contract |
+| --- | --- |
+| `/catalog` | Individual model discovery. |
+| `/asset/:id` | Customize a registered model, for example `/asset/treasure-chest`. |
+| `/contribute` | Local contribution guidance. The separate hosted route provides authenticated submissions. |
+| `/editor` | Technical editor and diagnostic controls. |
+| `/` | Visitor landing for this identity release. |
+| `/docs` | Guide entry for this identity release, linking the practical documentation. |
+
+This identity release separates the visitor landing, model discovery and guide entry at `/`, `/catalog` and `/docs`. The Markdown guides linked here remain the source documentation.
+
+## Current recipe contracts
+
+The six built-ins, `work-lantern`, `cottage`, `tree`, `fence`, `crate` and `boulder`, currently save as **0.6.0**. The contributed `bench`, `planter`, `treasure-chest`, `wheelbarrow`, `stone-well` and `conifer` save as **1.1.0**. Read `descriptor(id).version`, saved `familyVersion` and the current package indexes rather than constructing versioned filenames from an old example.
+
+All use the registry and typed parameter engine. Construction changes include fitted cottage roofing/framing, branching trees, fence members, crate boards and peg seating, boulder shape/burial/moss, lantern housings and handles, furniture courses and supports, and rigid chest/wheelbarrow/well mechanisms. The [authoring guide](docs/authoring/guide.md#extend-construction-and-preserve-relationships) explains their coupled controls.
+
+Units are meters, +Y up and +Z front. Anchors are authored root-relative points. Semantic metadata identifies parts, materials and declared rigid joints. Stable part names support selection and per-part colors. Joint poses do not supply physics, skinning, IK, rope simulation, animation clips or automatic winding. Runtime posing does not rewrite saved procedural parameters; recompute bounds after posing if needed.
+
+## Edit and save
+
+Material controls edit semantic regions. The brush edits a named part. Per-part overrides survive saved designs and session history. If a part disappears, its color remains stored and inactive. New parts keep authored colors. An indexed component can occupy a different position after a recipe revision; there is no automatic mapping from an old broad roof band to its replacement segments.
+
+The inspector groups the full recipe controls into **Shape**, **Construction**, **Materials** and **Parts**. Materials includes exported palette and shading. Parts includes named-part colors and filtered preview visibility. Drag to orbit, scroll to zoom and use framing to fit the model. Each family retains its valid design during the tab session, with undo, redo and reset.
+
+Canonical builders reject unknown keys, invalid domains and unsupported relationships. The browser retains the last valid preview while editing. Pending or invalid input disables current-design downloads and removes the current snippet until the edit is resolved. Correct the value, or return to the edited field and press Escape to restore its validated value. Compare saved requested/applied values with the intended request; a retained preview does not mean an invalid edit was accepted.
+
+Palette, shading and part colors are saved and exported. Palette options include None, authored Reduced4, GameBoy, PICO8, CGA and Mono. None shading preserves lit materials; Flat exports unlit albedo; Toon3bands exports fixed-light bands in vertex colors using `KHR_materials_unlit`. Those bands do not relight dynamically.
+
+Underwater, dither, vertex snapping, outlines, wireframe, pixelation and part visibility are preview effects. Hidden parts remain in complete asset exports.
+
+## Choose an output
+
+| Output | Behavior |
+| --- | --- |
+| Save design | Versioned JSON with requested/applied values, optional appearance and a validated migration notice when applicable. |
+| Export GLB | Complete current asset in meters, with semantic parts, anchors and declared joint groups. |
+| Download ZIP | Current GLB, design JSON, static snapshot module, HTML preview and usage notes. |
+| Snapshot `.mjs` | Static embedded GLB. Its asynchronous `createAsset()` loads a scene; it is not procedural. |
+| Procedural module `.mjs` | Synchronous `createAsset(parameters)` from the selected registered recipe, plus metadata, types, cleanup and rigid-pose APIs. The download starts from family defaults; pass edits explicitly. |
+| Generator source ZIP | Editable TypeScript, default configuration, controls, pinned rebuild tooling and notices. It does not capture later browser edits. |
+
+The HTML bundle preview loads Three.js from jsDelivr and needs internet. Procedural modules need the pinned Three dependency supplied by the consumer. See [procedural module usage](docs/authoring/procedural-modules.md).
+
+Load validates saved format, family, supported version, requested parameters and exact applied values. Supported older versions use frozen validators before migration. Unknown versions, altered applied records and forged notices reject. Current reloads and browser GLB/ZIP/snapshot exports preserve a validated notice; reset starts a fresh design without one. Migration does not replay old geometry. See [construction migration](docs/construction-migration.md).
+
+For repository-side saved-design export, including appearance and migration metadata:
+
+```sh
+npm run export -- --config path/to/model.design.json --out exports/model.glb
+```
+
+A saved design determines its family. A conflicting `--family`, or combining `--preset` and `--config`, fails. CLI export can replace an existing output. Without a saved design or explicit preset, CLI export selects the family's first preset, which can differ from defaults.
+
+New source packages use manifest/index format 2 and delivery revision 2, independently of recipe version. Their names end in `-source.2.zip`, for example `cottage-0.6.0-source.2.zip` or `bench-1.1.0-source.2.zip`. Select the actual path from the package index. The revised runner preserves a `loadDesign`-validated migration notice; fresh/reset designs remain notice-free. Immutable format 1 archives keep their original `FAMILY-VERSION.zip` names and historical notice omission. Keep the selected saved design separately and compare exact inputs and toolchains before claiming GLB-byte parity. See [portable rebuilding](docs/authoring/guide.md#distribution).
+
+## Use local MCP
+
+The stateless stdio tools are `search_assets`, `get_asset`, `build_variant` and `export_asset`. An MCP client starts the server and exchanges messages over stdin/stdout:
+
+```sh
+node --import tsx src/mcp/stdio.ts --output-dir /absolute/export/directory
+```
+
+Configure your MCP client to run `node --import tsx src/mcp/stdio.ts` with this checkout as its working directory. The default output directory is `exports/`. This process adds no HTTP listener. The protocol still uses its existing `woodland-workshop` server identity for compatibility.
+
+For a new parameter request:
+
+```json
+{
+  "name": "export_asset",
+  "arguments": {
+    "family": "fence",
+    "parameters": {"length": 2, "bays": 1},
+    "filename": "fence.glb"
+  }
+}
+```
+
+For a saved design, pass the full parsed record as `arguments.design` to either build or export. Omit `family` or supply the matching family. Do not combine `design` with `parameters` or `appearance`, even empty objects. The canonical saved-design path validates migrations and retains appearance/notices. A new parameter request puts appearance alongside `parameters`, never inside its scalar map.
+
+With a family but omitted parameters, MCP uses family defaults; it does not use the CLI's first-preset fallback. Export returns the resolved configuration. Files must have a simple lowercase GLB basename; existing files and symlinks reject. Omit the filename for a generated name. Restart the process after source or dependency changes.
+
+## Author, verify and deliver
+
+Read [the authoring guide](docs/authoring/guide.md), [coding-agent brief](docs/authoring/coding-agent.md) and [contribution rules](CONTRIBUTING.md). Author one cohesive recipe when existing construction cannot satisfy the request. Register it once in `src/recipes/index.ts`; browser, CLI, MCP and packaging use that registration. Do not add family dispatch branches to those surfaces.
+
+Useful commands from this checkout are:
+
+```sh
+npm run typecheck
+npm test
+npm run test:recipes
+npm run validate -- --family bench --out evidence/bench-validation-01
+npm run recipe:render -- --family bench --out evidence/bench-render-01
+```
+
+`npm test` already includes the recipe suite. Use the separate recipe command when only that scope is needed. Suite files in `scripts/test-current.ts` are explicit; run a newly added test directly until it is deliberately wired. Browser and integration suites require the fresh evidence paths and local URL documented in that runner. Preserve historical fixtures and failed attempts; do not refresh old hashes to fit new construction.
+
+For trusted local authoring, [the verification workflow](docs/authoring/guide.md#one-verification-command) runs the established technical stages and records their results. A successful technical report leaves visual review, portable rebuilding and target import/use as separate checks. The agent performs them and reports their actual outcomes. Use [`recipe:review`](docs/authoring/guide.md#bind-review-evidence) to seal exact successful evidence, retain failed attempts and bind separate review records. Local [eligibility checks](docs/contributing/review.md#local-eligibility-check) depend on separately trusted application-held records; they do not authenticate reviewers or publish content.
+
+A Unity import fixture and explicit Editor launcher are included under [integrations/unity](integrations/unity/ImportFixture). Retained Unity results apply to their exact versions, fixtures and target setup. They do not establish that every current recipe, parameter combination, material or rigid-pose API works automatically in a game. Verify the requested target and preserve its import/render/use evidence. Rigid joint groups and the two skinned character recipes have separate contracts. The humanoid and fox GLBs retain their bound skeletons and idle/walk clips. The hosted editor shows a static preview.
+
+Project software, parameter content and third-party dependencies have separate license scopes. Preserve [LICENSE](LICENSE), [NOTICE](NOTICE), [license guidance](docs/licensing.md) and packaged dependency notices. Local creation does not publish content or grant redistribution permission. Public submission processing and hosting remain unconfigured.

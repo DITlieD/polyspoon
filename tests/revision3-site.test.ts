@@ -1,0 +1,82 @@
+import '../scripts/node-platform.ts';
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFile,writeFile,mkdir } from 'node:fs/promises';
+import { preview } from 'vite';
+import { chromium } from 'playwright-core';
+import { validateBytes } from 'gltf-validator';
+import { buildAsset,disposeAsset } from '../src/catalog/index.ts';
+import { inspectGeometry } from '../src/lantern/inspect.ts';
+import { sourceProvenance,sha256 } from '../scripts/provenance.ts';
+
+test('catalog navigation, customization, full export and responsive site',{timeout:120000},async()=>{
+ const output=process.env.SITE_EVIDENCE_ROOT??'evidence/revision3/site-pass1';
+ await mkdir(output,{recursive:true});
+ const server=await preview({build:{outDir:output+'/build'},preview:{host:'127.0.0.1',port:0},logLevel:'error'});
+ const browser=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});
+ const page=await browser.newPage({viewport:{width:1440,height:1050},acceptDownloads:true,deviceScaleFactor:1});
+ const errors:string[]=[],files:Record<string,string>={},shots:Array<{name:string;label:string;data:string}>=[];
+ page.on('pageerror',e=>errors.push(e.message));
+ const capture=async(name:string,label:string)=>{
+  await page.evaluate(async()=>{await document.fonts.ready;for(let i=0;i<5;i++)await new Promise(requestAnimationFrame);});
+  const bytes=await page.screenshot({path:output+'/'+name+'.png',fullPage:true});files[name]=sha256(bytes);shots.push({name,label,data:bytes.toString('base64')});
+ };
+ const saved=async()=>{
+  const event=page.waitForEvent('download');await page.locator('#save').click();const dl=await event;
+  return JSON.parse(await readFile((await dl.path())!,'utf8'));
+ };
+ try{
+  await page.goto(server.resolvedUrls!.local[0]!);await page.waitForSelector('.asset-card');
+  assert.equal(await page.locator('.asset-card').count(),6);
+  assert.equal(await page.locator('#app').isVisible(),false);
+  assert.equal(await page.locator('.asset-card img').evaluateAll(imgs=>imgs.every(n=>(n as HTMLImageElement).complete&&(n as HTMLImageElement).naturalWidth>0)),true);
+  await page.locator('#catalog-search').fill('tree');assert.equal(await page.locator('.asset-card').count(),1);
+  await page.locator('#catalog-search').fill('not-a-family');assert.equal(await page.locator('.empty-state').count(),1);
+  await page.locator('#catalog-search').fill('');await page.locator('[data-category="Nature"]').click();assert.equal(await page.locator('.asset-card').count(),2);
+  await page.locator('[data-category="All assets"]').click();await page.selectOption('#catalog-sort','name');
+  const names=await page.locator('.asset-card h2').allTextContents();assert.deepEqual(names,[...names].sort((a,b)=>a.localeCompare(b)));
+  await page.selectOption('#catalog-sort','collection');
+  assert.ok((await page.locator('.asset-card').nth(0).getAttribute('href'))?.endsWith('/cottage'));
+  assert.ok((await page.locator('.asset-card').nth(1).getAttribute('href'))?.endsWith('/tree'));
+  await capture('desktop-catalog','Desktop · catalog');
+  await page.locator('a.asset-card[href="/asset/cottage"]').click();assert.ok(page.url().endsWith('/asset/cottage'));
+  assert.equal(await page.locator('.preset-card').count(),3);
+  assert.equal(await page.locator('#family').isVisible(),false);
+  assert.equal(await page.locator('#preset').isVisible(),false);
+  await page.locator('button[data-group="construction"]').click();
+  await page.locator('#chimney').uncheck();
+  const design=await saved();assert.equal(design.applied.chimney,false);
+  await page.locator('#undo').click();assert.equal(await page.locator('#chimney').isChecked(),true);
+  await page.locator('#redo').click();assert.equal(await page.locator('#chimney').isChecked(),false);
+  await capture('desktop-detail','Desktop · cottage construction');
+  await page.locator('button[data-group="colors"]').click();
+  await page.locator('[id="color.roof"]').fill('#765b42');await page.locator('[id="color.roof"]').press('Enter');
+  assert.equal((await saved()).applied['color.roof'],'#765b42');
+  await page.locator('.part-inspector summary').click();await page.locator('.part-list input').first().uncheck();
+  const exportEvent=page.waitForEvent('download');await page.locator('#export').click();const download=await exportEvent;
+  const bytes=await readFile((await download.path())!),validation=await validateBytes(bytes);assert.equal(validation.issues.numErrors,0);
+  const gltf=JSON.parse(bytes.subarray(20,20+bytes.readUInt32LE(12)).toString().trim());
+  const configuration=gltf.nodes.find((n:{extras?:{configuration?:unknown}})=>n.extras?.configuration).extras.configuration;
+  assert.equal(configuration.applied.chimney,false);assert.equal(configuration.applied['color.roof'],'#765b42');
+  const build=buildAsset(configuration.family,configuration.requested);
+  try{assert.equal(gltf.nodes.filter((n:{mesh?:number})=>n.mesh!==undefined).length,inspectGeometry(build.root).parts);}finally{disposeAsset(build);}
+  await writeFile(output+'/full-model.glb',bytes);
+  await capture('desktop-colors','Desktop · color and part inspection');
+  await page.locator('#file').setInputFiles({name:'saved.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(design))});
+  await page.waitForTimeout(100);assert.equal((await saved()).applied.chimney,false);
+  await page.locator('.site-navigation a[href="/"]').click();await page.goBack();assert.ok(page.url().endsWith('/asset/cottage'));
+  await page.locator('.site-navigation a[href="/kit/woodland-workshop"]').click();assert.equal(await page.locator('.inspector').isVisible(),false);
+  await capture('desktop-kit','Desktop · six-family kit');
+  await page.setViewportSize({width:390,height:844});await page.locator('.site-navigation a[href="/"]').click();
+  await capture('mobile-catalog','Mobile · catalog');
+  await page.locator('a.asset-card[href="/asset/cottage"]').click();
+  await capture('mobile-detail','Mobile · asset and presets');
+  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);assert.equal(overflow,false);
+  assert.deepEqual(errors,[]);
+  const sheet=await browser.newPage({viewport:{width:1500,height:1100}});
+  await sheet.setContent('<html><body style="margin:0;background:#f4f5f3;font-family:Arial;padding:24px"><h1 style="font-size:22px">Woodland Workshop · website review</h1><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">'+shots.map(s=>'<section style="background:white;padding:12px;border:1px solid #ddd"><h2 style="font-size:13px">'+s.label+'</h2><img style="width:100%;height:440px;object-fit:contain;object-position:top" src="data:image/png;base64,'+s.data+'"></section>').join('')+'</div></body></html>');
+  await sheet.locator('img').evaluateAll(imgs=>Promise.all(imgs.map(n=>(n as HTMLImageElement).decode())));
+  await sheet.screenshot({path:output+'/contact-sheet.png',fullPage:true});
+  await writeFile(output+'/manifest.json',JSON.stringify({provenance:await sourceProvenance(),files,errors,browser:browser.version(),glbValidation:validation.issues},null,2));
+ }finally{await browser.close();await server.close();}
+});

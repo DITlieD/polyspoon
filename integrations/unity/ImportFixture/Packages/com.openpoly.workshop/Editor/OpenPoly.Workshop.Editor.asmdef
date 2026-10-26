@@ -1,0 +1,6 @@
+{
+  "name": "OpenPoly.Workshop.Editor",
+  "rootNamespace": "OpenPoly.Workshop.Editor",
+  "references": ["OpenPoly.Workshop", "glTFast"],
+  "includePlatforms": ["Editor"]
+}

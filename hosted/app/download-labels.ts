@@ -1,0 +1,2 @@
+/** Button label for a published file; null when the generic rules apply. */
+export function downloadLabel(path:string):string|null{if(path.endsWith('.glb'))return 'Download GLB';if(path.endsWith('.obj.zip'))return 'Download OBJ';if(path.endsWith('.fbx'))return 'Download FBX';if(path.endsWith('.usdz'))return 'Download USDZ';if(path.endsWith('.controls.json'))return 'Download Controls JSON';return null;}

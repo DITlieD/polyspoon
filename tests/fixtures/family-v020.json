@@ -1,0 +1,60 @@
+{
+  "tree": {
+    "formatVersion": 1,
+    "family": "tree",
+    "familyVersion": "0.2.0",
+    "requested": {},
+    "applied": {
+      "height": 4.5,
+      "spread": 3.8,
+      "seed": 7,
+      "colorway": "forest",
+      "color.timber": "#594739",
+      "color.foliage": "#728456",
+      "color.foliageShade": "#536c48",
+      "color.foliageLight": "#899863"
+    }
+  },
+  "fence": {
+    "formatVersion": 1,
+    "family": "fence",
+    "familyVersion": "0.2.0",
+    "requested": {},
+    "applied": {
+      "length": 3,
+      "height": 1.1,
+      "bays": 2,
+      "colorway": "forest",
+      "color.timber": "#594739",
+      "color.wood": "#966c48"
+    }
+  },
+  "crate": {
+    "formatVersion": 1,
+    "family": "crate",
+    "familyVersion": "0.2.0",
+    "requested": {},
+    "applied": {
+      "width": 0.9,
+      "height": 0.7,
+      "depth": 0.7,
+      "colorway": "forest",
+      "color.wood": "#966c48",
+      "color.timber": "#594739"
+    }
+  },
+  "boulder": {
+    "formatVersion": 1,
+    "family": "boulder",
+    "familyVersion": "0.2.0",
+    "requested": {},
+    "applied": {
+      "width": 1.6,
+      "height": 1,
+      "depth": 1.2,
+      "lean": 0.08,
+      "colorway": "forest",
+      "color.stone": "#7d8279"
+    }
+  }
+}

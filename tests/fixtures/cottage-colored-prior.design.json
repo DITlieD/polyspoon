@@ -1,0 +1,49 @@
+{
+  "formatVersion": 1,
+  "family": "cottage",
+  "familyVersion": "0.5.0",
+  "requested": {
+    "width": 7.2
+  },
+  "applied": {
+    "width": 7.2,
+    "depth": 4,
+    "wallHeight": 2.8,
+    "roofRise": 1.4,
+    "chimney": true,
+    "beamWeight": "stout",
+    "eaveOverhang": 0.4,
+    "workBay": "right",
+    "shutters": true,
+    "roofCharacter": 0.45,
+    "detail": "inspection",
+    "roofCover": "thatch",
+    "roofThickness": 0.24,
+    "framingStyle": "diagonal",
+    "windowLayout": "paired",
+    "bayDepth": 1.65,
+    "weathering": 0.3,
+    "timberTone": 0.35,
+    "toneVariation": 0.06,
+    "beamSection": 1,
+    "ridgeSag": 1,
+    "colorway": "forest",
+    "color.plaster": "#e2d6b8",
+    "color.roof": "#b7a16b",
+    "color.timber": "#49382c",
+    "color.wood": "#966c48",
+    "color.recess": "#34433e",
+    "color.stone": "#7d8279",
+    "color.hardware": "#b99247"
+  },
+  "appearance": {
+    "version": 1,
+    "palette": "None",
+    "shading": "None",
+    "partColors": {
+      "ridge-cap-0": "#aabbcc",
+      "roof-left-band-0": "#112233",
+      "actually-missing": "#123456"
+    }
+  }
+}

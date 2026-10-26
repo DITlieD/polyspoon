@@ -1,0 +1,235 @@
+{
+  "scope": "Local strict unlit material compatibility replay. No service runtime activation, visual approval or publication established.",
+  "runtime": {
+    "capsuleSha256": "c630e97435bde55f5e83ee3416a9d11a5b41b12553a1d6e4e6c43252390ea26e",
+    "harnessSha256": "47e7f8e61f42133b569670505785a78b4b8d6466e0c1592e227d66d76fa8c293",
+    "dependencyManifestSha256": "60b8c6a5585b9aebda7c8396151025ea92f746c997ad8684a181a40475a39182",
+    "policySha256": "1afbcfde8de527e2a98e69a2350da399a87fd5810d5c239565ae73a9ab6e9146",
+    "nodeVersion": "22.22.1"
+  },
+  "supervisor": {
+    "processor/cli.py": {
+      "bytes": 12161,
+      "sha256": "c3b74c72aa31dd3617c53a2db531a4fe92d37264c7331a17ea2b7a7db001114f"
+    },
+    "processor/launch.py": {
+      "bytes": 2061,
+      "sha256": "8ded5f23acf67e5f859ce3290cf74f64853513418e6b63b76c5a20f5aece51d0"
+    },
+    "processor/policy.py": {
+      "bytes": 2369,
+      "sha256": "c162fb2d92d9f2dbbb08403487c2ed4f3a4f98e54911c4bb7c69996e9ee3f1ac"
+    },
+    "processor/runtime.py": {
+      "bytes": 6587,
+      "sha256": "9f995a46a34a9c4bb097f6aa0aabf5f14aac18468dc8539d5264f1ba12e41034"
+    },
+    "processor/sandbox.py": {
+      "bytes": 4712,
+      "sha256": "f3e8bf0ee5ac8978b61f638bb83bf789c33d6766512686c25357323a59d25e19"
+    },
+    "processor/service.py": {
+      "bytes": 10299,
+      "sha256": "6bacf985c8b98cd5ee5ed56b932e86f73ba9607cf264a291f36f75f025282804"
+    }
+  },
+  "unchangedFromRuntime09And10": [
+    "dependencyManifestSha256",
+    "policySha256",
+    "supervisor",
+    "nodeVersion"
+  ],
+  "cases": [
+    {
+      "family": "humanoid",
+      "completedCases": 3,
+      "requiredCases": 3,
+      "checks": [
+        {
+          "id": "sandbox-policy",
+          "status": "passed"
+        },
+        {
+          "id": "input-integrity",
+          "status": "passed"
+        },
+        {
+          "id": "source-package",
+          "status": "passed"
+        },
+        {
+          "id": "case-bindings",
+          "status": "passed"
+        },
+        {
+          "id": "compile",
+          "status": "passed"
+        },
+        {
+          "id": "replay-repeat",
+          "status": "passed"
+        },
+        {
+          "id": "glb-schema",
+          "status": "passed"
+        },
+        {
+          "id": "geometry-finite",
+          "status": "passed"
+        },
+        {
+          "id": "config-binding",
+          "status": "passed"
+        },
+        {
+          "id": "deterministic-output",
+          "status": "passed"
+        },
+        {
+          "id": "process-teardown",
+          "status": "passed"
+        }
+      ],
+      "terminated": true,
+      "wallMs": 4921
+    },
+    {
+      "family": "fox",
+      "completedCases": 3,
+      "requiredCases": 3,
+      "checks": [
+        {
+          "id": "sandbox-policy",
+          "status": "passed"
+        },
+        {
+          "id": "input-integrity",
+          "status": "passed"
+        },
+        {
+          "id": "source-package",
+          "status": "passed"
+        },
+        {
+          "id": "case-bindings",
+          "status": "passed"
+        },
+        {
+          "id": "compile",
+          "status": "passed"
+        },
+        {
+          "id": "replay-repeat",
+          "status": "passed"
+        },
+        {
+          "id": "glb-schema",
+          "status": "passed"
+        },
+        {
+          "id": "geometry-finite",
+          "status": "passed"
+        },
+        {
+          "id": "config-binding",
+          "status": "passed"
+        },
+        {
+          "id": "deterministic-output",
+          "status": "passed"
+        },
+        {
+          "id": "process-teardown",
+          "status": "passed"
+        }
+      ],
+      "terminated": true,
+      "wallMs": 5406
+    },
+    {
+      "family": "bench-rev2",
+      "completedCases": 19,
+      "requiredCases": 19,
+      "checks": [
+        {
+          "id": "sandbox-policy",
+          "status": "passed"
+        },
+        {
+          "id": "input-integrity",
+          "status": "passed"
+        },
+        {
+          "id": "source-package",
+          "status": "passed"
+        },
+        {
+          "id": "case-bindings",
+          "status": "passed"
+        },
+        {
+          "id": "compile",
+          "status": "passed"
+        },
+        {
+          "id": "replay-repeat",
+          "status": "passed"
+        },
+        {
+          "id": "glb-schema",
+          "status": "passed"
+        },
+        {
+          "id": "geometry-finite",
+          "status": "passed"
+        },
+        {
+          "id": "config-binding",
+          "status": "passed"
+        },
+        {
+          "id": "deterministic-output",
+          "status": "passed"
+        },
+        {
+          "id": "process-teardown",
+          "status": "passed"
+        }
+      ],
+      "terminated": true,
+      "wallMs": 13452
+    }
+  ],
+  "negativeFixtureCount": 11,
+  "positiveFixtures": [
+    "valid-styled",
+    "opaque-extras"
+  ],
+  "rejectedFixtures": [
+    "duplicate-declaration",
+    "external-buffer",
+    "external-image",
+    "misplaced-unlit",
+    "nonempty-unlit",
+    "oversized-image",
+    "undeclared-unlit",
+    "unknown-extension",
+    "unused-unlit"
+  ],
+  "allFixturesTerminated": true,
+  "glbInspection": "glb-inspection.json",
+  "constraint": "Only empty KHR_materials_unlit objects at material extension placement with consistent unique used/required declarations. All other rendering extensions and existing external-resource/image limits remain rejected.",
+  "runtimeFileChangesFrom10": [
+    "rootfs/runner/processor/glb-extensions.js",
+    "rootfs/runner/processor/validate.js",
+    "rootfs/runner/src/catalog/build.js",
+    "rootfs/runner/src/recipes/rigged.js"
+  ],
+  "coreFinalizeCorrectionAlreadyApproved": [
+    "rootfs/runner/src/catalog/build.js",
+    "rootfs/runner/src/recipes/rigged.js"
+  ],
+  "allOtherRuntimeFilesByteIdenticalTo10": true,
+  "negativeFixturesRegenerateFromExplicitInput": true,
+  "oversizedPngFixture": "Deterministic valid4096x4096PNG generated in focused test; no implicit private proof dependency."
+}

@@ -1,0 +1,10 @@
+import type {Env,PrivateObjects} from './types.ts';
+import {HttpError} from './domain.ts';
+import {checkedObject,audit} from './repository.ts';
+import {byteResponse} from './delivery.ts';
+
+export async function processingEvidence(request:Request,env:Env,objects:PrivateObjects,versionId:string){
+ const path=new URL(request.url).searchParams.get('path')??'',file=await env.DB.prepare('SELECT a.* FROM processing_artifact a JOIN processing_job j ON j.current_attempt=a.attempt_id WHERE j.version_id=? AND j.status=\'passed\' AND a.path=?').bind(versionId,path).first<{attempt_id:string;path:string;sha256:string;bytes:number;media_type:string;failure_revision:number}>();if(!file)throw new HttpError(404,'processing_artifact_not_found');
+ let data:Uint8Array;try{data=await checkedObject(objects,'processing/'+file.attempt_id+'/'+file.path,file);}catch(error){if(error instanceof HttpError&&['artifact_missing_or_changed','object_too_large','request_too_large'].includes(error.code)){await env.DB.batch([env.DB.prepare('UPDATE processing_artifact SET failure_revision=failure_revision+1,verified_revision=NULL WHERE attempt_id=? AND path=?').bind(file.attempt_id,file.path),await audit(env,null,'processing_artifact_read_failed',versionId,{attemptId:file.attempt_id,path:file.path,sha256:file.sha256,bytes:file.bytes})]);throw new HttpError(409,'artifact_missing_or_changed');}throw error;}
+ const result=await env.DB.batch([env.DB.prepare('INSERT OR IGNORE INTO processing_receipt SELECT attempt_id,path,sha256,bytes,failure_revision,? FROM processing_artifact WHERE attempt_id=? AND path=? AND failure_revision=?').bind(Date.now(),file.attempt_id,file.path,file.failure_revision),env.DB.prepare('UPDATE processing_artifact SET verified_revision=failure_revision WHERE attempt_id=? AND path=? AND failure_revision=?').bind(file.attempt_id,file.path,file.failure_revision)]);if(!result[1]?.meta.changes)throw new HttpError(409,'artifact_verification_changed');return byteResponse(request,data,file.media_type,file.path);
+}

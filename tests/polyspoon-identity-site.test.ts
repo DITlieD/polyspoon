@@ -1,0 +1,22 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {resolve,join} from 'node:path';
+import {chromium} from 'playwright-core';
+
+test('visitor entry, original identity and docs preserve discovery and real downloads',{timeout:60000},async()=>{
+ const base=process.env.RECIPE_SITE_URL,output=process.env.IDENTITY_SITE_EVIDENCE_ROOT;assert.ok(base&&output);assert.ok(['127.0.0.1','localhost'].includes(new URL(base).hostname));assert.ok(resolve(output).startsWith(resolve('evidence')+'/'));await mkdir(output,{recursive:true});
+ const browser=await chromium.launch({executablePath:'/usr/bin/google-chrome',headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-dev-shm-usage']});
+ const errors:string[]=[];
+ try{
+  const page=await browser.newPage({viewport:{width:1440,height:1000},acceptDownloads:true});page.on('pageerror',e=>errors.push(e.message));await page.goto(new URL('/',base).href);
+  await page.locator('.landing-page').waitFor({state:'visible',timeout:5000});assert.equal(await page.locator('.landing-page h1').count(),1);assert.match(await page.locator('.landing-page').innerText(),/your own agent/i);assert.equal(await page.locator('.site-brand').getAttribute('href'),'/');assert.match(await page.title(),/Polyspoon.*polyspoon.com/);await page.screenshot({path:join(output,'home-desktop.png'),fullPage:true});
+  const favicon=await page.locator('link[rel="icon"]').getAttribute('href');assert.ok(favicon);const icon=await page.request.get(new URL(favicon,base).href);assert.equal(icon.status(),200);assert.match(await icon.text(),/<svg/);
+  await page.getByRole('link',{name:'Read the agent guide',exact:true}).click();await page.locator('.docs-page').waitFor({state:'visible'});assert.match(await page.locator('.docs-page').innerText(),/hosted.*sign-in/is);const pending=page.waitForEvent('download');await page.getByRole('link',{name:'Download coding-agent brief',exact:true}).click();await(await pending).saveAs(join(output,'coding-agent.md'));assert.equal(await readFile(join(output,'coding-agent.md'),'utf8'),await readFile('docs/authoring/coding-agent.md','utf8'));await page.screenshot({path:join(output,'docs-desktop.png'),fullPage:true});
+  await page.locator('.site-navigation').getByRole('link',{name:'Models',exact:true}).click();await page.locator('#catalog-type').selectOption('Props');await page.locator('#catalog-capability').selectOption('poseable');const filtered=page.url();await page.locator('.site-brand').click();await page.locator('.landing-page').waitFor({state:'visible'});await page.locator('.site-navigation').getByRole('link',{name:'Docs',exact:true}).click();await page.locator('.site-navigation').getByRole('link',{name:'Models',exact:true}).click();assert.equal(page.url(),filtered);await page.reload();assert.equal(await page.locator('#catalog-capability').inputValue(),'poseable');await page.screenshot({path:join(output,'catalog-desktop.png'),fullPage:true});
+  await page.locator('.asset-card').first().click();await page.locator('.asset-workspace').waitFor({state:'visible'});await page.screenshot({path:join(output,'model-desktop.png'),fullPage:true});await page.locator('.breadcrumb').click();assert.equal(page.url(),filtered);await page.goBack();await page.locator('.asset-workspace').waitFor({state:'visible'});await page.goForward();assert.equal(page.url(),filtered);
+  await page.locator('.site-navigation').getByRole('link',{name:'Contribute',exact:true}).click();await page.locator('.contribute-page').waitFor({state:'visible'});
+  for(const route of ['/','/docs','/catalog','/asset/bench']){await page.setViewportSize({width:390,height:844});await page.goto(new URL(route,base).href);await page.locator('.site-brand').waitFor();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route);await page.screenshot({path:join(output,(route==='/'?'home':route.split('/').pop())+'-narrow.png'),fullPage:true});}
+  await page.goto(new URL('/catalog?q=bench',base).href);assert.doesNotMatch(await page.locator('.asset-card').innerText(),/contributor example/i);await page.locator('.site-brand').focus();assert.equal(await page.locator('.site-brand').evaluate(e=>e===document.activeElement),true);assert.deepEqual(errors,[]);await writeFile(join(output,'receipt.json'),JSON.stringify({base,filtered,errors,guideDownloaded:true},null,2)+'\n');
+ }finally{await browser.close();}
+});

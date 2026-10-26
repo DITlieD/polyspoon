@@ -1,0 +1,79 @@
+{
+  "status": "design-feasibility-probes-passed",
+  "versions": {
+    "bubblewrap": "0.11.1",
+    "systemd": "259.9",
+    "node": "22.22.1",
+    "cgroup": "v2",
+    "libseccomp": "libseccomp.so.2 available; final filter not implemented or tested"
+  },
+  "namespaceSmoke": {
+    "exit": 0,
+    "homeVisible": false,
+    "repositoryVisible": false,
+    "hostRootViaProcVisible": false,
+    "environmentCanaryPresent": false,
+    "environmentKeys": [
+      "LC_CTYPE",
+      "PATH",
+      "PWD"
+    ],
+    "hostLoopbackListenerConnectErrno": 111,
+    "netNamespaceDifferent": true,
+    "pidNamespaceDifferent": true,
+    "effectiveCapabilities": "0000000000000000",
+    "nestedUserNamespaceExit": 1
+  },
+  "cgroupConfigured": {
+    "memoryMax": 100663296,
+    "tasksMax": 8,
+    "cpuMax": "25000 100000"
+  },
+  "negativeResourceProbes": {
+    "memory": {
+      "limitBytes": 67108864,
+      "result": "oom-kill",
+      "signal": 9,
+      "memoryPeak": "64M",
+      "swapBytes": 0,
+      "wallSeconds": 0.16
+    },
+    "tasks": {
+      "tasksMax": 8,
+      "childrenCreated": 5,
+      "forkErrno": 11,
+      "wallSeconds": 0.54
+    },
+    "output": {
+      "tmpfsBytes": 1048576,
+      "bytesWritten": 1048576,
+      "writeErrno": 28,
+      "noNewPrivileges": true,
+      "wallSeconds": 0.133
+    },
+    "wallCpu": {
+      "runtimeLimitSeconds": 1,
+      "cpuQuotaPercent": 25,
+      "result": "timeout",
+      "signal": 15,
+      "observedWallSeconds": 1.181,
+      "cpuTimeMilliseconds": 291
+    },
+    "filesystem": {
+      "readOnlyWriteErrno": 30,
+      "nestedMountResult": -1,
+      "nestedMountErrno": 1,
+      "perFileLimitBytes": 65536,
+      "bytesWritten": 65536,
+      "oversizedFileErrno": 27
+    }
+  },
+  "correctedProbeInvocation": "--disable-userns requires explicit --unshare-user even with --unshare-all; first argument-only rejection ran no payload. Explicit flag invocation passed.",
+  "limits": [
+    "Trusted small probe programs only; no submitted executable source or full recipe pipeline executed.",
+    "Availability smoke mounted system runtime directories read-only. Production must instead use a manifest-bound minimal runtime/dependency capsule.",
+    "No claim that these negative probes establish resistance to every kernel exploit.",
+    "No persistent daemon, host configuration change, Docker socket or paid service used. All transient probe units collected.",
+    "Final isolated runner, seccomp policy, bounded artifact transport and successful original package replay remain implementation acceptance work."
+  ]
+}

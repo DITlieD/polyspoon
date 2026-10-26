@@ -1,0 +1,9 @@
+# Immutable procedural releases
+
+A published procedural release is the exact family/version and complete member set bound by the existing public module index. Read its index, exact relative module path, supported dependency/default metadata, member names, SHA-256 and byte counts before reuse. Reject missing, malformed, duplicated, tampered, oversized or symlinked release data. Reading a release does not execute it or establish trusted authorship.
+
+For an indexed family/version, compare newly generated JavaScript, declarations, metadata, license notices and example against the validated release. A mismatch requires a recipe version change. If those payloads match, reuse all published files, including its exact README and semantic contract. Current repository guide changes do not alter old releases. This selection uses the public authority even when writing to a fresh evidence directory. New family/version pairs use current guides.
+
+Prepare the complete catalog before writing. Preflight all destination members and the index path. Existing identical members are idempotent; different existing bytes fail before any member writes. New files use exclusive creation. Publish the mutable index through an exclusive sibling and atomic rename after members succeed. No concurrent publisher coordination or general artifact transaction framework is introduced.
+
+Focused tests use isolated copies and generated in-memory payloads, without mutating current repository guides or recipes. Cover guide drift, new revisions, malformed or tampered release/index/member data, runtime payload conflicts, symlinks, and destination conflict/idempotency. A fresh-output builder replay must retain exact indexed historical documentation. Final standard production build and HTTP/browser acceptance wait for a new common source freeze.

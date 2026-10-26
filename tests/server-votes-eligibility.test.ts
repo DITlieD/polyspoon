@@ -1,0 +1,22 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdir,mkdtemp,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {localService} from '../server/local-test.ts';
+
+process.env.CLOUDFLARE_SEND_METRICS='false';
+test('vote totals use current active verified voters and retain one vote across reinstatement',{timeout:120000},async()=>{
+ await mkdir('server/.local',{recursive:true});const directory=await mkdtemp(resolve('server/.local/vote-eligibility-')),service=await localService(directory,crypto.randomUUID()+crypto.randomUUID(),true,{port:8798}),evidence:unknown[]=[];
+ const call=async(path:string,method='GET',cookie='',value?:unknown)=>{const response=await fetch(service.origin+path,{method,redirect:'manual',headers:{origin:service.origin,cookie,'content-type':'application/json'},body:value===undefined?undefined:JSON.stringify(value)});assert.equal(response.status,200,await response.clone().text());return response.json();};
+ const login=async(email:string)=>{await call('/api/auth/sign-in/magic-link','POST','',{email,callbackURL:'/catalog'});const mail=await service.env.DB.prepare('SELECT url FROM local_mail_outbox WHERE recipient=? ORDER BY created_at DESC LIMIT 1').bind(email).first<{url:string}>();assert.ok(mail);const response=await fetch(mail.url,{redirect:'manual'}),cookie=response.headers.getSetCookie().map(v=>v.split(';')[0]).join('; '),me=await call('/api/me','GET',cookie) as {id:string};await service.env.DB.prepare('UPDATE member SET created_at=0 WHERE user_id=?').bind(me.id).run();return {id:me.id,cookie};};
+ try{
+  const admin=await login('votes-admin@polyspoon.invalid'),author=await login('votes-author@polyspoon.invalid');let voter=await login('votes-voter@polyspoon.invalid');await service.env.DB.prepare("INSERT INTO capability VALUES(?,'admin')").bind(admin.id).run();
+  const version='d'.repeat(64),asset='vote-eligibility';await service.env.DB.prepare("INSERT INTO asset_version(id,asset_id,contributor_id,title,kind,subject,created_at) VALUES(?,?,?,'Synthetic vote fixture','preset','{}',0)").bind(version,asset,author.id).run();for(const state of ['submitted','processing','awaiting_review','approved','published'])await service.env.DB.prepare('UPDATE asset_version SET state=? WHERE id=?').bind(state,version).run();
+  const check=async(stage:string,expected:number)=>{const list=await call('/api/catalog','GET',admin.cookie) as {models:{id:string;votes:number}[]},detail=await call('/api/catalog/'+version,'GET',admin.cookie) as {votes:number};assert.equal(list.models.find(row=>row.id===version)?.votes,expected);assert.equal(detail.votes,expected);assert.equal((await service.env.DB.prepare('SELECT state FROM asset_version WHERE id=?').bind(version).first<{state:string}>())?.state,'published');evidence.push({stage,listVotes:expected,detailVotes:detail.votes,state:'published'});};
+  assert.equal((await call('/api/catalog/'+asset+'/vote','PUT',voter.cookie,{}) as {votes:number}).votes,1);await check('ordinary third-party vote',1);
+  await call('/api/admin/members/'+voter.id+'/status','PUT',admin.cookie,{status:'suspended',reason:'Synthetic eligibility check'});await check('voter suspended',0);assert.equal((await call('/api/catalog/'+asset+'/vote','DELETE',admin.cookie) as {votes:number}).votes,0);
+  await call('/api/admin/members/'+voter.id+'/status','PUT',admin.cookie,{status:'active',reason:'Synthetic reinstatement'});await check('voter reinstated',1);voter=await login('votes-voter@polyspoon.invalid');assert.equal((await call('/api/catalog/'+asset+'/vote','PUT',voter.cookie,{}) as {votes:number}).votes,1);assert.equal((await call('/api/catalog/'+asset+'/vote','PUT',voter.cookie,{}) as {votes:number}).votes,1);await check('repeated PUT',1);
+  await service.env.DB.prepare('UPDATE user SET emailVerified=0 WHERE id=?').bind(voter.id).run();await check('voter unverified',0);assert.equal((await call('/api/catalog/'+asset+'/vote','DELETE',admin.cookie) as {votes:number}).votes,0);await service.env.DB.prepare('UPDATE user SET emailVerified=1 WHERE id=?').bind(voter.id).run();await check('voter verification restored',1);
+  assert.equal((await service.env.DB.prepare('SELECT count(*) AS n FROM vote WHERE asset_id=?').bind(asset).first<{n:number}>())?.n,1);await writeFile('server/test-evidence/votes-eligibility-http.json',JSON.stringify({synthetic:true,evidence,retainedVoteRows:1},null,2)+'\n');
+ }finally{await service.stop();}
+});

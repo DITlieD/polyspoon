@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Polyspoon · Rigged adventurer</title></head>
+<body><main class="rig-editor"><aside><a id="rig-brand" href="/" aria-label="Polyspoon home"></a><h1>Rigged adventurer</h1><p>Change proportions. Inspect skin deformation and exported motion.</p>
+<details><summary>Body and colors</summary><div id="body-controls"></div></details>
+<label>Clip<select id="rig-clip"><option value="idle">Idle</option><option value="walk">Walk</option></select></label>
+<div class="actions"><button id="rig-play">Pause</button><button id="rig-frame">Frame character</button></div>
+<label>Time <output id="rig-time">0.00 s</output><input id="rig-seek" type="range" min="0" max="2.4" step="0.001" value="0"></label>
+<label class="check"><input id="rig-follow" type="checkbox" checked>Follow root motion</label>
+<details><summary>Foot IK pose test</summary><p>Targets are model-local ankle positions in metres. Applying a reachable target pauses playback.</p>
+<label>Foot<select id="rig-foot"><option value="left">Left</option><option value="right">Right</option></select></label><div class="coordinates"><label>X<input id="ik-x" type="number" step="0.01"></label><label>Y<input id="ik-y" type="number" step="0.01"></label><label>Z<input id="ik-z" type="number" step="0.01"></label></div>
+<div class="actions"><button id="rig-apply-ik">Apply foot target</button><button id="rig-reset-pose">Reset pose</button></div></details>
+<label>Load design<input id="rig-file" type="file" accept=".json,application/json"></label>
+<div class="actions"><button id="rig-save">Save design</button><button id="rig-export">Export animated GLB</button><button id="rig-reload">Reload exported GLB</button></div>
+<p id="rig-status" role="status" aria-live="polite"></p><p class="limit">Walk uses forward root motion. This preview accumulates displacement between cycles. A generic viewer that resets the loop root will reset position. Flat ground only; engine playback remains unverified.</p>
+</aside><section id="rig-viewport" aria-label="Animated humanoid preview"><output id="rig-mode">Generated skin</output></section></main><script type="module" src="/src/rigging/preview.ts"></script></body></html>

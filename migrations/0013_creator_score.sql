@@ -1,0 +1,15 @@
+CREATE TABLE score_state(id INTEGER PRIMARY KEY CHECK(id=1),generation INTEGER NOT NULL DEFAULT 1,computed_generation INTEGER NOT NULL DEFAULT 0,computed_at INTEGER NOT NULL DEFAULT 0);
+INSERT INTO score_state(id,generation,computed_generation,computed_at) VALUES(1,1,0,0);
+CREATE TABLE creator_score(creator_id TEXT PRIMARY KEY,all_time REAL NOT NULL,reputation REAL NOT NULL,week REAL NOT NULL,month REAL NOT NULL,raw_all REAL NOT NULL,raw_week REAL NOT NULL,raw_month REAL NOT NULL,level INTEGER NOT NULL,buckets TEXT NOT NULL CHECK(json_valid(buckets)),computed_at INTEGER NOT NULL);
+CREATE INDEX creator_score_all ON creator_score(raw_all);
+CREATE TRIGGER score_dirty_vote_insert AFTER INSERT ON vote BEGIN UPDATE score_state SET generation=generation+1 WHERE id=1; END;
+CREATE TRIGGER score_dirty_vote_delete AFTER DELETE ON vote BEGIN UPDATE score_state SET generation=generation+1 WHERE id=1; END;
+CREATE TRIGGER score_dirty_download AFTER INSERT ON download_credit BEGIN UPDATE score_state SET generation=generation+1 WHERE id=1; END;
+CREATE TRIGGER score_dirty_lineage_insert AFTER INSERT ON version_lineage BEGIN UPDATE score_state SET generation=generation+1 WHERE id=1; END;
+CREATE TRIGGER score_dirty_lineage_delete AFTER DELETE ON version_lineage BEGIN UPDATE score_state SET generation=generation+1 WHERE id=1; END;
+CREATE TRIGGER score_dirty_version_state AFTER UPDATE OF state,published_at ON asset_version BEGIN UPDATE score_state SET generation=generation+1 WHERE id=1; END;
+CREATE TRIGGER score_dirty_version_insert AFTER INSERT ON asset_version BEGIN UPDATE score_state SET generation=generation+1 WHERE id=1; END;
+CREATE TRIGGER score_dirty_report AFTER UPDATE OF status ON model_report BEGIN UPDATE score_state SET generation=generation+1 WHERE id=1; END;
+CREATE TRIGGER score_dirty_member AFTER UPDATE OF status,created_at ON member BEGIN UPDATE score_state SET generation=generation+1 WHERE id=1; END;
+CREATE TRIGGER score_dirty_member_insert AFTER INSERT ON member BEGIN UPDATE score_state SET generation=generation+1 WHERE id=1; END;
+CREATE TRIGGER score_dirty_verified AFTER UPDATE OF emailVerified ON user BEGIN UPDATE score_state SET generation=generation+1 WHERE id=1; END;
