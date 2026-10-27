@@ -14,6 +14,7 @@ Use Node.js 22.22.1 from a clean checkout of this directory:
 
 ```sh
 npm ci --ignore-scripts --no-audit --no-fund
+npm ci --prefix server --ignore-scripts --no-audit --no-fund   # hosted-service types (wrangler, workers-types)
 npm run typecheck
 npm test
 npm run validate -- --family bench --out evidence/bench

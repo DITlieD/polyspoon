@@ -39,6 +39,7 @@ All of these are **purely cosmetic recognition**. Points, levels, cosmetics, col
 
 ```sh
 npm ci --ignore-scripts --no-audit --no-fund
+npm ci --prefix server --ignore-scripts --no-audit --no-fund   # hosted-service types (wrangler, workers-types)
 npm run dev        # local toolkit / editor
 npm test           # unit tests
 ```
@@ -72,6 +73,7 @@ Use Node.js 22.22.1, the version covered by the retained toolchain evidence. Fro
 
 ```sh
 npm ci --ignore-scripts --no-audit --no-fund
+npm ci --prefix server --ignore-scripts --no-audit --no-fund   # hosted-service types (wrangler, workers-types)
 npm run dev
 ```
 

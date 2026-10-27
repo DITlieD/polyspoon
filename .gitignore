@@ -38,7 +38,13 @@ hosted/.local/
 backups/
 *-sign-in.json
 live-signin.json
-evidence/
+/evidence/**
+!/evidence/**/
+# Small baselines the unit tests and verification hash read; keep tracked.
+!/evidence/revision5/recipes/legacy-baseline.json
+!/evidence/revision7/catalog/reviewed-defaults.json
+!/evidence/revision7/catalog/scene-inputs.json
+!/evidence/revision7/catalog/seven-family-baseline.json
 server/test-evidence/
 hosted/verification/
 seeds/out/

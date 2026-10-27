@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && npm run recipe:package && vite build",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p hosted/tsconfig.json",
     "test": "tsx scripts/test-current.ts unit",
     "export": "tsx scripts/cli.ts export",
     "validate": "tsx scripts/cli.ts validate",

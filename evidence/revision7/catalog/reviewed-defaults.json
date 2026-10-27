@@ -1,0 +1,52 @@
+[
+  {
+    "id": "planter",
+    "sourceSha256": "f68b66d4be91aba23f12c8db505f706ed8367cb08b1d486e6bf341eb4554a994",
+    "geometryHash": "9a811e708edb91510a98a3b654b0f4b018a3c8cc35bd452290cda406a3e1eb94",
+    "dimensions": [
+      1.1000000001490118,
+      0.5000000037252903,
+      0.5000000001490116
+    ]
+  },
+  {
+    "id": "treasure-chest",
+    "sourceSha256": "66291b1a97f22a0c5e07127d6ca85db738fefade5f6411ca955845be4b4d774b",
+    "geometryHash": "8336495f585272868dcefd4e52d50501799fdbd2b2a3bbe681467e568c066c26",
+    "dimensions": [
+      1.2000000476837158,
+      0.8875679973512888,
+      0.7605000003762543
+    ]
+  },
+  {
+    "id": "wheelbarrow",
+    "sourceSha256": "cfc3f47ee30dd475cf87a041ce2e5ed411303538463727556d56ab3e7adc64ef",
+    "geometryHash": "cc4c37b85b447f94951746302d81494502676d4d1f7180083020e118d23cfff0",
+    "dimensions": [
+      0.6999999997019768,
+      0.967500005066395,
+      2.005978803038597
+    ]
+  },
+  {
+    "id": "stone-well",
+    "sourceSha256": "b02862aff107b482685b7590b2c7b926722d5de0eabb7b5fb748ff885053ee17",
+    "geometryHash": "807b22dd00bd17c7137c26d2bda244c98a367901c3654245124f5bf08aaed236",
+    "dimensions": [
+      2.9700000286102295,
+      3.192155935593625,
+      2.614500045776367
+    ]
+  },
+  {
+    "id": "conifer",
+    "sourceSha256": "4c825bdea53dbe65f210e2e5aa43c41dd52a99594add6a1f2e9e3390600757e7",
+    "geometryHash": "0d015ae7060f3b6b2658b3b7ce7c3f820ed844a263fb30eb10fe9f340b66c2ce",
+    "dimensions": [
+      3.799999952316284,
+      6,
+      3.3450369834899902
+    ]
+  }
+]

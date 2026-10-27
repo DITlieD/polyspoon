@@ -1,0 +1,520 @@
+{
+  "formatVersion": 1,
+  "purpose": "Twelve-family scale and grouped scene inspection",
+  "approach": {
+    "minimum": [
+      -0.8,
+      0.01,
+      -0.4
+    ],
+    "maximum": [
+      0.8,
+      2.2,
+      8
+    ]
+  },
+  "captures": [
+    {
+      "id": "lineup-fixed-scale-oblique",
+      "width": 3000,
+      "height": 900,
+      "view": "oblique",
+      "entries": [
+        {
+          "family": "work-lantern",
+          "input": {}
+        },
+        {
+          "family": "crate",
+          "input": {}
+        },
+        {
+          "family": "treasure-chest",
+          "input": {}
+        },
+        {
+          "family": "planter",
+          "input": {}
+        },
+        {
+          "family": "wheelbarrow",
+          "input": {}
+        },
+        {
+          "family": "bench",
+          "input": {}
+        },
+        {
+          "family": "stone-well",
+          "input": {}
+        },
+        {
+          "family": "fence",
+          "input": {}
+        },
+        {
+          "family": "boulder",
+          "input": {}
+        },
+        {
+          "family": "tree",
+          "input": {}
+        },
+        {
+          "family": "conifer",
+          "input": {}
+        },
+        {
+          "family": "cottage",
+          "input": {}
+        }
+      ]
+    },
+    {
+      "id": "lineup-fixed-scale-front",
+      "width": 3000,
+      "height": 900,
+      "view": "front",
+      "entries": [
+        {
+          "family": "work-lantern",
+          "input": {}
+        },
+        {
+          "family": "crate",
+          "input": {}
+        },
+        {
+          "family": "treasure-chest",
+          "input": {}
+        },
+        {
+          "family": "planter",
+          "input": {}
+        },
+        {
+          "family": "wheelbarrow",
+          "input": {}
+        },
+        {
+          "family": "bench",
+          "input": {}
+        },
+        {
+          "family": "stone-well",
+          "input": {}
+        },
+        {
+          "family": "fence",
+          "input": {}
+        },
+        {
+          "family": "boulder",
+          "input": {}
+        },
+        {
+          "family": "tree",
+          "input": {}
+        },
+        {
+          "family": "conifer",
+          "input": {}
+        },
+        {
+          "family": "cottage",
+          "input": {}
+        }
+      ]
+    },
+    {
+      "id": "workshop-garden-oblique",
+      "width": 1800,
+      "height": 1200,
+      "view": "oblique",
+      "entries": [
+        {
+          "family": "cottage",
+          "input": {},
+          "position": [
+            0,
+            0,
+            -3
+          ],
+          "group": "entrance"
+        },
+        {
+          "family": "treasure-chest",
+          "input": {},
+          "position": [
+            -2.1,
+            0,
+            0.7
+          ],
+          "group": "storage"
+        },
+        {
+          "family": "crate",
+          "input": {},
+          "position": [
+            -3.3,
+            0,
+            1.2
+          ],
+          "group": "storage"
+        },
+        {
+          "family": "work-lantern",
+          "input": {},
+          "position": [
+            -3.3,
+            0.7,
+            1.2
+          ],
+          "group": "storage"
+        },
+        {
+          "family": "planter",
+          "input": {},
+          "position": [
+            5.05,
+            0,
+            1.25
+          ],
+          "group": "garden"
+        },
+        {
+          "family": "wheelbarrow",
+          "input": {},
+          "position": [
+            2.15,
+            0,
+            1.6
+          ],
+          "rotation": -0.1,
+          "group": "work-area"
+        },
+        {
+          "family": "stone-well",
+          "input": {},
+          "position": [
+            4.4,
+            0,
+            3.6
+          ],
+          "group": "water-source"
+        },
+        {
+          "family": "bench",
+          "input": {},
+          "position": [
+            2.4,
+            0,
+            5.3
+          ],
+          "group": "garden"
+        },
+        {
+          "family": "tree",
+          "input": {},
+          "position": [
+            -6.1,
+            0,
+            -1.4
+          ],
+          "group": "nature"
+        },
+        {
+          "family": "conifer",
+          "input": {},
+          "position": [
+            6.6,
+            0,
+            -2
+          ],
+          "group": "nature"
+        },
+        {
+          "family": "boulder",
+          "input": {},
+          "position": [
+            -5.7,
+            0,
+            2.1
+          ],
+          "group": "nature"
+        },
+        {
+          "family": "fence",
+          "input": {},
+          "position": [
+            -4,
+            0,
+            4
+          ],
+          "rotation": 1.5707963267948966,
+          "group": "boundary"
+        }
+      ]
+    },
+    {
+      "id": "workshop-garden-front",
+      "width": 1800,
+      "height": 1200,
+      "view": "front",
+      "entries": [
+        {
+          "family": "cottage",
+          "input": {},
+          "position": [
+            0,
+            0,
+            -3
+          ],
+          "group": "entrance"
+        },
+        {
+          "family": "treasure-chest",
+          "input": {},
+          "position": [
+            -2.1,
+            0,
+            0.7
+          ],
+          "group": "storage"
+        },
+        {
+          "family": "crate",
+          "input": {},
+          "position": [
+            -3.3,
+            0,
+            1.2
+          ],
+          "group": "storage"
+        },
+        {
+          "family": "work-lantern",
+          "input": {},
+          "position": [
+            -3.3,
+            0.7,
+            1.2
+          ],
+          "group": "storage"
+        },
+        {
+          "family": "planter",
+          "input": {},
+          "position": [
+            5.05,
+            0,
+            1.25
+          ],
+          "group": "garden"
+        },
+        {
+          "family": "wheelbarrow",
+          "input": {},
+          "position": [
+            2.15,
+            0,
+            1.6
+          ],
+          "rotation": -0.1,
+          "group": "work-area"
+        },
+        {
+          "family": "stone-well",
+          "input": {},
+          "position": [
+            4.4,
+            0,
+            3.6
+          ],
+          "group": "water-source"
+        },
+        {
+          "family": "bench",
+          "input": {},
+          "position": [
+            2.4,
+            0,
+            5.3
+          ],
+          "group": "garden"
+        },
+        {
+          "family": "tree",
+          "input": {},
+          "position": [
+            -6.1,
+            0,
+            -1.4
+          ],
+          "group": "nature"
+        },
+        {
+          "family": "conifer",
+          "input": {},
+          "position": [
+            6.6,
+            0,
+            -2
+          ],
+          "group": "nature"
+        },
+        {
+          "family": "boulder",
+          "input": {},
+          "position": [
+            -5.7,
+            0,
+            2.1
+          ],
+          "group": "nature"
+        },
+        {
+          "family": "fence",
+          "input": {},
+          "position": [
+            -4,
+            0,
+            4
+          ],
+          "rotation": 1.5707963267948966,
+          "group": "boundary"
+        }
+      ]
+    },
+    {
+      "id": "workshop-garden-rear",
+      "width": 1800,
+      "height": 1200,
+      "view": "rear",
+      "entries": [
+        {
+          "family": "cottage",
+          "input": {},
+          "position": [
+            0,
+            0,
+            -3
+          ],
+          "group": "entrance"
+        },
+        {
+          "family": "treasure-chest",
+          "input": {},
+          "position": [
+            -2.1,
+            0,
+            0.7
+          ],
+          "group": "storage"
+        },
+        {
+          "family": "crate",
+          "input": {},
+          "position": [
+            -3.3,
+            0,
+            1.2
+          ],
+          "group": "storage"
+        },
+        {
+          "family": "work-lantern",
+          "input": {},
+          "position": [
+            -3.3,
+            0.7,
+            1.2
+          ],
+          "group": "storage"
+        },
+        {
+          "family": "planter",
+          "input": {},
+          "position": [
+            5.05,
+            0,
+            1.25
+          ],
+          "group": "garden"
+        },
+        {
+          "family": "wheelbarrow",
+          "input": {},
+          "position": [
+            2.15,
+            0,
+            1.6
+          ],
+          "rotation": -0.1,
+          "group": "work-area"
+        },
+        {
+          "family": "stone-well",
+          "input": {},
+          "position": [
+            4.4,
+            0,
+            3.6
+          ],
+          "group": "water-source"
+        },
+        {
+          "family": "bench",
+          "input": {},
+          "position": [
+            2.4,
+            0,
+            5.3
+          ],
+          "group": "garden"
+        },
+        {
+          "family": "tree",
+          "input": {},
+          "position": [
+            -6.1,
+            0,
+            -1.4
+          ],
+          "group": "nature"
+        },
+        {
+          "family": "conifer",
+          "input": {},
+          "position": [
+            6.6,
+            0,
+            -2
+          ],
+          "group": "nature"
+        },
+        {
+          "family": "boulder",
+          "input": {},
+          "position": [
+            -5.7,
+            0,
+            2.1
+          ],
+          "group": "nature"
+        },
+        {
+          "family": "fence",
+          "input": {},
+          "position": [
+            -4,
+            0,
+            4
+          ],
+          "rotation": 1.5707963267948966,
+          "group": "boundary"
+        }
+      ]
+    }
+  ]
+}

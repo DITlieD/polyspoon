@@ -1,0 +1,3427 @@
+[
+  {
+    "family": "work-lantern",
+    "id": "default",
+    "parameters": {},
+    "config": {
+      "formatVersion": 1,
+      "family": "work-lantern",
+      "familyVersion": "0.5.0",
+      "requested": {},
+      "applied": {
+        "bodyWidth": 0.32,
+        "bodyHeight": 0.26,
+        "handleClearance": 0.115,
+        "frameWeight": "heavy",
+        "guardLayout": "sparse",
+        "detail": "inspection",
+        "colorway": "forest",
+        "color.body": "#526750",
+        "color.enclosure": "#eee1bf",
+        "color.structure": "#303b35",
+        "color.accent": "#d2a449",
+        "enclosureProfile": "octagonal",
+        "hoodFlare": 0.18,
+        "handleProfile": "arched",
+        "guardCount": 4,
+        "construction": "rustic",
+        "hoodRise": 1,
+        "carryHoop": "oval"
+      }
+    },
+    "measurementHash": "ef3f62d02474a26b5b565a1f1dee4e94a7433d630087d99ea0023b96241e9c45",
+    "glbHash": "65b9b37e32d275956be82ec62353484a5d1178aa9e10dab469e6474e0fe2a706"
+  },
+  {
+    "family": "work-lantern",
+    "id": "field",
+    "parameters": {
+      "bodyWidth": 0.32,
+      "bodyHeight": 0.26,
+      "handleClearance": 0.115,
+      "colorway": "forest",
+      "construction": "rustic",
+      "hoodRise": 1.1,
+      "carryHoop": "oval",
+      "guardCount": 4
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "work-lantern",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "bodyWidth": 0.32,
+        "bodyHeight": 0.26,
+        "handleClearance": 0.115,
+        "colorway": "forest",
+        "construction": "rustic",
+        "hoodRise": 1.1,
+        "carryHoop": "oval",
+        "guardCount": 4
+      },
+      "applied": {
+        "bodyWidth": 0.32,
+        "bodyHeight": 0.26,
+        "handleClearance": 0.115,
+        "frameWeight": "heavy",
+        "guardLayout": "sparse",
+        "detail": "inspection",
+        "colorway": "forest",
+        "color.body": "#526750",
+        "color.enclosure": "#eee1bf",
+        "color.structure": "#303b35",
+        "color.accent": "#d2a449",
+        "enclosureProfile": "octagonal",
+        "hoodFlare": 0.18,
+        "handleProfile": "arched",
+        "guardCount": 4,
+        "construction": "rustic",
+        "hoodRise": 1.1,
+        "carryHoop": "oval"
+      }
+    },
+    "measurementHash": "ae3b55549938e381a7d2b65ba45bd6104f41d1c0cf2d3db60b0c2ff269a3a4c0",
+    "glbHash": "b815860c9087e51e95b2e74691151b34a7db4d8fbd2b4376593c9618da63d11f"
+  },
+  {
+    "family": "work-lantern",
+    "id": "harbor",
+    "parameters": {
+      "bodyWidth": 0.4,
+      "bodyHeight": 0.235,
+      "handleClearance": 0.13,
+      "colorway": "harbor",
+      "construction": "utility",
+      "enclosureProfile": "square",
+      "hoodFlare": 0.22,
+      "handleProfile": "square",
+      "guardCount": 4
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "work-lantern",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "bodyWidth": 0.4,
+        "bodyHeight": 0.235,
+        "handleClearance": 0.13,
+        "colorway": "harbor",
+        "construction": "utility",
+        "enclosureProfile": "square",
+        "hoodFlare": 0.22,
+        "handleProfile": "square",
+        "guardCount": 4
+      },
+      "applied": {
+        "bodyWidth": 0.4,
+        "bodyHeight": 0.235,
+        "handleClearance": 0.13,
+        "frameWeight": "heavy",
+        "guardLayout": "sparse",
+        "detail": "inspection",
+        "colorway": "harbor",
+        "color.body": "#3e777b",
+        "color.enclosure": "#e9e4d3",
+        "color.structure": "#293b43",
+        "color.accent": "#d6a351",
+        "enclosureProfile": "square",
+        "hoodFlare": 0.22,
+        "handleProfile": "square",
+        "guardCount": 4,
+        "construction": "utility",
+        "hoodRise": 1,
+        "carryHoop": "oval"
+      }
+    },
+    "measurementHash": "952540dc2abc22d91c34c53ab8fac015c1410fb885437f68feaeab7fac24ddd3",
+    "glbHash": "bee8957b145b4efcfbc02d7ffee5866465366a4c3d01badfa2a540b14b7f6521"
+  },
+  {
+    "family": "work-lantern",
+    "id": "trail",
+    "parameters": {
+      "bodyWidth": 0.24,
+      "bodyHeight": 0.285,
+      "handleClearance": 0.14,
+      "colorway": "ember",
+      "construction": "rustic",
+      "enclosureProfile": "octagonal",
+      "hoodFlare": 0.1,
+      "hoodRise": 1.2,
+      "carryHoop": "tall",
+      "guardCount": 6,
+      "frameWeight": "light"
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "work-lantern",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "bodyWidth": 0.24,
+        "bodyHeight": 0.285,
+        "handleClearance": 0.14,
+        "colorway": "ember",
+        "construction": "rustic",
+        "enclosureProfile": "octagonal",
+        "hoodFlare": 0.1,
+        "hoodRise": 1.2,
+        "carryHoop": "tall",
+        "guardCount": 6,
+        "frameWeight": "light"
+      },
+      "applied": {
+        "bodyWidth": 0.24,
+        "bodyHeight": 0.285,
+        "handleClearance": 0.14,
+        "frameWeight": "light",
+        "guardLayout": "sparse",
+        "detail": "inspection",
+        "colorway": "ember",
+        "color.body": "#ad6149",
+        "color.enclosure": "#f0ddba",
+        "color.structure": "#4b3933",
+        "color.accent": "#d2a75b",
+        "enclosureProfile": "octagonal",
+        "hoodFlare": 0.1,
+        "handleProfile": "arched",
+        "guardCount": 6,
+        "construction": "rustic",
+        "hoodRise": 1.2,
+        "carryHoop": "tall"
+      }
+    },
+    "measurementHash": "ffc1ecb9518cad857a905c179eeb25a07e5b4d7caf4d5bf30db2c864508f4f9f",
+    "glbHash": "5e3deaa5f821b68fa6863526faaac9a8d1b4a653d41e8d90cfeadc9ea98569c2"
+  },
+  {
+    "family": "work-lantern",
+    "id": "heavy-crossbar",
+    "parameters": {
+      "frameWeight": "heavy",
+      "guardLayout": "crossbar"
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "work-lantern",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "frameWeight": "heavy",
+        "guardLayout": "crossbar"
+      },
+      "applied": {
+        "bodyWidth": 0.32,
+        "bodyHeight": 0.26,
+        "handleClearance": 0.115,
+        "frameWeight": "heavy",
+        "guardLayout": "crossbar",
+        "detail": "inspection",
+        "colorway": "forest",
+        "color.body": "#526750",
+        "color.enclosure": "#eee1bf",
+        "color.structure": "#303b35",
+        "color.accent": "#d2a449",
+        "enclosureProfile": "octagonal",
+        "hoodFlare": 0.18,
+        "handleProfile": "arched",
+        "guardCount": 4,
+        "construction": "rustic",
+        "hoodRise": 1,
+        "carryHoop": "oval"
+      }
+    },
+    "measurementHash": "048a6dfde0c7a207f92af9429805953a59950a0686f8e2bbf3435bd6fa11804c",
+    "glbHash": "60475ec30efa4841535ba2a87000105caf5e91ddf627fbbf1b4782c11236ec39"
+  },
+  {
+    "family": "work-lantern",
+    "id": "light-scene",
+    "parameters": {
+      "frameWeight": "light",
+      "detail": "scene"
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "work-lantern",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "frameWeight": "light",
+        "detail": "scene"
+      },
+      "applied": {
+        "bodyWidth": 0.32,
+        "bodyHeight": 0.26,
+        "handleClearance": 0.115,
+        "frameWeight": "light",
+        "guardLayout": "sparse",
+        "detail": "scene",
+        "colorway": "forest",
+        "color.body": "#526750",
+        "color.enclosure": "#eee1bf",
+        "color.structure": "#303b35",
+        "color.accent": "#d2a449",
+        "enclosureProfile": "octagonal",
+        "hoodFlare": 0.18,
+        "handleProfile": "arched",
+        "guardCount": 4,
+        "construction": "rustic",
+        "hoodRise": 1,
+        "carryHoop": "oval"
+      }
+    },
+    "measurementHash": "f6d77fd5529a184f2686d5c8e38b50827eb4f4cc12d3698b50d3b8c27dd75c64",
+    "glbHash": "99f9d6da16ea04dd2ad18e5d08b27438ad14f474f4702ef4072928b183d5103e"
+  },
+  {
+    "family": "work-lantern",
+    "id": "wide-low",
+    "parameters": {
+      "bodyWidth": 0.44,
+      "bodyHeight": 0.18,
+      "handleClearance": 0.075
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "work-lantern",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "bodyWidth": 0.44,
+        "bodyHeight": 0.18,
+        "handleClearance": 0.075
+      },
+      "applied": {
+        "bodyWidth": 0.44,
+        "bodyHeight": 0.18,
+        "handleClearance": 0.075,
+        "frameWeight": "heavy",
+        "guardLayout": "sparse",
+        "detail": "inspection",
+        "colorway": "forest",
+        "color.body": "#526750",
+        "color.enclosure": "#eee1bf",
+        "color.structure": "#303b35",
+        "color.accent": "#d2a449",
+        "enclosureProfile": "octagonal",
+        "hoodFlare": 0.18,
+        "handleProfile": "arched",
+        "guardCount": 4,
+        "construction": "rustic",
+        "hoodRise": 1,
+        "carryHoop": "oval"
+      }
+    },
+    "measurementHash": "ccb784d1c864c0fced56833f67f3ddbeca77b9145ee1436ee4681c8a9b96a61d",
+    "glbHash": "9bc2798037992f6e2054127567b8ddd728263a4a1ec6b8e13fb0cdc9d4a2e3c3"
+  },
+  {
+    "family": "work-lantern",
+    "id": "narrow-tall",
+    "parameters": {
+      "bodyWidth": 0.22,
+      "bodyHeight": 0.297,
+      "handleClearance": 0.143
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "work-lantern",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "bodyWidth": 0.22,
+        "bodyHeight": 0.297,
+        "handleClearance": 0.143
+      },
+      "applied": {
+        "bodyWidth": 0.22,
+        "bodyHeight": 0.297,
+        "handleClearance": 0.143,
+        "frameWeight": "heavy",
+        "guardLayout": "sparse",
+        "detail": "inspection",
+        "colorway": "forest",
+        "color.body": "#526750",
+        "color.enclosure": "#eee1bf",
+        "color.structure": "#303b35",
+        "color.accent": "#d2a449",
+        "enclosureProfile": "octagonal",
+        "hoodFlare": 0.18,
+        "handleProfile": "arched",
+        "guardCount": 4,
+        "construction": "rustic",
+        "hoodRise": 1,
+        "carryHoop": "oval"
+      }
+    },
+    "measurementHash": "e26244b628f430749c952b131740bba1e0e7d8bdbb6a528c9caf5c0774dbad81",
+    "glbHash": "3b1a42cba97bf246cbbc487826fe2b80f77a6d820f837de2515cac4ce940728c"
+  },
+  {
+    "family": "cottage",
+    "id": "default",
+    "parameters": {},
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {},
+      "applied": {
+        "width": 5,
+        "depth": 4,
+        "wallHeight": 2.8,
+        "roofRise": 1.4,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "8e0946d5912008e7f0d1cd03e79c625f2ee40e0ea805493fcf9b9c01b3699d3b",
+    "glbHash": "961308f137d07691435b218726d5f3f26334410b050a276918c7886374bb7550"
+  },
+  {
+    "family": "cottage",
+    "id": "workshop",
+    "parameters": {
+      "roofCover": "thatch",
+      "roofThickness": 0.28,
+      "ridgeSag": 1.1,
+      "roofCharacter": 0.6,
+      "beamSection": 1.15,
+      "weathering": 0.55,
+      "timberTone": 0.3
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "roofCover": "thatch",
+        "roofThickness": 0.28,
+        "ridgeSag": 1.1,
+        "roofCharacter": 0.6,
+        "beamSection": 1.15,
+        "weathering": 0.55,
+        "timberTone": 0.3
+      },
+      "applied": {
+        "width": 5,
+        "depth": 4,
+        "wallHeight": 2.8,
+        "roofRise": 1.4,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.6,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.28,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.55,
+        "timberTone": 0.3,
+        "toneVariation": 0.06,
+        "beamSection": 1.15,
+        "ridgeSag": 1.1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "57c1e430c46410e12478f2929587439995901ac979811ca43a3d09069bbfe37b",
+    "glbHash": "782b2c128ae909c00c860ed8b54fb9a724cd1e534f8b90ef07a5f6a56688920e"
+  },
+  {
+    "family": "cottage",
+    "id": "compact",
+    "parameters": {
+      "width": 3.6,
+      "depth": 3.2,
+      "wallHeight": 2.5,
+      "roofRise": 1.15,
+      "roofCover": "shingle",
+      "roofThickness": 0.16,
+      "windowLayout": "workshop",
+      "framingStyle": "upright",
+      "workBay": "none",
+      "roofCharacter": 0.1,
+      "ridgeSag": 0.4,
+      "beamSection": 0.85,
+      "weathering": 0.1,
+      "timberTone": 0.5
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 3.6,
+        "depth": 3.2,
+        "wallHeight": 2.5,
+        "roofRise": 1.15,
+        "roofCover": "shingle",
+        "roofThickness": 0.16,
+        "windowLayout": "workshop",
+        "framingStyle": "upright",
+        "workBay": "none",
+        "roofCharacter": 0.1,
+        "ridgeSag": 0.4,
+        "beamSection": 0.85,
+        "weathering": 0.1,
+        "timberTone": 0.5
+      },
+      "applied": {
+        "width": 3.6,
+        "depth": 3.2,
+        "wallHeight": 2.5,
+        "roofRise": 1.15,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "none",
+        "shutters": true,
+        "roofCharacter": 0.1,
+        "detail": "inspection",
+        "roofCover": "shingle",
+        "roofThickness": 0.16,
+        "framingStyle": "upright",
+        "windowLayout": "workshop",
+        "bayDepth": 1.65,
+        "weathering": 0.1,
+        "timberTone": 0.5,
+        "toneVariation": 0.06,
+        "beamSection": 0.85,
+        "ridgeSag": 0.4,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#a75f49",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "1f0f4cb3cdd056824ae093c8680dd66898ae7f694e9b8df5dea5c63b35cd9db6",
+    "glbHash": "7a222c20e6dd8c306b5b84998512a32a591bb00134ddfaf5feddb1914d1ef56e"
+  },
+  {
+    "family": "cottage",
+    "id": "longhouse",
+    "parameters": {
+      "width": 7.2,
+      "depth": 4.6,
+      "wallHeight": 2.8,
+      "roofRise": 1.65,
+      "roofCover": "thatch",
+      "roofThickness": 0.34,
+      "windowLayout": "sparse",
+      "framingStyle": "diagonal",
+      "workBay": "none",
+      "roofCharacter": 0.7,
+      "ridgeSag": 1.1,
+      "beamSection": 1.25,
+      "weathering": 0.7,
+      "timberTone": 0.25
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 7.2,
+        "depth": 4.6,
+        "wallHeight": 2.8,
+        "roofRise": 1.65,
+        "roofCover": "thatch",
+        "roofThickness": 0.34,
+        "windowLayout": "sparse",
+        "framingStyle": "diagonal",
+        "workBay": "none",
+        "roofCharacter": 0.7,
+        "ridgeSag": 1.1,
+        "beamSection": 1.25,
+        "weathering": 0.7,
+        "timberTone": 0.25
+      },
+      "applied": {
+        "width": 7.2,
+        "depth": 4.6,
+        "wallHeight": 2.8,
+        "roofRise": 1.65,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "none",
+        "shutters": true,
+        "roofCharacter": 0.7,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.34,
+        "framingStyle": "diagonal",
+        "windowLayout": "sparse",
+        "bayDepth": 1.65,
+        "weathering": 0.7,
+        "timberTone": 0.25,
+        "toneVariation": 0.06,
+        "beamSection": 1.25,
+        "ridgeSag": 1.1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "6e21eb196d955e45d9e578e64c6cf4bb81c12ab1c33062e9ffc22db68dcb1a0d",
+    "glbHash": "c5072c8749e341da0f3fd8a30e4d99dbac903dabf0a48b5c044386ba0b6275f5"
+  },
+  {
+    "family": "cottage",
+    "id": "low-wide",
+    "parameters": {
+      "width": 7.2,
+      "depth": 3,
+      "wallHeight": 2.5,
+      "roofRise": 1
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 7.2,
+        "depth": 3,
+        "wallHeight": 2.5,
+        "roofRise": 1
+      },
+      "applied": {
+        "width": 7.2,
+        "depth": 3,
+        "wallHeight": 2.5,
+        "roofRise": 1,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "4658643730fe7bd85bbb8bea7cfc929c1f569ebea4ee6418dfc0b402f14ddd33",
+    "glbHash": "b06d33f8200120bb64c3c39923463b8210fdc83a90af29730e4df0ed3ff08bbf"
+  },
+  {
+    "family": "cottage",
+    "id": "tall-compact",
+    "parameters": {
+      "width": 3.6,
+      "depth": 3,
+      "wallHeight": 3.4,
+      "roofRise": 1.44
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 3.6,
+        "depth": 3,
+        "wallHeight": 3.4,
+        "roofRise": 1.44
+      },
+      "applied": {
+        "width": 3.6,
+        "depth": 3,
+        "wallHeight": 3.4,
+        "roofRise": 1.44,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "e922e407d2de8817affb60877aab115d61630acae2d6d0242ffc420e4662337e",
+    "glbHash": "73ac80f2a3d8f0b56f86cdf182e8b675618e9937ba5132ba77fb5cfa46a33608"
+  },
+  {
+    "family": "cottage",
+    "id": "deep-steep",
+    "parameters": {
+      "width": 5,
+      "depth": 5.5,
+      "wallHeight": 3.4,
+      "roofRise": 2
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 5,
+        "depth": 5.5,
+        "wallHeight": 3.4,
+        "roofRise": 2
+      },
+      "applied": {
+        "width": 5,
+        "depth": 5.5,
+        "wallHeight": 3.4,
+        "roofRise": 2,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "5f8c32ee8f570bdf43e19f68e2e98c97fee73878074c436bf5334e6eed6502af",
+    "glbHash": "bcbcf2f2f86c6b4b199fad6d179c083b429e2211a92c98aab4d1daee41134933"
+  },
+  {
+    "family": "cottage",
+    "id": "width-min",
+    "parameters": {
+      "width": 3.6
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 3.6
+      },
+      "applied": {
+        "width": 3.6,
+        "depth": 4,
+        "wallHeight": 2.8,
+        "roofRise": 1.4,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "40290827634756f154ec829d53ed25810ed545d8a24e8dd2bacf89308b1b062a",
+    "glbHash": "333f65bcb2524093a0d6d97a846776f4a2bb30525042e92555db6bf078d6389a"
+  },
+  {
+    "family": "cottage",
+    "id": "width-max",
+    "parameters": {
+      "width": 7.2
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 7.2
+      },
+      "applied": {
+        "width": 7.2,
+        "depth": 4,
+        "wallHeight": 2.8,
+        "roofRise": 1.4,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "e8299fcb099b43e03b207a7c03953d41a3cefa93c40a2922c713d0c499e98227",
+    "glbHash": "8c84ac1143829654754c9c61157a763276668433694d546a7a6e4b538a56f687"
+  },
+  {
+    "family": "cottage",
+    "id": "depth-min",
+    "parameters": {
+      "depth": 3
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "depth": 3
+      },
+      "applied": {
+        "width": 5,
+        "depth": 3,
+        "wallHeight": 2.8,
+        "roofRise": 1.4,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "4fb6e163a9b8a4ec6764cb67c12418ea5c5bb7a7b8dd3b4c383c46ea1264b1df",
+    "glbHash": "0ed649c3523319e02bbf1c8ff72e5b6f6f6b89ccccdb9cf8eb577d96b6974a54"
+  },
+  {
+    "family": "cottage",
+    "id": "depth-max",
+    "parameters": {
+      "depth": 5.5
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "depth": 5.5
+      },
+      "applied": {
+        "width": 5,
+        "depth": 5.5,
+        "wallHeight": 2.8,
+        "roofRise": 1.4,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "532bf67cedcf9f6eafc4880067d1336a2a90221fc8af749f8ca8f956db19b5c0",
+    "glbHash": "c7b16746c2fe16838acdc1c9ff5344d086dff4cd6712257b16c3f503c0b3857d"
+  },
+  {
+    "family": "cottage",
+    "id": "wallHeight-min",
+    "parameters": {
+      "wallHeight": 2.5
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "wallHeight": 2.5
+      },
+      "applied": {
+        "width": 5,
+        "depth": 4,
+        "wallHeight": 2.5,
+        "roofRise": 1.4,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "2d012153b3d861edbcf49578040a5562c6dc3ad9e90c582885e2d995be11425f",
+    "glbHash": "589c1e9047801a071f0702b95c90c50b49bd7a98e662ccece859bdd3d1493bc4"
+  },
+  {
+    "family": "cottage",
+    "id": "wallHeight-max",
+    "parameters": {
+      "wallHeight": 3.4
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "wallHeight": 3.4
+      },
+      "applied": {
+        "width": 5,
+        "depth": 4,
+        "wallHeight": 3.4,
+        "roofRise": 1.4,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "1a41c349dee9fd7a59b111f1f232d1d51c45fbf222bf17a4ae0369a8e5c81f3d",
+    "glbHash": "5854257b780e9a8f2fcc321d133881e75165948edc799ebd73dacfa3b44aafcd"
+  },
+  {
+    "family": "cottage",
+    "id": "roofRise-min",
+    "parameters": {
+      "roofRise": 1
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "roofRise": 1
+      },
+      "applied": {
+        "width": 5,
+        "depth": 4,
+        "wallHeight": 2.8,
+        "roofRise": 1,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "39a18e709fa4860acd50ba773d019aa232b72a37948a2b47de09cf042002d7d6",
+    "glbHash": "93d3ccf367e85760632d114c9293c64d0f2781877760808c614130a9dbfa1c84"
+  },
+  {
+    "family": "cottage",
+    "id": "roofRise-max",
+    "parameters": {
+      "roofRise": 2
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "roofRise": 2
+      },
+      "applied": {
+        "width": 5,
+        "depth": 4,
+        "wallHeight": 2.8,
+        "roofRise": 2,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "d4683eda9a68fc16f4339bfb71c1cab0cb1832df427a2bca024b55f4830175fb",
+    "glbHash": "e7c43f859e246c9710b7dd8b807cb59106c0ffe74ac80b81d93af1b5fddfdff7"
+  },
+  {
+    "family": "cottage",
+    "id": "left-open",
+    "parameters": {
+      "workBay": "left",
+      "shutters": false
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "workBay": "left",
+        "shutters": false
+      },
+      "applied": {
+        "width": 5,
+        "depth": 4,
+        "wallHeight": 2.8,
+        "roofRise": 1.4,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.4,
+        "workBay": "left",
+        "shutters": false,
+        "roofCharacter": 0.45,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "d145ca6c586d3a61203f8c705f227c37b11bcd0bca75ca76a5fa42776211ca60",
+    "glbHash": "dfe00463206b21b3adf150ae67389b1290a27d69bf22352300e34ea6e62019a6"
+  },
+  {
+    "family": "cottage",
+    "id": "plain-scene",
+    "parameters": {
+      "workBay": "none",
+      "chimney": false,
+      "detail": "scene",
+      "beamWeight": "light"
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "workBay": "none",
+        "chimney": false,
+        "detail": "scene",
+        "beamWeight": "light"
+      },
+      "applied": {
+        "width": 5,
+        "depth": 4,
+        "wallHeight": 2.8,
+        "roofRise": 1.4,
+        "chimney": false,
+        "beamWeight": "light",
+        "eaveOverhang": 0.4,
+        "workBay": "none",
+        "shutters": true,
+        "roofCharacter": 0.45,
+        "detail": "scene",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "000254fd8b66372ee7f9bf190dec80f31a53ab8032052459f8e15be4375bedf2",
+    "glbHash": "5254f808036d94e91fdbbd4f29ace371ba7a524ab372599da002463c9451d075"
+  },
+  {
+    "family": "cottage",
+    "id": "profile-max",
+    "parameters": {
+      "roofCharacter": 1,
+      "eaveOverhang": 0.55,
+      "width": 3.6,
+      "roofRise": 1.44
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "cottage",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "roofCharacter": 1,
+        "eaveOverhang": 0.55,
+        "width": 3.6,
+        "roofRise": 1.44
+      },
+      "applied": {
+        "width": 3.6,
+        "depth": 4,
+        "wallHeight": 2.8,
+        "roofRise": 1.44,
+        "chimney": true,
+        "beamWeight": "stout",
+        "eaveOverhang": 0.55,
+        "workBay": "right",
+        "shutters": true,
+        "roofCharacter": 1,
+        "detail": "inspection",
+        "roofCover": "thatch",
+        "roofThickness": 0.24,
+        "framingStyle": "diagonal",
+        "windowLayout": "paired",
+        "bayDepth": 1.65,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "beamSection": 1,
+        "ridgeSag": 1,
+        "colorway": "forest",
+        "color.plaster": "#e2d6b8",
+        "color.roof": "#b7a16b",
+        "color.timber": "#49382c",
+        "color.wood": "#966c48",
+        "color.recess": "#34433e",
+        "color.stone": "#7d8279",
+        "color.hardware": "#b99247"
+      }
+    },
+    "measurementHash": "b0a83c7d808bc16f3a7a3a7b00467fd39f5e15d8170d1566fc195340f712ae3f",
+    "glbHash": "2eee568b8eee43c92422dfe7a831109c08a2e497c4f3e8cfc958298104d72007"
+  },
+  {
+    "family": "tree",
+    "id": "default",
+    "parameters": {},
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {},
+      "applied": {
+        "height": 4.5,
+        "spread": 3.8,
+        "seed": 7,
+        "growth": "mature",
+        "lean": 0.055,
+        "forkHeight": 0.31,
+        "canopyFullness": 1,
+        "trunkGirth": 0.22,
+        "branchCount": 3,
+        "architecture": "spreading",
+        "season": "summer",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#587b42",
+        "color.foliageShade": "#426337",
+        "color.foliageLight": "#759050"
+      }
+    },
+    "measurementHash": "873b6250f3ac0c3e4d8dfaf7ed97e8f88cffc90a4d96150e8578697636e65060",
+    "glbHash": "4a170b12ab7592bf51bee5378a4de4b7e39ef6654961b4ef934175f6cbcc9de2"
+  },
+  {
+    "family": "tree",
+    "id": "orchard",
+    "parameters": {
+      "season": "spring",
+      "branchCount": 3,
+      "canopyFullness": 0.96,
+      "forkHeight": 0.3,
+      "trunkGirth": 0.2
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "season": "spring",
+        "branchCount": 3,
+        "canopyFullness": 0.96,
+        "forkHeight": 0.3,
+        "trunkGirth": 0.2
+      },
+      "applied": {
+        "height": 4.5,
+        "spread": 3.8,
+        "seed": 7,
+        "growth": "mature",
+        "lean": 0.055,
+        "forkHeight": 0.3,
+        "canopyFullness": 0.96,
+        "trunkGirth": 0.2,
+        "branchCount": 3,
+        "architecture": "spreading",
+        "season": "spring",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#78994e",
+        "color.foliageShade": "#577a40",
+        "color.foliageLight": "#96ad60"
+      }
+    },
+    "measurementHash": "7f6c6e5ef6d9f2045b65142ba2a7e65417dcafb7cbb1c7c1dc107da836c59a6c",
+    "glbHash": "87ca296f8775eeed394c682d4a22fb56adc8e84dd6dab532d64e4e705dd1550d"
+  },
+  {
+    "family": "tree",
+    "id": "young",
+    "parameters": {
+      "height": 3,
+      "spread": 2.4,
+      "growth": "young",
+      "architecture": "upright",
+      "branchCount": 2,
+      "canopyFullness": 0.86,
+      "forkHeight": 0.4,
+      "trunkGirth": 0.15,
+      "lean": 0.025,
+      "season": "summer",
+      "seed": 18
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 3,
+        "spread": 2.4,
+        "growth": "young",
+        "architecture": "upright",
+        "branchCount": 2,
+        "canopyFullness": 0.86,
+        "forkHeight": 0.4,
+        "trunkGirth": 0.15,
+        "lean": 0.025,
+        "season": "summer",
+        "seed": 18
+      },
+      "applied": {
+        "height": 3,
+        "spread": 2.4,
+        "seed": 18,
+        "growth": "young",
+        "lean": 0.025,
+        "forkHeight": 0.4,
+        "canopyFullness": 0.86,
+        "trunkGirth": 0.15,
+        "branchCount": 2,
+        "architecture": "upright",
+        "season": "summer",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#587b42",
+        "color.foliageShade": "#426337",
+        "color.foliageLight": "#759050"
+      }
+    },
+    "measurementHash": "da17967a6c0a8bdaa187bc81dfce5848e5906dc7ee45c305e7003419704d727c",
+    "glbHash": "903212789cca2ef771c5557c1defc83e95d98c43000fad024b9175ec446bf92e"
+  },
+  {
+    "family": "tree",
+    "id": "shelter",
+    "parameters": {
+      "height": 5.3,
+      "spread": 5.4,
+      "growth": "mature",
+      "architecture": "spreading",
+      "branchCount": 4,
+      "canopyFullness": 1.05,
+      "forkHeight": 0.26,
+      "trunkGirth": 0.28,
+      "lean": -0.035,
+      "season": "autumn",
+      "seed": 91
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 5.3,
+        "spread": 5.4,
+        "growth": "mature",
+        "architecture": "spreading",
+        "branchCount": 4,
+        "canopyFullness": 1.05,
+        "forkHeight": 0.26,
+        "trunkGirth": 0.28,
+        "lean": -0.035,
+        "season": "autumn",
+        "seed": 91
+      },
+      "applied": {
+        "height": 5.3,
+        "spread": 5.4,
+        "seed": 91,
+        "growth": "mature",
+        "lean": -0.035,
+        "forkHeight": 0.26,
+        "canopyFullness": 1.05,
+        "trunkGirth": 0.28,
+        "branchCount": 4,
+        "architecture": "spreading",
+        "season": "autumn",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#b6863e",
+        "color.foliageShade": "#8c6736",
+        "color.foliageLight": "#c8a450"
+      }
+    },
+    "measurementHash": "5b6b1daf93213bb543297ef8dc4d86cc0e801aa852f52ce122294525eba94bb0",
+    "glbHash": "d6ab07cc951903dee9d7a1483fb94dee33cae5b625f755d0adc923dd01fb4c5a"
+  },
+  {
+    "family": "tree",
+    "id": "broad-low",
+    "parameters": {
+      "height": 3,
+      "spread": 3.75,
+      "seed": 0
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 3,
+        "spread": 3.75,
+        "seed": 0
+      },
+      "applied": {
+        "height": 3,
+        "spread": 3.75,
+        "seed": 0,
+        "growth": "mature",
+        "lean": 0.055,
+        "forkHeight": 0.31,
+        "canopyFullness": 1,
+        "trunkGirth": 0.22,
+        "branchCount": 3,
+        "architecture": "spreading",
+        "season": "summer",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#587b42",
+        "color.foliageShade": "#426337",
+        "color.foliageLight": "#759050"
+      }
+    },
+    "measurementHash": "15f19631b72fa1d063f7addcd4f892bcc7fc2d9e786b82ae017465523c6bf2fb",
+    "glbHash": "fdff5d1c9d118af25299b8a74cb8c1023684fd09c035b5c7fbbc96d58dafbd93"
+  },
+  {
+    "family": "tree",
+    "id": "slender-tall",
+    "parameters": {
+      "height": 6,
+      "spread": 3.3,
+      "seed": 65535
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 6,
+        "spread": 3.3,
+        "seed": 65535
+      },
+      "applied": {
+        "height": 6,
+        "spread": 3.3,
+        "seed": 65535,
+        "growth": "mature",
+        "lean": 0.055,
+        "forkHeight": 0.31,
+        "canopyFullness": 1,
+        "trunkGirth": 0.22,
+        "branchCount": 3,
+        "architecture": "spreading",
+        "season": "summer",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#587b42",
+        "color.foliageShade": "#426337",
+        "color.foliageLight": "#759050"
+      }
+    },
+    "measurementHash": "8118d0f1468b63642c829c66ceda00e48c364afcc9e52aefc5beb59e13177ce1",
+    "glbHash": "7c9c2adc3f2337f221196817e790760abf5549d82203138425e436d6522951c2"
+  },
+  {
+    "family": "tree",
+    "id": "largest",
+    "parameters": {
+      "height": 6,
+      "spread": 5.4,
+      "seed": 46
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 6,
+        "spread": 5.4,
+        "seed": 46
+      },
+      "applied": {
+        "height": 6,
+        "spread": 5.4,
+        "seed": 46,
+        "growth": "mature",
+        "lean": 0.055,
+        "forkHeight": 0.31,
+        "canopyFullness": 1,
+        "trunkGirth": 0.22,
+        "branchCount": 3,
+        "architecture": "spreading",
+        "season": "summer",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#587b42",
+        "color.foliageShade": "#426337",
+        "color.foliageLight": "#759050"
+      }
+    },
+    "measurementHash": "007c3198b4a300b0a7198866651ee685601d2deb7f0990d61c836323b1f85749",
+    "glbHash": "b272104e758c49ec27af6056dab5298f6341c77303c0f0b71aabcdcd05051c3f"
+  },
+  {
+    "family": "tree",
+    "id": "height-min",
+    "parameters": {
+      "spread": 3.6,
+      "height": 3
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "spread": 3.6,
+        "height": 3
+      },
+      "applied": {
+        "height": 3,
+        "spread": 3.6,
+        "seed": 7,
+        "growth": "mature",
+        "lean": 0.055,
+        "forkHeight": 0.31,
+        "canopyFullness": 1,
+        "trunkGirth": 0.22,
+        "branchCount": 3,
+        "architecture": "spreading",
+        "season": "summer",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#587b42",
+        "color.foliageShade": "#426337",
+        "color.foliageLight": "#759050"
+      }
+    },
+    "measurementHash": "c287e843b1fd763970d5ff2c2e78b180e471a02829165fd19d8c4e61a05683f2",
+    "glbHash": "14155939f629c6abff326cc6004761ce08ac926aee4a1cd3d9c38b99a1e15a45"
+  },
+  {
+    "family": "tree",
+    "id": "height-max",
+    "parameters": {
+      "height": 6
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 6
+      },
+      "applied": {
+        "height": 6,
+        "spread": 3.8,
+        "seed": 7,
+        "growth": "mature",
+        "lean": 0.055,
+        "forkHeight": 0.31,
+        "canopyFullness": 1,
+        "trunkGirth": 0.22,
+        "branchCount": 3,
+        "architecture": "spreading",
+        "season": "summer",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#587b42",
+        "color.foliageShade": "#426337",
+        "color.foliageLight": "#759050"
+      }
+    },
+    "measurementHash": "a130bccae6a9376548e197e7f5924209ef6a7a0e2e2d6edd872117757d5ba5a1",
+    "glbHash": "bb30d1ce9e2ea273af4f2268d369d6d1a6a82cefbd7a8695a0e7dc310aadf9c4"
+  },
+  {
+    "family": "tree",
+    "id": "spread-min",
+    "parameters": {
+      "height": 4.3,
+      "spread": 2.4
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 4.3,
+        "spread": 2.4
+      },
+      "applied": {
+        "height": 4.3,
+        "spread": 2.4,
+        "seed": 7,
+        "growth": "mature",
+        "lean": 0.055,
+        "forkHeight": 0.31,
+        "canopyFullness": 1,
+        "trunkGirth": 0.22,
+        "branchCount": 3,
+        "architecture": "spreading",
+        "season": "summer",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#587b42",
+        "color.foliageShade": "#426337",
+        "color.foliageLight": "#759050"
+      }
+    },
+    "measurementHash": "0c32717c46f1ef5da7ae6dd7171bfae947a33de276585958fa4ccac480770eaf",
+    "glbHash": "7ee2f3108c8a21a91af68230e20dfdfe0e856f33a72ed5cd7edba943977c4ed2"
+  },
+  {
+    "family": "tree",
+    "id": "spread-max",
+    "parameters": {
+      "spread": 5.4
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "spread": 5.4
+      },
+      "applied": {
+        "height": 4.5,
+        "spread": 5.4,
+        "seed": 7,
+        "growth": "mature",
+        "lean": 0.055,
+        "forkHeight": 0.31,
+        "canopyFullness": 1,
+        "trunkGirth": 0.22,
+        "branchCount": 3,
+        "architecture": "spreading",
+        "season": "summer",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#587b42",
+        "color.foliageShade": "#426337",
+        "color.foliageLight": "#759050"
+      }
+    },
+    "measurementHash": "abb87e84ce205fe06d8f5ab893a4a56f79bc4ada22ff970e13a23d87ab941b02",
+    "glbHash": "bc92676f29366da1fec973069f4c24a4f26c1ff311c3e3c349cb45dc5442a1db"
+  },
+  {
+    "family": "tree",
+    "id": "seed-min",
+    "parameters": {
+      "seed": 0
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "seed": 0
+      },
+      "applied": {
+        "height": 4.5,
+        "spread": 3.8,
+        "seed": 0,
+        "growth": "mature",
+        "lean": 0.055,
+        "forkHeight": 0.31,
+        "canopyFullness": 1,
+        "trunkGirth": 0.22,
+        "branchCount": 3,
+        "architecture": "spreading",
+        "season": "summer",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#587b42",
+        "color.foliageShade": "#426337",
+        "color.foliageLight": "#759050"
+      }
+    },
+    "measurementHash": "3f8c81576765485a61cd7cf11119eec1d4cd31698ddc37c57762a0e632eb9d39",
+    "glbHash": "5897b235fd25db0bc1ac3742b7e63e2aef312b5d8ac1da5c0528389419056718"
+  },
+  {
+    "family": "tree",
+    "id": "seed-max",
+    "parameters": {
+      "seed": 65535
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "tree",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "seed": 65535
+      },
+      "applied": {
+        "height": 4.5,
+        "spread": 3.8,
+        "seed": 65535,
+        "growth": "mature",
+        "lean": 0.055,
+        "forkHeight": 0.31,
+        "canopyFullness": 1,
+        "trunkGirth": 0.22,
+        "branchCount": 3,
+        "architecture": "spreading",
+        "season": "summer",
+        "colorway": "forest",
+        "color.timber": "#594739",
+        "color.foliage": "#587b42",
+        "color.foliageShade": "#426337",
+        "color.foliageLight": "#759050"
+      }
+    },
+    "measurementHash": "109b317eb7d6b5c5b3e71881dff905af9d7b98e8292e52b95d61fdd0d7300b55",
+    "glbHash": "200a77cfbec0c189cac54fa24527e238ff727ba52355ef213f856016d5fdaa38"
+  },
+  {
+    "family": "fence",
+    "id": "default",
+    "parameters": {},
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {},
+      "applied": {
+        "length": 3,
+        "height": 1.1,
+        "bays": 2,
+        "railStyle": "two-rail",
+        "postHead": "chamfered",
+        "detail": "inspection",
+        "railCount": 2,
+        "memberWeight": "stout",
+        "infill": "open",
+        "picketSpacing": 0.16,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "08c0f7f0fc80914576238d1b898f3a29d98b668ca6c4efb8830ef8aedf399a50",
+    "glbHash": "5cb0ea4146cdb7051e67b265b86981fe6c9afcc0533523517ded95b408ea7846"
+  },
+  {
+    "family": "fence",
+    "id": "garden",
+    "parameters": {
+      "length": 2.4,
+      "height": 0.95,
+      "bays": 2,
+      "infill": "pickets",
+      "railCount": 2,
+      "picketSpacing": 0.13,
+      "postHead": "peaked",
+      "weathering": 0.15,
+      "timberTone": 0.55
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "length": 2.4,
+        "height": 0.95,
+        "bays": 2,
+        "infill": "pickets",
+        "railCount": 2,
+        "picketSpacing": 0.13,
+        "postHead": "peaked",
+        "weathering": 0.15,
+        "timberTone": 0.55
+      },
+      "applied": {
+        "length": 2.4,
+        "height": 0.95,
+        "bays": 2,
+        "railStyle": "two-rail",
+        "postHead": "peaked",
+        "detail": "inspection",
+        "railCount": 2,
+        "memberWeight": "stout",
+        "infill": "pickets",
+        "picketSpacing": 0.13,
+        "weathering": 0.15,
+        "timberTone": 0.55,
+        "toneVariation": 0.06,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "57fe8be5a9feee03c50654d571c73735849e8b6fe4cc53c94e69afa1362d71cc",
+    "glbHash": "3125bb82fc92687bb7906bdaf20f4bca9862bdcfc4c6195010b8d2d752524402"
+  },
+  {
+    "family": "fence",
+    "id": "boundary",
+    "parameters": {
+      "length": 4.8,
+      "height": 1.4,
+      "bays": 3,
+      "railStyle": "cross-braced",
+      "railCount": 4,
+      "memberWeight": "stout",
+      "weathering": 0.65,
+      "timberTone": 0.25,
+      "toneVariation": 0.09
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "length": 4.8,
+        "height": 1.4,
+        "bays": 3,
+        "railStyle": "cross-braced",
+        "railCount": 4,
+        "memberWeight": "stout",
+        "weathering": 0.65,
+        "timberTone": 0.25,
+        "toneVariation": 0.09
+      },
+      "applied": {
+        "length": 4.8,
+        "height": 1.4,
+        "bays": 3,
+        "railStyle": "cross-braced",
+        "postHead": "chamfered",
+        "detail": "inspection",
+        "railCount": 4,
+        "memberWeight": "stout",
+        "infill": "open",
+        "picketSpacing": 0.16,
+        "weathering": 0.65,
+        "timberTone": 0.25,
+        "toneVariation": 0.09,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "864c2345bae27e3c235ae53256d3db597e98398d3a728dff6d458f085d86535a",
+    "glbHash": "253621f3edd6ed87b299db72acd374be89ab67e43c9e7ada8281997e27f82746"
+  },
+  {
+    "family": "fence",
+    "id": "low-run",
+    "parameters": {
+      "length": 5.6,
+      "height": 0.8,
+      "bays": 4,
+      "railCount": 2,
+      "memberWeight": "light",
+      "postHead": "flat",
+      "weathering": 0.4,
+      "timberTone": 0.65
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "length": 5.6,
+        "height": 0.8,
+        "bays": 4,
+        "railCount": 2,
+        "memberWeight": "light",
+        "postHead": "flat",
+        "weathering": 0.4,
+        "timberTone": 0.65
+      },
+      "applied": {
+        "length": 5.6,
+        "height": 0.8,
+        "bays": 4,
+        "railStyle": "two-rail",
+        "postHead": "flat",
+        "detail": "inspection",
+        "railCount": 2,
+        "memberWeight": "light",
+        "infill": "open",
+        "picketSpacing": 0.16,
+        "weathering": 0.4,
+        "timberTone": 0.65,
+        "toneVariation": 0.06,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "35105d4a525ac478272e57fc210d45fa582545a88d9844889d39314b74b16ef6",
+    "glbHash": "7aaa5dbcfb516e7c5c69f7c0fab23628686fd4db7305e254f99f12833f16d3c9"
+  },
+  {
+    "family": "fence",
+    "id": "short-high",
+    "parameters": {
+      "length": 1.2,
+      "height": 1.5,
+      "bays": 1
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "length": 1.2,
+        "height": 1.5,
+        "bays": 1
+      },
+      "applied": {
+        "length": 1.2,
+        "height": 1.5,
+        "bays": 1,
+        "railStyle": "two-rail",
+        "postHead": "chamfered",
+        "detail": "inspection",
+        "railCount": 2,
+        "memberWeight": "stout",
+        "infill": "open",
+        "picketSpacing": 0.16,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "483c79a1fe4776cb1ed8a68f4de9e72d30d1b1c4e66642bc28f3007645116336",
+    "glbHash": "4d31b3b38da992de10601983fa6071a2a9eec8a40857fc57de669afbf2275467"
+  },
+  {
+    "family": "fence",
+    "id": "long-low",
+    "parameters": {
+      "length": 6,
+      "height": 0.7,
+      "bays": 3
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "length": 6,
+        "height": 0.7,
+        "bays": 3
+      },
+      "applied": {
+        "length": 6,
+        "height": 0.7,
+        "bays": 3,
+        "railStyle": "two-rail",
+        "postHead": "chamfered",
+        "detail": "inspection",
+        "railCount": 2,
+        "memberWeight": "stout",
+        "infill": "open",
+        "picketSpacing": 0.16,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "469b6949ee5267ecf2c6b788604629429e2134b7bc2b031329b757c5f2ae7e5a",
+    "glbHash": "23ad293c21de90019d6f19be16a07be2a10528ab77fa673e1422b0cd099efc29"
+  },
+  {
+    "family": "fence",
+    "id": "dense",
+    "parameters": {
+      "length": 2.4,
+      "height": 1.1,
+      "bays": 4
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "length": 2.4,
+        "height": 1.1,
+        "bays": 4
+      },
+      "applied": {
+        "length": 2.4,
+        "height": 1.1,
+        "bays": 4,
+        "railStyle": "two-rail",
+        "postHead": "chamfered",
+        "detail": "inspection",
+        "railCount": 2,
+        "memberWeight": "stout",
+        "infill": "open",
+        "picketSpacing": 0.16,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "c2fce3d5d23a5e81bb64fad3e0ea2b9a6b7c046702a035ad5430945afd898964",
+    "glbHash": "861e72fa4be8224258fe0c866aa4602de45350328a75530c56eb39298a7f3fa3"
+  },
+  {
+    "family": "fence",
+    "id": "length-min",
+    "parameters": {
+      "length": 1.2
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "length": 1.2
+      },
+      "applied": {
+        "length": 1.2,
+        "height": 1.1,
+        "bays": 2,
+        "railStyle": "two-rail",
+        "postHead": "chamfered",
+        "detail": "inspection",
+        "railCount": 2,
+        "memberWeight": "stout",
+        "infill": "open",
+        "picketSpacing": 0.16,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "9c5ca09e1652efa962d8f7f0b8f2d23627c113b9c4b86fd8cd6f705152a7eb41",
+    "glbHash": "dc4a7566a9e30fe89a2005b800b3459f404b3228c0b3602150c0f13056e54a8d"
+  },
+  {
+    "family": "fence",
+    "id": "length-max",
+    "parameters": {
+      "bays": 3,
+      "length": 6
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "bays": 3,
+        "length": 6
+      },
+      "applied": {
+        "length": 6,
+        "height": 1.1,
+        "bays": 3,
+        "railStyle": "two-rail",
+        "postHead": "chamfered",
+        "detail": "inspection",
+        "railCount": 2,
+        "memberWeight": "stout",
+        "infill": "open",
+        "picketSpacing": 0.16,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "8ebf36523288f132ba0163d7925c169db6cf208d96fef19a9b31f0ddf9231c2a",
+    "glbHash": "08912865a6e755f62a2925b766283904cd5de757e1af5c39c2ea0f2399385943"
+  },
+  {
+    "family": "fence",
+    "id": "height-min",
+    "parameters": {
+      "height": 0.7
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 0.7
+      },
+      "applied": {
+        "length": 3,
+        "height": 0.7,
+        "bays": 2,
+        "railStyle": "two-rail",
+        "postHead": "chamfered",
+        "detail": "inspection",
+        "railCount": 2,
+        "memberWeight": "stout",
+        "infill": "open",
+        "picketSpacing": 0.16,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "7415511663ca6f3a88e32f19fd15f656c137829e95b278bb593009accf64dba4",
+    "glbHash": "a01d1fc37f9ea264982d131094c96876947ba683251a7926d593a1d1ce08ca15"
+  },
+  {
+    "family": "fence",
+    "id": "height-max",
+    "parameters": {
+      "height": 1.5
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 1.5
+      },
+      "applied": {
+        "length": 3,
+        "height": 1.5,
+        "bays": 2,
+        "railStyle": "two-rail",
+        "postHead": "chamfered",
+        "detail": "inspection",
+        "railCount": 2,
+        "memberWeight": "stout",
+        "infill": "open",
+        "picketSpacing": 0.16,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "342a9a77bf7d93f5e6f4580bc5f81da6ba81d6331c7807a69361f7cf5688e143",
+    "glbHash": "8d3e4406be9d212d00fa7e97a0c3470fb1f3d5003522646bc7c920dcb5a482cb"
+  },
+  {
+    "family": "fence",
+    "id": "bays-min",
+    "parameters": {
+      "length": 2,
+      "bays": 1
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "length": 2,
+        "bays": 1
+      },
+      "applied": {
+        "length": 2,
+        "height": 1.1,
+        "bays": 1,
+        "railStyle": "two-rail",
+        "postHead": "chamfered",
+        "detail": "inspection",
+        "railCount": 2,
+        "memberWeight": "stout",
+        "infill": "open",
+        "picketSpacing": 0.16,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "c548aaa20c47b57f4b63294e196b13af33127a74ec84709a14ba40ce4a3f4035",
+    "glbHash": "be76027bc8c3f45ac3733c57dc3c32470ef115a35e3a66d70a550c2bca9f417f"
+  },
+  {
+    "family": "fence",
+    "id": "bays-max",
+    "parameters": {
+      "bays": 4
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "fence",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "bays": 4
+      },
+      "applied": {
+        "length": 3,
+        "height": 1.1,
+        "bays": 4,
+        "railStyle": "two-rail",
+        "postHead": "chamfered",
+        "detail": "inspection",
+        "railCount": 2,
+        "memberWeight": "stout",
+        "infill": "open",
+        "picketSpacing": 0.16,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "toneVariation": 0.06,
+        "colorway": "forest",
+        "color.timber": "#896039",
+        "color.wood": "#b68747"
+      }
+    },
+    "measurementHash": "28ea4807f45a34e526b6e5ca153067c861ea92eb92777bfacc358f1d8dc86873",
+    "glbHash": "58e50ce322f5cf0aa739965ad24ea802ecf6300530a776e59b648457121e46b1"
+  },
+  {
+    "family": "crate",
+    "id": "default",
+    "parameters": {},
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {},
+      "applied": {
+        "width": 0.9,
+        "height": 0.7,
+        "depth": 0.7,
+        "lid": "open-top",
+        "brace": "plain",
+        "detail": "inspection",
+        "plankCourses": 4,
+        "slatGap": 0.035,
+        "frameWeight": "stout",
+        "toneVariation": 0.06,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "c65fe6b9ea0ee46a688777f171171eff464da889bb2eee85e8469f3e70524569",
+    "glbHash": "009c056f471b0b1334f3bcf1f528f6e749faf5f2e74a06aaad61b8c233c73cd3"
+  },
+  {
+    "family": "crate",
+    "id": "supply",
+    "parameters": {
+      "lid": "closed",
+      "brace": "diagonal",
+      "weathering": 0.15,
+      "timberTone": 0.25,
+      "slatGap": 0.01
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "lid": "closed",
+        "brace": "diagonal",
+        "weathering": 0.15,
+        "timberTone": 0.25,
+        "slatGap": 0.01
+      },
+      "applied": {
+        "width": 0.9,
+        "height": 0.7,
+        "depth": 0.7,
+        "lid": "closed",
+        "brace": "diagonal",
+        "detail": "inspection",
+        "plankCourses": 4,
+        "slatGap": 0.01,
+        "frameWeight": "stout",
+        "toneVariation": 0.06,
+        "weathering": 0.15,
+        "timberTone": 0.25,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "212a940b65fd16476547bcded7b5c6d6232a1f9bcb288bc0f2a94e5f3187ffe9",
+    "glbHash": "d9eb185f7576a62539b5ba7b30712b775ca86acef4137b75a9f9746774a28c9f"
+  },
+  {
+    "family": "crate",
+    "id": "shallow",
+    "parameters": {
+      "width": 1.1,
+      "height": 0.5,
+      "depth": 0.75,
+      "lid": "open-top",
+      "brace": "plain",
+      "plankCourses": 4,
+      "slatGap": 0.035,
+      "frameWeight": "stout",
+      "weathering": 0.35,
+      "timberTone": 0.6
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 1.1,
+        "height": 0.5,
+        "depth": 0.75,
+        "lid": "open-top",
+        "brace": "plain",
+        "plankCourses": 4,
+        "slatGap": 0.035,
+        "frameWeight": "stout",
+        "weathering": 0.35,
+        "timberTone": 0.6
+      },
+      "applied": {
+        "width": 1.1,
+        "height": 0.5,
+        "depth": 0.75,
+        "lid": "open-top",
+        "brace": "plain",
+        "detail": "inspection",
+        "plankCourses": 4,
+        "slatGap": 0.035,
+        "frameWeight": "stout",
+        "toneVariation": 0.06,
+        "weathering": 0.35,
+        "timberTone": 0.6,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "80450d0421b0f38a49ef719730b294a7aae0e46d46c06fd4c30b6309883b02ae",
+    "glbHash": "e355f812c334f157313605d12d9ae96a1cede9e31e96f50e76bf4f14464cd8bd"
+  },
+  {
+    "family": "crate",
+    "id": "tall",
+    "parameters": {
+      "width": 0.8,
+      "height": 1.15,
+      "depth": 0.8,
+      "plankCourses": 6,
+      "slatGap": 0.024,
+      "lid": "open-top",
+      "brace": "diagonal",
+      "weathering": 0.8,
+      "timberTone": 0.35,
+      "toneVariation": 0.1
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 0.8,
+        "height": 1.15,
+        "depth": 0.8,
+        "plankCourses": 6,
+        "slatGap": 0.024,
+        "lid": "open-top",
+        "brace": "diagonal",
+        "weathering": 0.8,
+        "timberTone": 0.35,
+        "toneVariation": 0.1
+      },
+      "applied": {
+        "width": 0.8,
+        "height": 1.15,
+        "depth": 0.8,
+        "lid": "open-top",
+        "brace": "diagonal",
+        "detail": "inspection",
+        "plankCourses": 6,
+        "slatGap": 0.024,
+        "frameWeight": "stout",
+        "toneVariation": 0.1,
+        "weathering": 0.8,
+        "timberTone": 0.35,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "a781835befeba64f8efbf070dc4941c9454b2be5c47f3e41dbc159a9e1addb75",
+    "glbHash": "ba40b0fbc6f853662b37f54d6929c048d3fb1ca2955faa8a26bee095cf0c5055"
+  },
+  {
+    "family": "crate",
+    "id": "small",
+    "parameters": {
+      "width": 0.45,
+      "height": 0.35,
+      "depth": 0.4
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 0.45,
+        "height": 0.35,
+        "depth": 0.4
+      },
+      "applied": {
+        "width": 0.45,
+        "height": 0.35,
+        "depth": 0.4,
+        "lid": "open-top",
+        "brace": "plain",
+        "detail": "inspection",
+        "plankCourses": 4,
+        "slatGap": 0.035,
+        "frameWeight": "stout",
+        "toneVariation": 0.06,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "0b10875ef520d74467b7d72dfdcb72dfee136a4131c00b3aac36ff6959f6f3b1",
+    "glbHash": "f827c1699c005f633bca3076ead4a4798b44a808e48e6e8ff7ad1a55e1ef873e"
+  },
+  {
+    "family": "crate",
+    "id": "wide-flat",
+    "parameters": {
+      "width": 1.5,
+      "height": 0.35,
+      "depth": 1.2
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 1.5,
+        "height": 0.35,
+        "depth": 1.2
+      },
+      "applied": {
+        "width": 1.5,
+        "height": 0.35,
+        "depth": 1.2,
+        "lid": "open-top",
+        "brace": "plain",
+        "detail": "inspection",
+        "plankCourses": 4,
+        "slatGap": 0.035,
+        "frameWeight": "stout",
+        "toneVariation": 0.06,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "79080cffbd5f9e7f21c8889ec1aaaf022326671265d8b5256a975af08916dd79",
+    "glbHash": "eca5b6bea4231ab93329089a91c7d17ace0af4543c5dd7a136dde1b9fa2d8ed4"
+  },
+  {
+    "family": "crate",
+    "id": "tall-limit",
+    "parameters": {
+      "width": 0.75,
+      "depth": 0.75,
+      "height": 1.2
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 0.75,
+        "depth": 0.75,
+        "height": 1.2
+      },
+      "applied": {
+        "width": 0.75,
+        "height": 1.2,
+        "depth": 0.75,
+        "lid": "open-top",
+        "brace": "plain",
+        "detail": "inspection",
+        "plankCourses": 4,
+        "slatGap": 0.035,
+        "frameWeight": "stout",
+        "toneVariation": 0.06,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "af7a9a0dd9afc51d444c38bb67817da3fa1565ae445bf9c31927fd024a612163",
+    "glbHash": "6675d37477b78aaaee59d31ea9becce8af5c9be7c9e0162a081ce45612ab2970"
+  },
+  {
+    "family": "crate",
+    "id": "width-min",
+    "parameters": {
+      "width": 0.45
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 0.45
+      },
+      "applied": {
+        "width": 0.45,
+        "height": 0.7,
+        "depth": 0.7,
+        "lid": "open-top",
+        "brace": "plain",
+        "detail": "inspection",
+        "plankCourses": 4,
+        "slatGap": 0.035,
+        "frameWeight": "stout",
+        "toneVariation": 0.06,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "b9f98b32a236d98a9aa0a0af04443727b032e33a22786c05295dd6a5f776f564",
+    "glbHash": "f0a5184aa8d85525c6b19a9462775b6fffe0f27b1493fc95f67f1d926ccaacd2"
+  },
+  {
+    "family": "crate",
+    "id": "width-max",
+    "parameters": {
+      "width": 1.5
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 1.5
+      },
+      "applied": {
+        "width": 1.5,
+        "height": 0.7,
+        "depth": 0.7,
+        "lid": "open-top",
+        "brace": "plain",
+        "detail": "inspection",
+        "plankCourses": 4,
+        "slatGap": 0.035,
+        "frameWeight": "stout",
+        "toneVariation": 0.06,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "4f5916a0e1fac05440218e53c4f6ac1f1e7bfd165620309817e460e38857b97b",
+    "glbHash": "323ec57c509b6921fded24700b1c5e70938234ae3296f687f081db099d10abcd"
+  },
+  {
+    "family": "crate",
+    "id": "height-min",
+    "parameters": {
+      "height": 0.35
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 0.35
+      },
+      "applied": {
+        "width": 0.9,
+        "height": 0.35,
+        "depth": 0.7,
+        "lid": "open-top",
+        "brace": "plain",
+        "detail": "inspection",
+        "plankCourses": 4,
+        "slatGap": 0.035,
+        "frameWeight": "stout",
+        "toneVariation": 0.06,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "bdfbe4d3f56e30fefc5e681742e21e7ce2ef6485abca5bed20f79aef2c6b2ed3",
+    "glbHash": "437688f0639eb993967d303abc586f579baa8e569b4933555bb4b9150d285382"
+  },
+  {
+    "family": "crate",
+    "id": "height-max",
+    "parameters": {
+      "depth": 0.8,
+      "height": 1.2
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "depth": 0.8,
+        "height": 1.2
+      },
+      "applied": {
+        "width": 0.9,
+        "height": 1.2,
+        "depth": 0.8,
+        "lid": "open-top",
+        "brace": "plain",
+        "detail": "inspection",
+        "plankCourses": 4,
+        "slatGap": 0.035,
+        "frameWeight": "stout",
+        "toneVariation": 0.06,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "b65abee0cc4ce88ee241f088d57ffd129aa91d4165d3e4bb1dc3decc025a39d8",
+    "glbHash": "9d82bcbe37967220c701e127e9c42371141573bbbdd12113972007b6e1ef5997"
+  },
+  {
+    "family": "crate",
+    "id": "depth-min",
+    "parameters": {
+      "height": 0.6,
+      "depth": 0.4
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 0.6,
+        "depth": 0.4
+      },
+      "applied": {
+        "width": 0.9,
+        "height": 0.6,
+        "depth": 0.4,
+        "lid": "open-top",
+        "brace": "plain",
+        "detail": "inspection",
+        "plankCourses": 4,
+        "slatGap": 0.035,
+        "frameWeight": "stout",
+        "toneVariation": 0.06,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "44354b3be6f51c92d823fcda94511a31a8cff6630b2efa80b6f968a68790504b",
+    "glbHash": "8757f6963732a3e65e629b230936ad655f499e39acaf2373482e61fcd4cd835a"
+  },
+  {
+    "family": "crate",
+    "id": "depth-max",
+    "parameters": {
+      "depth": 1.2
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "crate",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "depth": 1.2
+      },
+      "applied": {
+        "width": 0.9,
+        "height": 0.7,
+        "depth": 1.2,
+        "lid": "open-top",
+        "brace": "plain",
+        "detail": "inspection",
+        "plankCourses": 4,
+        "slatGap": 0.035,
+        "frameWeight": "stout",
+        "toneVariation": 0.06,
+        "weathering": 0.3,
+        "timberTone": 0.35,
+        "colorway": "forest",
+        "color.wood": "#bd9458",
+        "color.timber": "#a57c48"
+      }
+    },
+    "measurementHash": "de2dab4c40d0367b1b4b5166e70b2fec3d5ca876bca9af0937594e32f5e5a036",
+    "glbHash": "8dbe0146404d937eebf5142650cee31360d236fa49f110bab71be8008243feef"
+  },
+  {
+    "family": "boulder",
+    "id": "default",
+    "parameters": {},
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {},
+      "applied": {
+        "width": 1.6,
+        "height": 0.95,
+        "depth": 1.2,
+        "lean": 0.08,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.7,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0.12,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "c76b3592dd6ae90ddf28931b3cfad9e710cfed1d3f439ac4f463bf38a979450c",
+    "glbHash": "89c16aedb7123b134d25ef744bb4bb7e81d0d6f3cfdba2ff7a15f96f45ad4b3d"
+  },
+  {
+    "family": "boulder",
+    "id": "field",
+    "parameters": {
+      "form": "field",
+      "facetGrade": 0,
+      "burialDepth": 0.25,
+      "mossCoverage": 0.75,
+      "angularity": 0.45
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "form": "field",
+        "facetGrade": 0,
+        "burialDepth": 0.25,
+        "mossCoverage": 0.75,
+        "angularity": 0.45
+      },
+      "applied": {
+        "width": 1.6,
+        "height": 0.95,
+        "depth": 1.2,
+        "lean": 0.08,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.45,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.75,
+        "facetGrade": 0,
+        "burialDepth": 0.25,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "d4969b39b64e03acd74def836489a85153167cba3bf5c15189570b1230b26839",
+    "glbHash": "c3403742751362604d128a89beda8534be34ef1c2ed5e96227b29da67ccb812d"
+  },
+  {
+    "family": "boulder",
+    "id": "slab",
+    "parameters": {
+      "width": 2.6,
+      "height": 0.65,
+      "depth": 1.8,
+      "form": "slab",
+      "angularity": 0.6,
+      "crest": -0.24,
+      "shoulderHeight": 0.48,
+      "moss": "top",
+      "mossCoverage": 0.75,
+      "burialDepth": 0.08
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 2.6,
+        "height": 0.65,
+        "depth": 1.8,
+        "form": "slab",
+        "angularity": 0.6,
+        "crest": -0.24,
+        "shoulderHeight": 0.48,
+        "moss": "top",
+        "mossCoverage": 0.75,
+        "burialDepth": 0.08
+      },
+      "applied": {
+        "width": 2.6,
+        "height": 0.65,
+        "depth": 1.8,
+        "lean": 0.08,
+        "form": "slab",
+        "seed": 17,
+        "angularity": 0.6,
+        "crest": -0.24,
+        "shoulderHeight": 0.48,
+        "moss": "top",
+        "mossCoverage": 0.75,
+        "facetGrade": 1,
+        "burialDepth": 0.08,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "0847475bf047da399516c557d08ec4d58c186c6c34da52105d65e7cc7914d2ea",
+    "glbHash": "41b993f34180232319e00e281c6955bfec752d515c47f4215bfa3e5868e63933"
+  },
+  {
+    "family": "boulder",
+    "id": "standing",
+    "parameters": {
+      "width": 1.4,
+      "height": 1.7,
+      "depth": 1.4,
+      "form": "standing",
+      "angularity": 0.95,
+      "crest": 0.16,
+      "shoulderHeight": 0.77,
+      "lean": 0.16,
+      "moss": "none",
+      "burialDepth": 0
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 1.4,
+        "height": 1.7,
+        "depth": 1.4,
+        "form": "standing",
+        "angularity": 0.95,
+        "crest": 0.16,
+        "shoulderHeight": 0.77,
+        "lean": 0.16,
+        "moss": "none",
+        "burialDepth": 0
+      },
+      "applied": {
+        "width": 1.4,
+        "height": 1.7,
+        "depth": 1.4,
+        "lean": 0.16,
+        "form": "standing",
+        "seed": 17,
+        "angularity": 0.95,
+        "crest": 0.16,
+        "shoulderHeight": 0.77,
+        "moss": "none",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "504bf6f33c1c44efb9890dcb51049623d8444bd9e197e8acf7e015aad5c48805",
+    "glbHash": "338db32de58cc40d229744a945145f8a21e2dd4000cf11fb349d94791b4cc7ef"
+  },
+  {
+    "family": "boulder",
+    "id": "small-flat",
+    "parameters": {
+      "width": 0.6,
+      "depth": 0.5,
+      "height": 0.35,
+      "lean": -0.18
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 0.6,
+        "depth": 0.5,
+        "height": 0.35,
+        "lean": -0.18
+      },
+      "applied": {
+        "width": 0.6,
+        "height": 0.35,
+        "depth": 0.5,
+        "lean": -0.18,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.7,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0.12,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "c82871e421c83780523f54dc6d82201bf3be0b77314bc5df916bdf684d662b9d",
+    "glbHash": "e901f4c51bd9b8067710f377ff832ace8df9710628eed7786bd3cb7aab0ca3c9"
+  },
+  {
+    "family": "boulder",
+    "id": "broad-flat",
+    "parameters": {
+      "width": 2.8,
+      "depth": 2.4,
+      "height": 0.35,
+      "lean": 0.18
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 2.8,
+        "depth": 2.4,
+        "height": 0.35,
+        "lean": 0.18
+      },
+      "applied": {
+        "width": 2.8,
+        "height": 0.35,
+        "depth": 2.4,
+        "lean": 0.18,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.7,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0.12,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "97f501b30d5c36c5d70134a6ece4f54800433fa3115e4bb7d719df59785914e1",
+    "glbHash": "977f7d5ffde82dd7e1152c1603c118227b90ab18cf31f11d1b6d53a31fd5ef93"
+  },
+  {
+    "family": "boulder",
+    "id": "tall-limit",
+    "parameters": {
+      "width": 1.4,
+      "depth": 1.4,
+      "height": 1.8,
+      "lean": -0.18
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 1.4,
+        "depth": 1.4,
+        "height": 1.8,
+        "lean": -0.18
+      },
+      "applied": {
+        "width": 1.4,
+        "height": 1.8,
+        "depth": 1.4,
+        "lean": -0.18,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.7,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0.12,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "66d9d78b0af24c4db17d29ebd972353bc973838407e3eacad3c5a1583f1242ef",
+    "glbHash": "f4724f637f983248f6a1c29463490cdd15d8e80e0bdce34a2dd8bd4e18fbe46b"
+  },
+  {
+    "family": "boulder",
+    "id": "width-min",
+    "parameters": {
+      "height": 0.7,
+      "width": 0.6
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 0.7,
+        "width": 0.6
+      },
+      "applied": {
+        "width": 0.6,
+        "height": 0.7,
+        "depth": 1.2,
+        "lean": 0.08,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.7,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0.12,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "4fa67f3a0de0a2aecb311c6148787a575c70956b5ddc2137652373ff7c24dc3d",
+    "glbHash": "e6fbfe2b91155deb56466c21c57ebd71ce7e1021ff6533f3c93398f5957c4ed5"
+  },
+  {
+    "family": "boulder",
+    "id": "width-max",
+    "parameters": {
+      "width": 2.8
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "width": 2.8
+      },
+      "applied": {
+        "width": 2.8,
+        "height": 0.95,
+        "depth": 1.2,
+        "lean": 0.08,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.7,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0.12,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "cf9a2a18fb05d01a339aaf57d25226b27f6a7f555899c82ed6a4f46db8827277",
+    "glbHash": "b637f1080ac5a99f53e5c78f5b2ae0faeaad48144cd4a1911808c696880a3922"
+  },
+  {
+    "family": "boulder",
+    "id": "height-min",
+    "parameters": {
+      "height": 0.35
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 0.35
+      },
+      "applied": {
+        "width": 1.6,
+        "height": 0.35,
+        "depth": 1.2,
+        "lean": 0.08,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.7,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0.12,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "994d31c953d5a5d97bb063ace8b70ed647d3a49350e08ad30f588020d2abdd3e",
+    "glbHash": "c99e952fb27aa23fca04805a3d2cf643dff57aa0d2a131e324f2df0faf853d30"
+  },
+  {
+    "family": "boulder",
+    "id": "height-max",
+    "parameters": {
+      "depth": 1.5,
+      "height": 1.8
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "depth": 1.5,
+        "height": 1.8
+      },
+      "applied": {
+        "width": 1.6,
+        "height": 1.8,
+        "depth": 1.5,
+        "lean": 0.08,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.7,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0.12,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "cef6bffe8972f4e5f0ca6494c2b828211cc164b49065f1e9432f2a8505689642",
+    "glbHash": "f24145ee3b0333ef137485ea08b5c2a580806c3f49e344714ea9cbe48a3cc01b"
+  },
+  {
+    "family": "boulder",
+    "id": "depth-min",
+    "parameters": {
+      "height": 0.6,
+      "depth": 0.5
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "height": 0.6,
+        "depth": 0.5
+      },
+      "applied": {
+        "width": 1.6,
+        "height": 0.6,
+        "depth": 0.5,
+        "lean": 0.08,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.7,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0.12,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "c70833033a67ce5b545d7fbdfb4d4abad6db445cfd1c6edd56a24869cd84e163",
+    "glbHash": "031f1a31b52e4212cb375e3277ab1288a2ecf389db56e248c2e2f79a3feb904d"
+  },
+  {
+    "family": "boulder",
+    "id": "depth-max",
+    "parameters": {
+      "depth": 2.4
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "depth": 2.4
+      },
+      "applied": {
+        "width": 1.6,
+        "height": 0.95,
+        "depth": 2.4,
+        "lean": 0.08,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.7,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0.12,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "5209cae6ef8c940e7f36d5bb7185d043607d2ba0be57a130da9a415aabf0294d",
+    "glbHash": "c09a00c3280d3bfa7e49930cea2c59d002853c166a701b8bac2feaaa4672a236"
+  },
+  {
+    "family": "boulder",
+    "id": "lean-min",
+    "parameters": {
+      "lean": -0.18
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "lean": -0.18
+      },
+      "applied": {
+        "width": 1.6,
+        "height": 0.95,
+        "depth": 1.2,
+        "lean": -0.18,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.7,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0.12,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "4ff80697d36a76b91de6e9ef51167cab1ce95854abaef3d9150c6774ec7c9894",
+    "glbHash": "4658876a8ddf68bef86d75a8c44328e7bbb8ed1b37d1081dfdb11690a9e6c970"
+  },
+  {
+    "family": "boulder",
+    "id": "lean-max",
+    "parameters": {
+      "lean": 0.18
+    },
+    "config": {
+      "formatVersion": 1,
+      "family": "boulder",
+      "familyVersion": "0.5.0",
+      "requested": {
+        "lean": 0.18
+      },
+      "applied": {
+        "width": 1.6,
+        "height": 0.95,
+        "depth": 1.2,
+        "lean": 0.18,
+        "form": "field",
+        "seed": 17,
+        "angularity": 0.7,
+        "crest": -0.12,
+        "shoulderHeight": 0.66,
+        "moss": "top",
+        "mossCoverage": 0.48,
+        "facetGrade": 1,
+        "burialDepth": 0.12,
+        "colorway": "forest",
+        "color.stone": "#7d8279",
+        "color.moss": "#66724b"
+      }
+    },
+    "measurementHash": "9fbf435b94663108eb14dabfbae2ac701259f4e9da92e44810f83c7272962176",
+    "glbHash": "528aa7fc38d7c02ab2af8122b9b9aa4bb683bdd35e259feb6f834ca97f5e94b6"
+  }
+]
