@@ -1,3 +1,4 @@
+import { forgeRecipes } from '../src/recipes/forge.ts';
 import {buildPriorAsset,loadPriorDesign} from './historical-public.ts';
 import { exportLegacyPayload,baselineBuilds,compareBaselineBuild } from './semantic-legacy-payload.ts';
 import '../scripts/node-platform.ts';
@@ -12,6 +13,9 @@ import { measurements } from '../src/catalog/measure.ts';
 import { geometrySnapshot, inspectGeometry } from '../src/lantern/inspect.ts';
 import { recipe } from '../src/recipes/index.ts';
 import { sha256 } from '../scripts/provenance.ts';
+// Forge families (src/recipes/forge.ts) are new, unpublished additions with no prior baseline.
+// Forge families come from the registry list so each new forge family does not need three test edits.
+const forgeIds=forgeRecipes.map(r=>r.descriptor.id);
 
 const promoted = ['planter','treasure-chest','wheelbarrow','stone-well','conifer'];
 const original = ['work-lantern','cottage','tree','fence','crate','boulder','bench'];
@@ -25,7 +29,7 @@ function partBounds(b: ReturnType<typeof buildAsset>, name: string) {
 
 test('catalog retains twelve construction families and adds the two reviewed rigs',()=>{
   assert.equal(original.length+promoted.length,12);
-  assert.deepEqual(catalog.map(d=>d.id).sort(),[...original,...promoted,'stylized-humanoid','stylized-fox'].sort());
+  assert.deepEqual(catalog.map(d=>d.id).sort(),[...original,...promoted,'stylized-humanoid','stylized-fox','rigged-rabbit',...forgeIds].sort());
   for (const id of promoted) {
     const r = recipe(id), d = r.descriptor;
     assert.ok(d.presets.length>=3,id);

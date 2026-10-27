@@ -53,5 +53,7 @@ export async function contribute(context:Context){
    }
   }catch(error){if(active)list.replaceChildren(status(uploadError(error)));}
  }
- await refresh();return root;
+ await refresh();
+ root.append(await (await import('./my-uploads.ts')).myUploads(context));
+ return root;
 }

@@ -1,0 +1,366 @@
+{
+"encoding": "base64-utf8",
+"note": "Encoded only so slurs do not show up in diffs and search results. This is not a secret; anyone can decode it. Extend by adding entries.",
+"version": "wordlist-v1",
+"terms": [
+{
+"t": "bmlnZ2Vy",
+"category": "slur_text",
+"severity": "severe",
+"mode": "substring"
+},
+{
+"t": "bmlnZ2E=",
+"category": "slur_text",
+"severity": "severe",
+"mode": "substring"
+},
+{
+"t": "ZmFnZ290",
+"category": "slur_text",
+"severity": "severe",
+"mode": "substring"
+},
+{
+"t": "a2lrZQ==",
+"category": "slur_text",
+"severity": "severe",
+"mode": "token"
+},
+{
+"t": "Y2hpbms=",
+"category": "slur_text",
+"severity": "severe",
+"mode": "token"
+},
+{
+"t": "c3BpYw==",
+"category": "slur_text",
+"severity": "severe",
+"mode": "token"
+},
+{
+"t": "d2V0YmFjaw==",
+"category": "slur_text",
+"severity": "severe",
+"mode": "substring"
+},
+{
+"t": "dHJhbm55",
+"category": "slur_text",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "cmV0YXJk",
+"category": "slur_text",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "Y3VudA==",
+"category": "slur_text",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "aGVpbGhpdGxlcg==",
+"category": "hate_symbol",
+"severity": "severe",
+"mode": "phrase"
+},
+{
+"t": "c2llZ2hlaWw=",
+"category": "hate_symbol",
+"severity": "severe",
+"mode": "phrase"
+},
+{
+"t": "aGl0bGVy",
+"category": "hate_symbol",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "bmF6aQ==",
+"category": "hate_symbol",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "c3dhc3Rpa2E=",
+"category": "hate_symbol",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "aGFrZW5rcmV1eg==",
+"category": "hate_symbol",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "d2hpdGVwb3dlcg==",
+"category": "hate_symbol",
+"severity": "context",
+"mode": "phrase"
+},
+{
+"t": "a2tr",
+"category": "hate_symbol",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "Z2FzY2hhbWJlcg==",
+"category": "hate_symbol",
+"severity": "context",
+"mode": "phrase"
+},
+{
+"t": "Y2hpbGRwb3Ju",
+"category": "sexual",
+"severity": "severe",
+"mode": "phrase"
+},
+{
+"t": "bG9saWNvbg==",
+"category": "sexual",
+"severity": "severe",
+"mode": "substring"
+},
+{
+"t": "c2hvdGFjb24=",
+"category": "sexual",
+"severity": "severe",
+"mode": "substring"
+},
+{
+"t": "bG9saQ==",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "c2hvdGE=",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "cGVkbw==",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "cG9ybg==",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "aGVudGFp",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "cGVuaXM=",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "dmFnaW5h",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "ZGlsZG8=",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "bnVkZQ==",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "bmFrZWQ=",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "Y29jaw==",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "ZGljaw==",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "cHVzc3k=",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "Ym9vYnM=",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "dGl0cw==",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "Y3Vt",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "c2V4",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "cmFwZQ==",
+"category": "sexual",
+"severity": "context",
+"mode": "token"
+},
+{
+"t": "ZnVjaw==",
+"category": "slur_text",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "44OB44Oz44Kz",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "44OB44Oz44Od",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "44Oe44Oz44Kz",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "44K744OD44Kv44K5",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "44Oa44OL44K5",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "44Kq44OD44OR44Kk",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "44Od44Or44OO",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "5by35aem",
+"category": "sexual",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "5YWQ56ul44Od44Or44OO",
+"category": "sexual",
+"severity": "severe",
+"mode": "phrase"
+},
+{
+"t": "44Ot44Oq44Kz44Oz",
+"category": "sexual",
+"severity": "severe",
+"mode": "substring"
+},
+{
+"t": "44K344On44K/44Kz44Oz",
+"category": "sexual",
+"severity": "severe",
+"mode": "substring"
+},
+{
+"t": "44OP44Kk44Or44OS44OI44Op44O8",
+"category": "hate_symbol",
+"severity": "severe",
+"mode": "phrase"
+},
+{
+"t": "44OS44OI44Op44O8",
+"category": "hate_symbol",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "44OK44OB44K5",
+"category": "hate_symbol",
+"severity": "context",
+"mode": "substring"
+},
+{
+"t": "44OP44O844Kx44Oz44Kv44Ot44Kk44OE",
+"category": "hate_symbol",
+"severity": "context",
+"mode": "substring"
+}
+],
+"allow": [
+"c25pZ2dlcg==",
+"c25pZ2dlcnM=",
+"c25pZ2dlcmVk",
+"c25pZ2dlcmluZw==",
+"c2N1bnRob3JwZQ==",
+"dGhlcmFwaXN0",
+"Y29ja3BpdA==",
+"Y29ja3RhaWw=",
+"Y29ja2VyZWw=",
+"cGVhY29jaw==",
+"aGFuY29jaw==",
+"c3BpY2U=",
+"c3BpY3k=",
+"ZGlja2Vucw==",
+"Y3VtdWx1cw==",
+"Y3VjdW1iZXI=",
+"c3Vzc2V4",
+"ZXNzZXg=",
+"bWlkZGxlc2V4",
+"cHVzc3l3aWxsb3c=",
+"dGl0c21vdXNl"
+]
+}

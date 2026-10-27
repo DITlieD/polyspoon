@@ -43,3 +43,5 @@ server/test-evidence/
 hosted/verification/
 seeds/out/
 seeds/contact-sheet.png
+/forge-out/
+/forge-review/

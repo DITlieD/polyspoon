@@ -61,7 +61,7 @@ export async function model(context:Context,id:string){
  if(files.length)body.append(downloads);
  if(!files.length)body.append(el('p','muted','This published model has no downloadable artifacts listed.'));
  root.append(el('div','split published-model',preview,body));root.append(modelReport(context,id));
- const details=el('details','',el('summary','','Saved design details'),el('pre','file-list',JSON.stringify(data.design,null,2)));root.append(details);
+ const details=el('details','panel design-details',el('summary','','Saved design details'),el('pre','file-list',JSON.stringify(data.design,null,2)));root.append(details);
  const image=data.artifacts.find(file=>file.path===data.delivery?.preview);
  if(image){
   try{const bytes=await checkedBytes(context,id,image),img=el('img');img.alt=data.title+' published preview';img.src=context.resources.create(new Blob([Uint8Array.from(bytes)],{type:/\.jpe?g$/i.test(image.path)?'image/jpeg':/\.webp$/i.test(image.path)?'image/webp':'image/png'}));preview.replaceChildren(img);}

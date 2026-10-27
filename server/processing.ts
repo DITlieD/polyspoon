@@ -10,6 +10,7 @@ import {readVerifiedArtifact} from './verification.ts';
 import type {VerifiedArtifact} from './verification.ts';
 import {byteResponse} from './delivery.ts';
 import {processorActiveSql,processingInputSql} from './processing-proof.ts';
+import {safetyRoutes} from './safety-intake.ts';
 import {profileSchema,requiredArtifacts,validateProcessingResult,semanticProcessingFailure} from './processing-result.ts';
 
 type Processor={id:string;owner_id:string;secret_hash:string;profiles:string};
@@ -23,6 +24,7 @@ async function envelope(env:Env,a:Attempt){const v=await version(env,a.version_i
 export async function processingRoutes(request:Request,env:Env,path:string,objects:()=>PrivateObjects):Promise<Response|null>{
  const file=/^\/api\/versions\/([a-f0-9]{64})\/files$/.exec(path),route=path.startsWith('/api/processor/');if(!route&&!(file&&request.headers.get('authorization')?.startsWith('Bearer pc_')))return null;
  const p=await authenticate(request,env);
+ const safety=await safetyRoutes(request,env,p,path,objects);if(safety)return safety;
  if(path==='/api/processor/claims'&&request.method==='POST'){
   const input=await body(request,['profile','idempotencyKey']);if(input.profile!=='package-replay-v1'||!nonempty(input.idempotencyKey,160)||!JSON.parse(p.profiles).includes(input.profile))throw new HttpError(400,'invalid_processor_claim');
   const now=Date.now();await env.DB.batch([env.DB.prepare("UPDATE processing_attempt SET result='{}',result_hash='expired' WHERE result IS NULL AND lease_expires_at<=?").bind(now),env.DB.prepare("UPDATE processing_job SET status=CASE WHEN attempts>=3 THEN 'exhausted' ELSE 'pending' END WHERE status='running' AND current_attempt IN(SELECT id FROM processing_attempt WHERE result_hash='expired')"),env.DB.prepare("UPDATE asset_version SET state='submitted' WHERE state='processing' AND id IN(SELECT version_id FROM processing_job WHERE status IN ('pending','exhausted'))")]);

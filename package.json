@@ -30,10 +30,13 @@
   },
   "devDependencies": {
     "@modelcontextprotocol/client": "2.3.0",
+    "@tensorflow/tfjs": "^4.22.0",
+    "@tensorflow/tfjs-backend-wasm": "^4.22.0",
     "@types/node": "26.6.4",
     "@types/three": "0.186.0",
     "esbuild": "0.28.2",
     "gltf-validator": "2.0.0-dev.3.10",
+    "nsfwjs": "^4.4.0",
     "playwright-core": "1.63.0",
     "tsx": "4.23.15",
     "typescript": "7.0.2",

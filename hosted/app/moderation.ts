@@ -9,7 +9,7 @@ export async function reviewQueue(context:Context){
  const root=el('section','review-queue',heading('Review original work.','Review the exact submission and evidence. Votes and contributor-supplied reports do not grant approval.')),list=el('div','list');root.append(list);
  if(context.member.capabilities.some(c=>c==='publisher'||c==='admin'))root.append(revocationForm(context));
  const data=await context.api.json<{versions:Version[]}>('/api/review-queue');
- if(!data.versions.length){list.append(empty('Nothing is waiting for your review.','Submissions appear here when their state and your current capabilities allow action.'));return root;}
+ if(!data.versions.length){list.append(empty('Nothing is waiting for your review.','New submissions show up here once their automated checks finish.'));return root;}
  for(const version of data.versions){
   const row=el('article','panel',el('div','row',el('h2','',version.title),el('span','pill',humanState(version.state))),el('p','muted','Submitted '+when(version.created_at))),feedback=status(),details=el('details','',el('summary','','Inspect submission details')),content=el('div');details.append(content);
   details.addEventListener('toggle',()=>{if(details.open&&!content.childNodes.length){content.append(status('Loading exact submission…'));void context.api.json<Record<string,unknown>>('/api/versions/'+version.id).then(value=>content.replaceChildren(el('pre','file-list',JSON.stringify(value,null,2)))).catch(error=>content.replaceChildren(status(explain(error))));}});
@@ -39,7 +39,7 @@ function revocationForm(context:Context){
 }
 interface MemberRow {id:string;status:string;email:string;displayName:string;verified:boolean;capabilities:string[]}
 export async function administration(context:Context){
- const root=el('section','',heading('Member administration','Capabilities and account restrictions are checked by the server on every protected request.')),form=el('form','search'),query=input('q','search',false),search=el('button','button-secondary','Find members'),results=el('div','list');search.type='submit';query.placeholder='Search by name or email';query.maxLength=100;query.setAttribute('aria-label','Search members');form.append(query,search);root.append(form,results,revocationForm(context),await addressBlocks(context));
+ const root=el('section','',heading('Member administration','Grant roles and manage restrictions. Changes take effect on the member’s next request.')),form=el('form','search'),query=input('q','search',false),search=el('button','button-secondary','Find members'),results=el('div','list');search.type='submit';query.placeholder='Search by name or email';query.maxLength=100;query.setAttribute('aria-label','Search members');form.append(query,search);root.append(form,results,revocationForm(context),await addressBlocks(context));
  async function refresh(){
   results.replaceChildren(status('Loading members…'));
   try{const data=await context.api.json<{members:MemberRow[]}>('/api/admin/members?q='+encodeURIComponent(query.value));results.replaceChildren();if(!data.members.length)results.append(empty('No matching members.','Try a different name or email.'));

@@ -20,7 +20,9 @@ test('indexed release guide bytes survive repository guide drift and fresh-outpu
   assert.deepEqual(filesForProceduralRelease('new-recipe','1.0.0',changed,releases),changed);
   for(const name of ['asset.mjs','asset.d.mts','metadata.json','LICENSE','NOTICE','THIRD-PARTY.txt','example.html'])assert.throws(()=>filesForProceduralRelease(release.entry.id,release.entry.version,{...changed,[name]:changed[name]+'\n'},releases),/recipe version change/);
   const output=await workspace('fresh-output-'),index=await buildProceduralModules(output,{retainPublished:true});
-  assert.equal(index.packages.length,releases.length);
+  // Newly added, never-published recipes (e.g. the forge families) add packages; every published release must still be present.
+  const published=new Set(releases.map(r=>r.entry.id+'@'+r.entry.version));
+  assert.equal(index.packages.filter((p:{id:string;version:string})=>published.has(p.id+'@'+p.version)).length,releases.length);
   for(const item of releases)for(const [name,text] of Object.entries(item.files))assert.equal(await readFile(join(output,item.entry.id,item.entry.version,name),'utf8'),text);
   assert.deepEqual(await buildProceduralModules(output,{retainPublished:true}),index);
   await writeFile(join(evidence,'fresh-output.json'),JSON.stringify({output,packages:index.packages.length,indexSha256:sha256(await readFile(join(output,'index.json'))),exactPublishedFiles:true,idempotent:true},null,2)+'\n');

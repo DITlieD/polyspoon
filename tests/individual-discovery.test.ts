@@ -2,12 +2,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { catalog, buildAsset, disposeAsset } from '../src/catalog/index.ts';
 import { recipe } from '../src/recipes/index.ts';
-import { createDiscoveryModel, filterModels, readDiscoveryState, discoverySearch, modelStyle } from '../src/site/discovery.ts';
+import { createDiscoveryModel, filterModels, readDiscoveryState, discoverySearch, modelStyle, styleLabels } from '../src/site/discovery.ts';
 
 const models=catalog.map(d=>{const b=buildAsset(d.id);try{return createDiscoveryModel(d,recipe(d.id).presentation.category,b.semantics,1);}finally{disposeAsset(b);}});
 test('discovery keeps one classified record per registered model and derives rigid-pose capability',()=>{
  assert.equal(models.length,catalog.length);assert.equal(new Set(models.map(m=>m.id)).size,catalog.length);
- assert.ok(models.every(m=>m.style==='faceted-low-poly'));
+ assert.ok(models.every(m=>m.style!=='unclassified'&&Object.hasOwn(styleLabels,m.style)));
+ assert.equal(modelStyle('scifi-cargo'),'clean-hard-surface');
  assert.equal(modelStyle('future-unreviewed-recipe'),'unclassified');assert.equal(modelStyle('constructor'),'unclassified');
  for(const m of models){const b=buildAsset(m.id);try{assert.equal(m.poseable,b.semantics.joints.length>0);}finally{disposeAsset(b);}}
 });

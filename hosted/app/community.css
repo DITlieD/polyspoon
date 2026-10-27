@@ -32,3 +32,7 @@
 .collection-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}.collection-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:16px;display:grid;gap:6px}.collection-card h2{margin:0;font-size:18px}
 .curator-tools{display:grid;gap:10px;max-width:640px}.curator-tools textarea{width:100%;font:inherit;padding:10px;border:1px solid var(--line);border-radius:10px}
 .add-to-collection{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px;flex-basis:100%}.add-to-collection .status{flex-basis:100%;margin:0}
+
+.stat{align-content:start}.stat span{line-height:1.35}
+.avatar-edit-row{justify-content:flex-start;align-items:center;gap:16px;flex-wrap:nowrap}.avatar-edit-row p{margin:0}
+.design-details{margin-top:16px}.design-details pre{max-height:420px;overflow:auto}

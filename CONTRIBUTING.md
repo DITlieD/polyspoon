@@ -1,17 +1,35 @@
 # Contributing to Polyspoon
 
-A human points their own agent at the software and requests an asset. For private/local creation, the agent owns creation, validation, visual review, repair and delivery. Human testers, outside-human approval counts and human aesthetic approval are not prerequisites.
+There are two ways to make a model, with different rules.
 
-For a public contribution, start with a preset for an existing reviewed generator. Prepare parameter JSON, its exact recipe version, original provenance, intended license, neutral previews, and a short statement of what changed. Follow [contribution review](docs/contributing/review.md). The local toolkit prepares review evidence. The separate authenticated hosted service implements submission and review routes; production deployment remains separate.
+**Local creation.** Point your coding agent at this checkout and ask for an asset. The agent builds, validates, reviews renders, repairs and delivers it. Nobody else has to approve it.
 
-Executable submissions require separate maintainer code review before execution. Local authoring still requires source/dependency review and appropriate execution isolation; it does not require outside-human aesthetic approval. Read the [authoring guide](docs/authoring/guide.md), use the [coding-agent brief](docs/authoring/coding-agent.md), and follow the original [bench example](examples/recipes/bench/index.ts). Any coding assistant or ordinary editor works; no provider account or API key is required by the toolkit.
+**Public contribution.** Anything published to the hosted catalog needs independent human review by someone other than the author, every time. Start from a preset of an existing reviewed recipe where you can. Submit the parameter JSON, its exact recipe version, provenance, intended license, neutral previews and a short note on what changed. Follow [contribution review](docs/contributing/review.md). Votes, points and levels never stand in for review.
 
-From a clean checkout of this project directory, install the pinned toolchain with npm ci --ignore-scripts --no-audit --no-fund. Use Node.js 22.22.1. Run npm run typecheck and the checks listed in docs/release.md. Run npm run validate -- --family bench --out evidence/bench for generator coverage. Build the local studio with node_modules/.bin/vite build using existing immutable downloads. Do not treat a passing typecheck as visual approval.
+New recipes are executable code, so they also need maintainer code review before they run on the service. Locally, review sources and dependencies yourself and run untrusted code in isolation. Read the [authoring guide](docs/authoring/guide.md), give your agent the [coding-agent brief](docs/authoring/coding-agent.md), and use the [bench example](examples/recipes/bench/index.ts) as a model. Any coding assistant or plain editor works; the toolkit needs no provider account or API key.
 
-Generator source packages are built with npm run recipe:package --. Choose the family/version path from public/recipe-packages/index.json, then inspect it with npm run recipe:check -- public/recipe-packages/FAMILY-VERSION-source.2.zip, substituting that actual path. Recipe version and delivery revision are separate. New packages use manifest/index format 2 and delivery revision 2; old format 1 archives remain immutable and readable. Read the [source package contract](docs/authoring/source-package-contract.md) before running external code.
+## Checks
 
-Declare the exact source revision, recipe version, presets and parameter cases tested and visually reviewed. Quality claims cover only those versions/cases, not arbitrary slider combinations. Current collection status is maintainer-curated alpha. Record actual technical and visual findings and unresolved blockers; never fabricate reviews or imply unperformed human approval. Publication requires separately trusted application-held records and independent authorized review; an author cannot self-review for publication. A qualified independent reviewer can cover multiple categories. Local creation has no mandated reviewer or model count. Local records alone do not establish authorization in the separate authenticated hosted service. Maintainer code review remains required for executable submissions.
+Use Node.js 22.22.1 from a clean checkout of this directory:
 
-See [license scope](docs/licensing.md) before contributing. Do not submit material you cannot license, private credentials, research screenshots, Unity templates or third-party assets without the required permission and notices. A contribution does not authorize blanket relicensing of third-party work.
+```sh
+npm ci --ignore-scripts --no-audit --no-fund
+npm run typecheck
+npm test
+npm run validate -- --family bench --out evidence/bench
+node_modules/.bin/vite build
+```
 
-Local creation does not depend on external-pilot participation. Local authoring is supported. Hosted submission processing is implemented separately from the local toolkit. Production hosting is not supplied by the local build command.
+Also run the checks in [docs/release.md](docs/release.md). A passing typecheck is not visual approval.
+
+## Source packages
+
+Build them with `npm run recipe:package --`. Find the family and version path in `public/recipe-packages/index.json`, then inspect it with `npm run recipe:check -- public/recipe-packages/FAMILY-VERSION-source.2.zip`. Recipe version and delivery revision are separate numbers. New packages use manifest format 2 and delivery revision 2; format 1 archives stay immutable. Read the [source package contract](docs/authoring/source-package-contract.md) before running code from a package.
+
+## Honest claims
+
+State the source revision, recipe version, presets and parameter cases you tested and reviewed. Quality claims cover only those cases, not every slider combination. Record real technical and visual findings and open problems. Never fabricate a review or imply a human approval that didn't happen.
+
+## Licensing
+
+Read [license scope](docs/licensing.md) first. Don't submit material you can't license, credentials, research screenshots, Unity templates or third-party assets without permission and notices. Contributing doesn't relicense third-party work.

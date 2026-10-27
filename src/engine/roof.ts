@@ -21,12 +21,13 @@ export function shapedRoofCourse(inner:number,outer:number,z0:number,z1:number,s
  for(let i=0;i<footprint.length;i++){const j=(i+1)%footprint.length;tri(top[i]!,top[j]!,bottom[j]!);tri(top[i]!,bottom[j]!,bottom[i]!);}
  const g=new BufferGeometry();g.setAttribute('position',new Float32BufferAttribute(positions,3));g.computeVertexNormals();return g;
 }
-export function angularThatchBand(inner:number,outer:number,z0:number,z1:number,side:number,height:(x:number,z:number)=>number,thickness:number,course:number,backing?:(x:number,z:number)=>number){
+/** swell: phase of the outer-edge thickness swell, which follows world z so overlapping neighbours share it (defaults to course). */
+export function angularThatchBand(inner:number,outer:number,z0:number,z1:number,side:number,height:(x:number,z:number)=>number,thickness:number,course:number,backing?:(x:number,z:number)=>number,swell?:number){
  const count=8,top:number[][]=[],bottom:number[][]=[],positions:number[]=[];
  for(let j=0;j<=count;j++){
   const z=z0+(z1-z0)*j/count,rag=.045*Math.sin(j*2.1+course*1.7)+.025*Math.cos(j*3.4-course);
   const x=side*(outer+rag),ix=side*(inner+(inner>0?.045*Math.sin(j*2.1+(course-1)*1.7)+.025*Math.cos(j*3.4-(course-1)):0));
-  top.push([ix,height(ix,z)+thickness*.76,z],[x,height(x,z)+thickness*(.88+.09*Math.sin(j*1.9+course)),z]);
+  top.push([ix,height(ix,z)+thickness*.76,z],[x,height(x,z)+thickness*(.88+.09*(swell===undefined?Math.sin(j*1.9+course):Math.sin(z*6+swell))),z]);
   bottom.push([ix,backing?backing(ix,z):height(ix,z)-thickness*.15,z],[x,backing?backing(x,z):height(x,z)-thickness*.15,z]);
  }
  const tri=(a:number[],b:number[],c:number[])=>{if(side>0)positions.push(...a,...b,...c);else positions.push(...a,...c,...b);};

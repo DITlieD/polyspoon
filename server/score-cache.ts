@@ -42,6 +42,7 @@ export async function cachedScores(env:Env,creators:string[]){
 /** Same ordering, filtering and rounding as reputation.leaderboard(). */
 export async function cachedLeaderboard(env:Env,period:Period,category:string|null,limit=50){
  await fresh(env);const rows=(await env.DB.prepare('SELECT * FROM creator_score').all<Row>()).results;
- return rows.map(r=>{const key=period==='week'?'week':period==='month'?'month':'all';let points:number;if(category){const b=(JSON.parse(r.buckets) as Record<string,Bucket>)[category];points=b?b[key]:0;}else points=key==='week'?r.raw_week:key==='month'?r.raw_month:r.raw_all;return {creator:r.creator_id,points:round(points),level:levelFor(r.all_time),hasEvents:category?!!(JSON.parse(r.buckets) as Record<string,Bucket>)[category]:true};})
+ const key=period==='week'?'week':period==='month'?'month':'all';
+ return rows.map(r=>{const bucket=category?(JSON.parse(r.buckets) as Record<string,Bucket>)[category]:undefined;const points=category?(bucket?.[key]??0):key==='week'?r.raw_week:key==='month'?r.raw_month:r.raw_all;return {creator:r.creator_id,points:round(points),level:levelFor(r.all_time),hasEvents:category?!!bucket:true};})
   .filter(row=>row.hasEvents&&row.points>0).sort((a,b)=>b.points-a.points||a.creator.localeCompare(b.creator)).slice(0,limit).map(({hasEvents,...row},index)=>({rank:index+1,...row}));
 }

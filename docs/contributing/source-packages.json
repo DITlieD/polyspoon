@@ -128,6 +128,237 @@
       "softwareLicense": "Apache-2.0",
       "contentLicense": "CC0-1.0",
       "contentDesignation": "Original supplied default and curated preset parameter content for stylized-fox; external material and private edits excluded."
+    },
+    "barrel": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for barrel; external material and private edits excluded."
+    },
+    "signpost": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for signpost; external material and private edits excluded."
+    },
+    "lamp-post": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for lamp-post; external material and private edits excluded."
+    },
+    "mushroom-cluster": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for mushroom-cluster; external material and private edits excluded."
+    },
+    "rock-cluster": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for rock-cluster; external material and private edits excluded."
+    },
+    "smithy-anvil": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for smithy-anvil; external material and private edits excluded."
+    },
+    "bookcase": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for bookcase; external material and private edits excluded."
+    },
+    "dining-set": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for dining-set; external material and private edits excluded."
+    },
+    "campfire-cookpot": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for campfire-cookpot; external material and private edits excluded."
+    },
+    "alchemy-bench": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for alchemy-bench; external material and private edits excluded."
+    },
+    "weapon-rack": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for weapon-rack; external material and private edits excluded."
+    },
+    "windmill": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for windmill; external material and private edits excluded."
+    },
+    "watchtower": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for watchtower; external material and private edits excluded."
+    },
+    "footbridge": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for footbridge; external material and private edits excluded."
+    },
+    "market-stall": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for market-stall; external material and private edits excluded."
+    },
+    "pier": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for pier; external material and private edits excluded."
+    },
+    "stone-arch": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for stone-arch; external material and private edits excluded."
+    },
+    "tent": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for tent; external material and private edits excluded."
+    },
+    "palm-tree": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for palm-tree; external material and private edits excluded."
+    },
+    "cactus": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for cactus; external material and private edits excluded."
+    },
+    "flower-bed": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for flower-bed; external material and private edits excluded."
+    },
+    "shrub": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for shrub; external material and private edits excluded."
+    },
+    "crystal-cluster": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for crystal-cluster; external material and private edits excluded."
+    },
+    "log-pile": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for log-pile; external material and private edits excluded."
+    },
+    "pond": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for pond; external material and private edits excluded."
+    },
+    "bamboo-clump": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for bamboo-clump; external material and private edits excluded."
+    },
+    "slime": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for slime; external material and private edits excluded."
+    },
+    "scifi-cargo": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for scifi-cargo; external material and private edits excluded."
+    },
+    "rowboat": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for rowboat; external material and private edits excluded."
+    },
+    "cart-wagon": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for cart-wagon; external material and private edits excluded."
+    },
+    "sailboat": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for sailboat; external material and private edits excluded."
+    },
+    "hot-air-balloon": {
+      "author": "Woodland Workshop project authors",
+      "statement": "Original project-authored forge-kit implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for hot-air-balloon; external material and private edits excluded."
+    },
+    "rigged-rabbit": {
+      "author": "Polyspoon project authors",
+      "statement": "Original project-authored recipe implementation and parameter content; third-party dependencies retain upstream terms.",
+      "softwareLicense": "Apache-2.0",
+      "contentLicense": "CC0-1.0",
+      "contentDesignation": "Original supplied default and curated preset parameter content for rigged-rabbit; external material and private edits excluded."
     }
   }
 }

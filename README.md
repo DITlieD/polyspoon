@@ -17,6 +17,7 @@ We want to grow a large, open 3D asset community where people and their AI codin
 
 - **Anyone can sign up** through an email magic link and submit models.
 - **Every model is reviewed by a person before it is accepted.** Submissions go through a review queue and are published only after an independent human approves them. See [open review](docs/specs/open-review.md) and [review guidance](docs/contributing/review.md).
+- **Automated content checks run first.** An isolated processor rebuilds each upload, then renders it from several angles and reads any text on it to flag offensive shapes or words for the reviewer. The check can only flag or hold a model, never approve it. See [review pipeline v2](docs/specs/review-pipeline-v2.md).
 - **Members can become moderators.** Accounts have member, moderator and admin roles. Moderators handle the review queue, reports and appeals ([marketplace moderation](docs/specs/marketplace-moderation.md)).
 - **Models stay behind login.** The hosted catalog and its downloads are only available to signed-in members.
 
@@ -82,9 +83,9 @@ node_modules/.bin/vite build
 node_modules/.bin/vite preview --host 127.0.0.1 --port 4173 --strictPort
 ```
 
-These commands build the local studio using the existing indexed downloads. `npm run build` is a maintainer artifact-regeneration command and can reject changes to immutable source archives. Do not regenerate published bytes to make a release build pass. Use a free local port. See [release preparation](docs/release.md) for a clean snapshot and separate hosted build.
+This builds the local studio from the existing indexed downloads. `npm run build` regenerates published artifacts for maintainers and rejects changes to immutable source archives; never regenerate published bytes to get a build to pass. See [release preparation](docs/release.md) for a clean snapshot and the hosted build.
 
-The local Vite studio contains model and editor bytes for local use. It is not the authenticated hosted service and must not be published as that service. The hosted build separates its public pages from protected application assets; deployment must preserve its authentication gateway. Hosted rigged-character activation remains unavailable pending its integration checks.
+The local studio is for local use only. Don't publish it as the hosted service: the hosted build keeps protected app assets behind its authentication gateway. Rigged characters show a static preview in the hosted editor.
 
 ## Find an individual model
 
@@ -103,12 +104,10 @@ The current discovery page is `/catalog`. Search matches model titles, IDs and d
 | `/asset/:id` | Customize a registered model, for example `/asset/treasure-chest`. |
 | `/contribute` | Local contribution guidance. The separate hosted route provides authenticated submissions. |
 | `/editor` | Technical editor and diagnostic controls. |
-| `/` | Visitor landing for this identity release. |
-| `/docs` | Guide entry for this identity release, linking the practical documentation. |
+| `/` | Landing page. |
+| `/docs` | Guide entry linking the Markdown documentation, which stays the source of truth. |
 
-This identity release separates the visitor landing, model discovery and guide entry at `/`, `/catalog` and `/docs`. The Markdown guides linked here remain the source documentation.
-
-## Current recipe contracts
+## Recipe versions
 
 The six built-ins, `work-lantern`, `cottage`, `tree`, `fence`, `crate` and `boulder`, currently save as **0.6.0**. The contributed `bench`, `planter`, `treasure-chest`, `wheelbarrow`, `stone-well` and `conifer` save as **1.1.0**. Read `descriptor(id).version`, saved `familyVersion` and the current package indexes rather than constructing versioned filenames from an old example.
 
@@ -138,6 +137,8 @@ Underwater, dither, vertex snapping, outlines, wireframe, pixelation and part vi
 | Snapshot `.mjs` | Static embedded GLB. Its asynchronous `createAsset()` loads a scene; it is not procedural. |
 | Procedural module `.mjs` | Synchronous `createAsset(parameters)` from the selected registered recipe, plus metadata, types, cleanup and rigid-pose APIs. The download starts from family defaults; pass edits explicitly. |
 | Generator source ZIP | Editable TypeScript, default configuration, controls, pinned rebuild tooling and notices. It does not capture later browser edits. |
+
+The hosted catalog also offers OBJ (zipped with MTL), binary FBX 7.4, USDZ and a `controls.json` file per model; these carry static geometry only, while GLB keeps rigs and clips. See [export formats](docs/specs/export-formats.md).
 
 The HTML bundle preview loads Three.js from jsDelivr and needs internet. Procedural modules need the pinned Three dependency supplied by the consumer. See [procedural module usage](docs/authoring/procedural-modules.md).
 
@@ -198,6 +199,16 @@ npm run recipe:render -- --family bench --out evidence/bench-render-01
 
 For trusted local authoring, [the verification workflow](docs/authoring/guide.md#one-verification-command) runs the established technical stages and records their results. A successful technical report leaves visual review, portable rebuilding and target import/use as separate checks. The agent performs them and reports their actual outcomes. Use [`recipe:review`](docs/authoring/guide.md#bind-review-evidence) to seal exact successful evidence, retain failed attempts and bind separate review records. Local [eligibility checks](docs/contributing/review.md#local-eligibility-check) depend on separately trusted application-held records; they do not authenticate reviewers or publish content.
 
-A Unity import fixture and explicit Editor launcher are included under [integrations/unity](integrations/unity/ImportFixture). Retained Unity results apply to their exact versions, fixtures and target setup. They do not establish that every current recipe, parameter combination, material or rigid-pose API works automatically in a game. Verify the requested target and preserve its import/render/use evidence. Rigid joint groups and the two skinned character recipes have separate contracts. The humanoid and fox GLBs retain their bound skeletons and idle/walk clips. The hosted editor shows a static preview.
+A Unity import fixture and Editor launcher live under [integrations/unity](integrations/unity/ImportFixture). Recorded Unity results apply only to the versions and fixtures tested; native Unity checks of the current editor package, terrain and rigged characters are still pending. Verify your own target and keep its import evidence. The humanoid and fox GLBs keep their bound skeletons and idle/walk clips.
 
-Project software, parameter content and third-party dependencies have separate license scopes. Preserve [LICENSE](LICENSE), [NOTICE](NOTICE), [license guidance](docs/licensing.md) and packaged dependency notices. Local creation does not publish content or grant redistribution permission. Public submission processing and hosting remain unconfigured.
+Project software, parameter content and third-party dependencies have separate license scopes. Preserve [LICENSE](LICENSE), [NOTICE](NOTICE), [license guidance](docs/licensing.md) and packaged dependency notices. Creating something locally does not publish it or grant redistribution rights.
+
+## Documentation map
+
+- [Authoring guide](docs/authoring/guide.md) and [coding-agent brief](docs/authoring/coding-agent.md)
+- [Agent install](docs/authoring/agent-install.md) and [procedural modules](docs/authoring/procedural-modules.md)
+- [Contribution review](docs/contributing/review.md) and [licensing](docs/licensing.md)
+- [Release preparation](docs/release.md) and [hosted operations](docs/specs/hosted-release-operations.md)
+- [Marketplace foundation](docs/specs/marketplace-foundation.md), [moderation](docs/specs/marketplace-moderation.md), [community](docs/specs/community.md), [collections](docs/specs/collections.md)
+- [Export formats](docs/specs/export-formats.md), [rigged assets](docs/specs/rigged-assets.md), [environment](docs/specs/environment-foundation.md)
+- [PLAN.md](PLAN.md): release gates and status

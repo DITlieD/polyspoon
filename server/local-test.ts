@@ -15,7 +15,7 @@ export async function localService(directory:string,secret:string,initialize=tru
  const configPath=resolve(state,'wrangler.local.json');await writeFile(configPath,JSON.stringify(config));
  const proxy=await getPlatformProxy<Env>({configPath,persist:{path:resolve(state,'v3')},remoteBindings:false,envFiles:[]});
  try{
-  if(initialize){for(const path of (await readdir('migrations')).filter(path=>path.endsWith('.sql')).sort().map(path=>'migrations/'+path))await proxy.env.DB.exec(await readFile(path,'utf8'));}
+  if(initialize){for(const path of (await readdir('migrations')).filter(path=>path.endsWith('.sql')).sort().map(path=>'migrations/'+path))await proxy.env.DB.exec((await readFile(path,'utf8')).split('\n').filter(line=>!/^\s*--/.test(line)&&line.trim()).join('\n'));}
   const worker=await unstable_dev(resolve('server/worker.ts'),{config:configPath,ip:'127.0.0.1',port,local:true,persist:true,persistTo:state,vars:{AUTH_SECRET:secret},logLevel:'error',experimental:{disableExperimentalWarning:true,disableDevRegistry:true,watch:false}});
   return {env:proxy.env,origin:origin.origin,async stop(){await worker.stop();await proxy.dispose();}};
  }catch(error){await proxy.dispose();throw error;}

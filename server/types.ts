@@ -18,4 +18,10 @@ export interface Env {
 export interface PrivateObjects {
  read(key:string):Promise<Uint8Array|null>;
  putIfAbsent(key:string,bytes:Uint8Array):Promise<boolean>;
+ /** Read an object up to `limit` bytes (uploads can exceed the 2 MB artifact cap). */
+ readUpTo?(key:string,limit:number):Promise<Uint8Array|null>;
+ /** A short-lived, single-object signed PUT URL. Absent in local mode, where the Worker accepts the PUT itself. */
+ signedUpload?(key:string):Promise<string>;
+ /** A short-lived signed GET URL for one private object (moderator image serving). Absent in local mode. */
+ signedRead?(key:string,ttlSeconds:number):Promise<string>;
 }

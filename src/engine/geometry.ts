@@ -65,6 +65,15 @@ export function profiledBeam(from:[number,number,number],to:[number,number,numbe
   geometry.applyQuaternion(new Quaternion().setFromUnitVectors(new Vector3(0,1,0),delta.normalize()));
   geometry.translate(...from);return geometry;
 }
+/** Boxes [w,h,d,centre] joined into one indexed geometry (position, normal, uv), without leaving the 'three' import. */
+function joinBoxes(boxes:Array<[number,number,number,[number,number,number]]>):BufferGeometry{
+  const parts=boxes.map(([w,h,d,c])=>new BoxGeometry(w,h,d).translate(...c));
+  if(parts.length===1)return parts[0]!;
+  const out=new BufferGeometry(),index:number[]=[];let offset=0;
+  for(const name of ['position','normal','uv']){const size=parts[0]!.getAttribute(name).itemSize;out.setAttribute(name,new Float32BufferAttribute(parts.flatMap(g=>Array.from(g.getAttribute(name).array as Float32Array)),size));}
+  for(const g of parts){for(const i of g.getIndex()!.array)index.push(i+offset);offset+=g.getAttribute('position').count;g.dispose();}
+  out.setIndex(index);return out;
+}
 export function framedPanel(width:number,height:number,frame:number,depth:number,reveal:number) {
   if(![width,height,frame,depth,reveal].every(Number.isFinite)||Math.min(width,height)<=frame*2||frame<=0||depth<=0||reveal<0)throw new Error('Invalid framed panel opening');
   const box=(w:number,h:number,d:number,position:[number,number,number])=>({geometry:new BoxGeometry(w,h,d),position});
@@ -73,7 +82,18 @@ export function framedPanel(width:number,height:number,frame:number,depth:number
     right:box(frame,height,depth,[(width-frame)/2,0,0]),
     top:box(width-frame*2,frame,depth,[0,(height-frame)/2,0]),
     bottom:box(width-frame*2,frame,depth,[0,-(height-frame)/2,0]),
-    backing:box(width-frame*2,height-frame*2,0.025,[0,0,-depth/2-reveal]),
+    // Reveal linings join the frame to the backing (the backing hung alone behind the opening). They are part of the backing mesh so the
+    // panel keeps its accepted part list. Each runs 4 mm into the frame's back and the backing's front and sits 4 mm into the frame
+    // jamb; its exposed face stands 8 mm inside the jamb face, and no end is flush with a backing edge.
+    backing:{geometry:joinBoxes([
+      [width-frame*2,height-frame*2,0.025,[0,0,0]],
+      ...(reveal>0?[
+        [0.012,height-frame*2-0.008,reveal+0.008,[-(width-frame*2)/2+0.002,0,reveal/2]],
+        [0.012,height-frame*2-0.008,reveal+0.008,[(width-frame*2)/2-0.002,0,reveal/2]],
+        [width-frame*2-0.016,0.012,reveal+0.008,[0,(height-frame*2)/2-0.002,reveal/2]],
+        [width-frame*2-0.016,0.012,reveal+0.008,[0,-(height-frame*2)/2+0.002,reveal/2]],
+      ] as Array<[number,number,number,[number,number,number]]>:[]),
+    ]),position:[0,0,-depth/2-reveal] as [number,number,number]},
   };
 }
 export function repeatSpan(span:number,targetWidth:number,gap=0) {
@@ -122,4 +142,33 @@ export function taperedSweep(stations:Array<{center:[number,number,number];radiu
   }
   for(let j=0;j<sides;j++){const k=(j+1)%sides;tri(centers[0]!,rings[0]![k]!,rings[0]![j]!);tri(centers.at(-1)!,rings.at(-1)![j]!,rings.at(-1)![k]!);}
   const g=new BufferGeometry();g.setAttribute('position',new Float32BufferAttribute(positions,3));g.computeVertexNormals();return g;
+}
+
+/** Closed tube around a loop of stations (no caps, last ring joins the first). Manifold, unlike a taperedSweep whose ends meet. */
+export function closedSweep(stations:Array<{center:[number,number,number];radius:number}>,sides=9):BufferGeometry {
+  const n=stations.length;
+  if(n<3||sides<3||stations.some(s=>s.radius<=0||![...s.center,s.radius].every(Number.isFinite)))throw new Error('Invalid closed sweep stations');
+  const centers=stations.map(s=>new Vector3(...s.center));
+  const normal=new Vector3();for(let i=0;i<n;i++)normal.add(centers[i]!.clone().cross(centers[(i+1)%n]!));
+  if(normal.length()<1e-10)throw new Error('Closed sweep loop must enclose an area');normal.normalize();
+  const rings=centers.map((c,i)=>{
+    const tangent=centers[(i+1)%n]!.clone().sub(centers[(i+n-1)%n]!).normalize(),outward=tangent.clone().cross(normal).normalize();
+    return Array.from({length:sides},(_,j)=>c.clone().addScaledVector(outward,Math.cos(j*2*Math.PI/sides)*stations[i]!.radius).addScaledVector(normal,Math.sin(j*2*Math.PI/sides)*stations[i]!.radius));
+  });
+  const positions:number[]=[],tri=(a:Vector3,b:Vector3,c:Vector3)=>positions.push(...a.toArray(),...b.toArray(),...c.toArray());
+  for(let i=0;i<n;i++){const r0=rings[i]!,r1=rings[(i+1)%n]!;for(let j=0;j<sides;j++){const k=(j+1)%sides;tri(r0[j]!,r1[k]!,r0[k]!);tri(r0[j]!,r1[j]!,r1[k]!);}}
+  const g=new BufferGeometry();g.setAttribute('position',new Float32BufferAttribute(positions,3));g.computeVertexNormals();return g;
+}
+
+/** Joins solids into one geometry (one mesh/part), so adding a detail does not change a published part list. */
+export function joinedSolids(...parts: BufferGeometry[]): BufferGeometry {
+  const flat=parts.map(g=>g.index?g.toNonIndexed():g),out=new BufferGeometry();
+  for(const name of ['position','normal','uv'] as const){
+    if(!flat.every(g=>g.getAttribute(name)))continue;
+    const size=flat[0]!.getAttribute(name).itemSize,data=new Float32Array(flat.reduce((n,g)=>n+g.getAttribute(name).count*size,0));let at=0;
+    for(const g of flat){const a=g.getAttribute(name);for(let i=0;i<a.count;i++)for(let c=0;c<size;c++)data[at++]=a.getComponent(i,c);}
+    out.setAttribute(name,new Float32BufferAttribute(data,size));
+  }
+  if(!out.getAttribute('normal'))out.computeVertexNormals();
+  return out;
 }

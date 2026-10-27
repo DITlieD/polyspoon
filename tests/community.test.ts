@@ -85,3 +85,26 @@ test('unknown public paths get a 404 page, app and API paths do not',()=>{
  const get=(p:string)=>unknownPage(new Request('https://x.invalid'+p),p);
  assert.equal(get('/nope-404'),true);assert.equal(get('/catalog'),false);assert.equal(get('/api/me'),false);assert.equal(get('/app/main.js'),false);assert.equal(get('/asset/'+'a'.repeat(64)),false);
 });
+
+test('suspended members leave no trace: profile downloads and notifications count only active verified members',async()=>{
+ const {db,env}=database(),alice=member(db,'alice'),bob=member(db,'bob'),mallory=member(db,'mallory');const version=model(db,'alice','well');
+ for(const who of ['bob','mallory'])db.prepare('INSERT INTO download_credit(user_id,asset_id,created_at) VALUES(?,?,?)').run(who,'well',Date.now());
+ await castVote(env,bob,'well',true);await castVote(env,mallory,'well',true);
+ db.prepare("UPDATE member SET status='suspended' WHERE user_id='mallory'").run();
+ const handle=(await call(env,alice,'GET','/api/community/me')).body.profile.handle;
+ const profile=await call(env,bob,'GET','/api/community/profiles/'+handle);
+ assert.equal(profile.body.stats.downloads,1);assert.equal(profile.body.stats.votesReceived,1);
+ const votes=(await call(env,alice,'GET','/api/community/notifications')).body.notifications.filter((n:{kind:string})=>n.kind==='vote');
+ assert.equal(votes.length,1);assert.equal(votes[0].actor.id,'bob');assert.ok(version);
+});
+
+test('follow reports the stored state, and moderators cannot moderate their own comments',async()=>{
+ const {db,env}=database(),mod=member(db,'mod',60,['moderator']),alice=member(db,'alice');const version=model(db,'alice','fox');
+ const handle=(await call(env,alice,'GET','/api/community/me')).body.profile.handle;
+ assert.deepEqual((await call(env,mod,'PUT','/api/community/profiles/'+handle+'/follow')).body,{following:true,followers:1});
+ assert.deepEqual((await call(env,mod,'DELETE','/api/community/profiles/'+handle+'/follow')).body,{following:false,followers:0});
+ const posted=await call(env,mod,'POST','/api/community/versions/'+version+'/comments',{body:'Nice silhouette'});assert.equal(posted.status,201);
+ const self=await call(env,mod,'PUT','/api/community/comments/'+posted.body.id+'/moderation',{status:'hidden',reason:'test'});
+ assert.deepEqual(self,{status:403,body:{error:'self_moderation_forbidden'}});
+ assert.equal((await call(env,{...alice,status:'suspended'},'POST','/api/community/versions/'+version+'/comments',{body:'x'})).status,403);
+});

@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
-# Prepare catalog seed candidates locally (GLB + manifest + renders). Does not publish anything.
+# Prepare one catalog seed candidate per family (default preset, preset palette) locally.
+# Does not publish anything and never deletes: pass a fresh or forge-owned output dir.
+# Usage: seeds/build.sh [OUT_DIR]   (default: seeds/out-<timestamp>)
 set -euo pipefail
 cd "$(dirname "$0")/.."
-FAMILIES="work-lantern cottage tree fence crate boulder bench planter treasure-chest wheelbarrow stone-well conifer stylized-humanoid stylized-fox"
-OUT=seeds/out
-rm -rf "$OUT"; mkdir -p "$OUT"
-for f in $FAMILIES; do
-  mkdir -p "$OUT/$f"
-  npx tsx scripts/cli.ts export --family "$f" --out "$OUT/$f/$f.glb" >"$OUT/$f/export.log" 2>&1 || { echo "EXPORT FAIL $f"; continue; }
-  npx tsx scripts/recipe-render.ts --family "$f" --out "$OUT/$f/renders" >"$OUT/$f/render.log" 2>&1 || echo "RENDER FAIL $f"
-  echo "ok $f"
-done
+OUT=${1:-seeds/out-$(date +%Y%m%d-%H%M%S)}
+exec scripts/forge-batch --worker seeds --out "$OUT" --families all --presets all --palettes preset --variants 0 --formats all --render

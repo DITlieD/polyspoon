@@ -163,6 +163,8 @@ export async function buildProceduralModules(output=join(root,'public/procedural
     const selected=existing?.entry??{id:d.id,version:d.version,url:'procedural-modules/'+relative+'asset.mjs',sha256:sha256(code),bytes:Buffer.byteLength(code),dependencies:metadata.dependencies,configuration:metadata.configuration,files:Object.fromEntries(Object.entries(files).map(([name,text])=>[name,{sha256:sha256(text),bytes:Buffer.byteLength(text)}]))};
     prepared.push({entry:selected,files});
   }
+  // A version bump must not drop the already-published older release of that recipe.
+  if(options.retainPublished)for(const release of published)if(!prepared.some(p=>p.entry.id===release.entry.id&&p.entry.version===release.entry.version))prepared.push(release);
   return publishProceduralReleases(output,prepared);
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){

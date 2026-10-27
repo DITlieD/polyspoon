@@ -13,6 +13,9 @@ import {versionRoutes} from './versions.ts';
 import {moderationRoutes} from './moderation.ts';
 import {communityRoutes} from './community.ts';
 import {collectionRoutes} from './collections.ts';
+import {uploadRoutes} from './uploads.ts';
+import {reviewQueueRoutes} from './review-queue.ts';
+import {appealRoutes} from './appeals.ts';
 import {privateObjects} from './storage.ts';
 import {mailConfigured} from './mail.ts';
 import {publicResponse,protectedDocument,documentNavigation} from './public.ts';
@@ -34,7 +37,7 @@ export default {
    if(url.pathname==='/health'&&request.method==='GET'){let storage='unconfigured';try{privateObjects(env);storage=env.APP_ENV==='local'?'local-simulation':'supabase-configured';}catch{}return json({status:'ok',privateStorage:storage,privateStorageCheck:'configuration-only'});}
    const publicAsset=await publicResponse(request,env);if(publicAsset)return publicAsset;
    if(['/','/docs','/legal','/help','/sign-in'].includes(url.pathname)&&request.method==='GET')return new Response('<!doctype html><meta charset="utf-8"><title>Polyspoon</title><h1>Polyspoon</h1><p>Private marketplace service. The public shell and authenticated application are separate builds.</p>',{headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store'}});
-   if((['POST','PUT'].includes(request.method)||(request.method==='DELETE'&&(url.pathname.startsWith('/api/community/')||url.pathname.startsWith('/api/collections'))))&&(url.pathname.startsWith('/api/versions')||url.pathname.startsWith('/api/review-evidence/')||url.pathname==='/api/account/tokens'||url.pathname.endsWith('/reports')||url.pathname.startsWith('/api/community/')||url.pathname.startsWith('/api/collections')||url.pathname.startsWith('/api/processor/')))await enforceAddress(request,env);
+   if((['POST','PUT'].includes(request.method)||(request.method==='DELETE'&&(url.pathname.startsWith('/api/community/')||url.pathname.startsWith('/api/collections'))))&&(url.pathname.startsWith('/api/versions')||url.pathname.startsWith('/api/review-evidence/')||url.pathname==='/api/account/tokens'||url.pathname.endsWith('/reports')||url.pathname.startsWith('/api/community/')||url.pathname.startsWith('/api/collections')||url.pathname.startsWith('/api/uploads')||url.pathname.startsWith('/api/processor/')))await enforceAddress(request,env);
    const processing=await processingRoutes(request,env,url.pathname,()=>privateObjects(env));if(processing)return secured(processing);
    if(unknownPage(request,url.pathname))return secured(new Response(NOT_FOUND_PAGE,{status:404,headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store'}}));
    const actor=await principal(request,env,true);mutationOrigin(request,env,actor);
@@ -43,7 +46,7 @@ export default {
    const shell=['/app','/catalog'].includes(url.pathname)||url.pathname.startsWith('/app/');
    if(actor.status==='suspended'&&!restrictedPath&&!shell)throw new HttpError(403,'account_restricted');
    const objects=()=>privateObjects(env);
-   const response=await communityModeration(request,env,actor,url.pathname)??await addressBlockRoutes(request,env,actor,url.pathname)??await processorAdminRoutes(request,env,actor,url.pathname)??await accountRoutes(request,env,actor,url.pathname)??await catalogRoutes(request,env,actor,url.pathname,objects)??await versionRoutes(request,env,actor,url.pathname,objects)??await moderationRoutes(request,env,actor,url.pathname)??await communityRoutes(request,env,actor,url.pathname)??await collectionRoutes(request,env,actor,url.pathname);
+   const response=await communityModeration(request,env,actor,url.pathname)??await addressBlockRoutes(request,env,actor,url.pathname)??await processorAdminRoutes(request,env,actor,url.pathname)??await accountRoutes(request,env,actor,url.pathname)??await catalogRoutes(request,env,actor,url.pathname,objects)??await versionRoutes(request,env,actor,url.pathname,objects)??await uploadRoutes(request,env,actor,url.pathname,objects)??await reviewQueueRoutes(request,env,actor,url.pathname,objects)??await appealRoutes(request,env,actor,url.pathname)??await moderationRoutes(request,env,actor,url.pathname)??await communityRoutes(request,env,actor,url.pathname)??await collectionRoutes(request,env,actor,url.pathname);
    if(response)return secured(response);
    throw new HttpError(404,'not_found');
   }catch(caught){let error=caught;try{admissionError(caught);}catch(mapped){error=mapped;}if(error instanceof HttpError){const path=new URL(request.url).pathname;if(protectedDocument(path)&&documentNavigation(request)){if(error.status===401)return secured(new Response(null,{status:302,headers:{location:'/sign-in'}}));if(error.code==='account_restricted')return secured(new Response(null,{status:302,headers:{location:'/catalog'}}));if(error.status===403)return secured(new Response('<!doctype html><meta charset="utf-8"><title>Access restricted</title><h1>Access restricted</h1><p>This account cannot access the marketplace.</p>',{status:403,headers:{'content-type':'text/html; charset=utf-8'}}));}return secured(json({error:error.code},error.status));}console.error('Marketplace request failed',error instanceof Error?error.message:'unknown');return secured(json({error:'internal_error'},500));}

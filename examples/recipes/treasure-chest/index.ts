@@ -57,7 +57,7 @@ function build(input: unknown): AssetBuild {
     return mesh(name,role,profileSolid([{y:-height/2,width:width-2*edge,depth:depth-2*edge,chamfer},{y:-height/2+edge,width,depth,chamfer},{y:height/2-edge,width,depth,chamfer},{y:height/2,width:width-2*edge,depth:depth-2*edge,chamfer}]),position);
   }
   const floor=0.05;
-  box('base','wood',[w,0.05,d],[0,floor+0.025,0]);
+  box('base','wood',[w-0.012,0.05,d-0.012],[0,floor+0.019,0]); // 6 mm inside the bottom planks' outer faces and its underside 6 mm below theirs (flush faces z-fought)
   for(const x of [-1,1])for(const z of [-1,1])box('foot-'+x+'-'+z,'frame',[0.08,floor,0.08],[x*(w/2-0.07),floor/2,z*(d/2-0.07)]);
   for(let i=0;i<Number(p.boardCount);i++) {
     const board=(h-floor)/Number(p.boardCount);
@@ -65,8 +65,8 @@ function build(input: unknown): AssetBuild {
     for(const x of [-1,1])box('end-plank-'+x+'-'+i,'wood',[0.035,board-0.003,d-0.07],[x*(w/2-0.0175),floor+board*(i+0.5),0]);
   }
   for(const side of [-1,1]){
-    box('body-rim-front-'+side,'wood',[w,0.04,0.045],[0,h-0.016,side*(d/2-0.0225)]);
-    box('body-rim-side-'+side,'wood',[0.045,0.04,d-0.09],[side*(w/2-0.0225),h-0.016,0]);
+    box('body-rim-front-'+side,'wood',[w+0.010,0.04,0.050],[0,h-0.016,side*(d/2-0.020)]); // 5 mm proud of the planks, 5 mm behind the iron bands
+    box('body-rim-side-'+side,'wood',[0.054,0.04,d-0.09],[side*(w/2-0.018),h-0.016,0]); // 9 mm proud of the end planks, 4 mm past the front rim ends
   }
   const curve=Array.from({length:7},(_,i)=>({z:-d/2+d*i/6,y:h+0.012+r*Math.sin(Math.PI*i/6)}));
   function extrude(shape:Shape,width:number,left:number){
@@ -80,9 +80,9 @@ function build(input: unknown): AssetBuild {
   }
   const lid=new BufferGeometry();lid.setAttribute('position',new Float32BufferAttribute(positions,3));lid.computeVertexNormals();mesh('lid','wood',lid);
   for(const side of [-1,1]){
-    const shape=new Shape();shape.moveTo(-d/2,h+0.004);for(const point of curve)shape.lineTo(point.z,point.y);shape.lineTo(d/2,h+0.004);shape.closePath();
+    const shape=new Shape();shape.moveTo(-d/2,h+0.002);for(const point of curve)shape.lineTo(point.z,point.y);shape.lineTo(d/2,h+0.002);shape.closePath(); // seats 2 mm into the rim: no see-through hinge seam
     mesh('lid-cheek-'+side,'wood',extrude(shape,cheek,side<0?-w/2:w/2-cheek));
-    box(side>0?'lid-front-rail':'lid-rear-rail','wood',[w-2*cheek,0.026,0.034],[0,h+0.017,side*(d/2-0.017)]);
+    box(side>0?'lid-front-rail':'lid-rear-rail','wood',[w-2*cheek+0.004,side>0?0.024:0.018,0.030],[0,h+(side>0?0.014:0.011),side*(d/2-(side>0?0.011:0.034))]); // ends 2 mm into the cheeks; front rail 4 mm proud of the lid front (latch seats on it) with its top buried in the lid; rear 19 mm inside, clear of the lid underside
   }
   const normals=curve.slice(0,-1).map((point,i)=>new Vector2(-(curve[i+1]!.y-point.y),curve[i+1]!.z-point.z).normalize());
   const offsets=curve.map((_,i)=>{
@@ -97,7 +97,7 @@ function build(input: unknown): AssetBuild {
       mesh('band-lid-'+sign+'-'+i,'frame',extrude(shape,0.055,x-0.0275));
     }
     box('hinge-'+sign,'frame',[0.085,0.085,0.016],[x,h-0.0475,-d/2-0.006]);
-    const barrel=new CylinderGeometry(0.022,0.022,0.09,12);barrel.rotateZ(Math.PI/2);mesh('hinge-barrel-'+sign,'frame',barrel,[x,h,-d/2]);
+    const barrel=new CylinderGeometry(0.022,0.022,0.1,12);barrel.rotateZ(Math.PI/2);mesh('hinge-barrel-'+sign,'frame',barrel,[x,h,-d/2]); // ends 7.5 mm past the plate sides (2.5 mm was coplanar-close)
     const collar=new LatheGeometry([[0.0225,-0.022],[0.032,-0.022],[0.032,0.022],[0.0225,0.022],[0.0225,-0.022]].map(([radius,along])=>new Vector2(radius!,along!)),12);collar.rotateZ(Math.PI/2);mesh('lid-hinge-collar-'+sign,'frame',collar,[x,h,-d/2]);
   }
   if(p.latch) {

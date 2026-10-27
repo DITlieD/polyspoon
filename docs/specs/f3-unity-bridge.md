@@ -12,11 +12,11 @@ Parsing, validation, process failure, timeout, cancellation and import failure l
 
 ## Verification status
 
-[Current integration receipts](../../integrations/unity/README.md#current-verification) record eight Node checks and actual stdin requests, thirty real Editor workflow checks across twelve families, a fresh scene reopen and full configured C# gate suites for six production and three fixture files. Editor checks cover typed callbacks, canonical selection/history/colors, create/rebuild Undo and Redo, retained root/user content, persistent subassets, cancellation, stale-result races and atomic failure. The saved/reopened scene retains design identities and asset references.
+[Current integration receipts](../../integrations/unity/) record eight Node checks and actual stdin requests, thirty real Editor workflow checks across twelve families, a fresh scene reopen and full configured C# gate suites for six production and three fixture files. Editor checks cover typed callbacks, canonical selection/history/colors, create/rebuild Undo and Redo, retained root/user content, persistent subassets, cancellation, stale-result races and atomic failure. The saved/reopened scene retains design identities and asset references.
 
 Individual cottage and treasure-chest images were inspected with view-specific limits. Actual interactive native menu, button and viewport review remains pending. These checks do not establish other Unity versions, all parameter combinations or broad visual-quality acceptance.
 
-The machine-pinned fixture and wrapper are developer validation tools, not package runtime requirements. The existing routes, scenes, assets and prior receipts remain preserved. See [safe local retries](../../integrations/unity/README.md#repeat-the-local-developer-fixture) for receipt and scene preservation. F4 remains outside this change.
+The machine-pinned fixture and wrapper are developer validation tools, not package runtime requirements. The existing routes, scenes, assets and prior receipts remain preserved. See [safe local retries](../../integrations/unity/run-editor.sh) for receipt and scene preservation. F4 remains outside this change.
 
 ## Saved-design compatibility
 

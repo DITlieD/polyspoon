@@ -238,7 +238,7 @@ Built assets expose stable part IDs, material roles, root-relative authored anch
 
 These declarations supply rigid articulation, not skinning, physics, IK, clips, rope dynamics or automatic winding. A poseable discovery label describes default semantic joints; a variant can remove the corresponding assembly. Do not promise animation assets merely because that label is present.
 
-The Unity editor bridge and fixtures live under [integrations/unity](../../integrations/unity/README.md). Their receipts cover specific versions, inputs and target configurations. Importable GLB nodes do not automatically become usable Unity animations or gameplay joints. The agent must verify the requested import, materials, scale and use in the actual target, and record untested combinations honestly. Rendering and technical checks do not establish visual acceptance; independently inspect the originals against the requested result.
+The Unity editor bridge and fixtures live under [integrations/unity](../../integrations/unity/). Their receipts cover specific versions, inputs and target configurations. Importable GLB nodes do not automatically become usable Unity animations or gameplay joints. The agent must verify the requested import, materials, scale and use in the actual target, and record untested combinations honestly. Rendering and technical checks do not establish visual acceptance; independently inspect the originals against the requested result.
 
 ## Rigged environment placements
 

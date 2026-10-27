@@ -21,7 +21,7 @@ export function strictObject(value:unknown,keys:string[]):Record<string,unknown>
  return value as Record<string,unknown>;
 }
 export function memberTokenScopes(value:unknown):string[] {
- const allowed=['catalog:read','assets:read','votes:write','submissions:write'];
+ const allowed=['catalog:read','assets:read','votes:write','submissions:write','uploads:write'];
  if(!Array.isArray(value)||!value.length||value.some(scope=>typeof scope!=='string'||!allowed.includes(scope)))throw new HttpError(400,'invalid_token_scope');
  return [...new Set(value)].sort();
 }

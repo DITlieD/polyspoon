@@ -5,13 +5,13 @@ export type Faq={question:string;answer:string};
 export const hero={
  eyebrow:'Open source · Apache-2.0',
  title:'Editable 3D models your agent can remake.',
- lead:'Polyspoon is an open-source alternative to Polyfork. Every model is a recipe, a small program with typed controls, so you and your coding agent can reshape it, keep the source and export it to Unity, Godot, Blender, three.js or any glTF engine.',
+ lead:'Polyspoon is an open-source alternative to Polyfork. Every model is a recipe, a small program with typed controls, so you or your coding agent can reshape it, keep the source and export it to Unity, Godot, Blender, three.js or any glTF engine.',
 };
 
 export const pillars:Step[]=[
  {title:'Recipes, not frozen meshes',body:'Each model is code with named controls for size, construction, parts and colours. Change a value and the model rebuilds. The default design reproduces the published model exactly.'},
  {title:'Made for your own agent',body:'One open-source bundle gives Codex, Claude Code, Cursor or any coding agent the engine and the skill. It builds, checks and exports locally. No Polyspoon account, API key or paid service needed.'},
- {title:'Community-made, human-reviewed',body:'Anyone can sign up and contribute. Every model is checked by an independent human reviewer before it can be published, and every published model keeps its source, licence and review record.'},
+ {title:'Community-made, human-reviewed',body:'Anyone can sign up and contribute. An independent human reviewer checks every model before it is published. Published models keep their source, licence and review record.'},
 ];
 
 export const howItWorks:Step[]=[
@@ -24,7 +24,7 @@ export const howItWorks:Step[]=[
 export const contribute:Step[]=[
  {title:'Make it locally',body:'Start from a preset of an existing recipe or write an original recipe with your agent. Use the authoring guide, then run the verification command so technical checks and renders are recorded.'},
  {title:'Submit it',body:'Sign in with your email and submit the model from the member site. Files stay private while they are processed and reviewed.'},
- {title:'Automatic checks',body:'Submitted recipes run in an isolated processor that rebuilds them and checks geometry, files, sizes and integrity. Submitted code never runs on the website itself.'},
+ {title:'Automatic checks',body:'An isolated processor rebuilds the recipe and checks geometry, files and sizes. A content scan renders the model from several angles and reads its text to flag offensive shapes or words for the reviewer. Submitted code never runs on the website itself, and the scan can only flag, never approve.'},
  {title:'Human review',body:'An independent reviewer checks the visuals, portability, source and provenance. You cannot review your own model. Every model, from every contributor, gets this full human review.'},
  {title:'Published',body:'Approved models appear in the member catalog with their source, licence and review record. Members can customise, download and vote on them.'},
 ];

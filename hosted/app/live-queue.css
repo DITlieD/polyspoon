@@ -1,0 +1,43 @@
+.live-queue{display:grid;grid-template-columns:minmax(18rem,26rem) 1fr;gap:1.25rem;align-items:start}
+@media (max-width:60rem){.live-queue{grid-template-columns:1fr}}
+.live-queue-list{display:flex;flex-direction:column;gap:.5rem;max-height:calc(100vh - 12rem);overflow:auto;padding-right:.25rem}
+.queue-row{display:grid;grid-template-columns:auto 1fr;gap:.6rem;text-align:left;border:1px solid var(--line);border-radius:.6rem;background:#fff;padding:.55rem;cursor:pointer;font:inherit;color:inherit}
+.queue-row[aria-current="true"]{border-color:var(--blue);box-shadow:0 0 0 2px #246ce833}
+.queue-row.claimed-other{opacity:.65}
+.queue-thumbs{display:grid;grid-template-columns:repeat(2,2.6rem);gap:2px}
+.queue-thumbs img,.queue-thumbs span{width:2.6rem;height:2.6rem;object-fit:cover;border-radius:.25rem;background:#e7eaf0;display:block}
+.queue-row h3{margin:0;font-size:1rem}
+.queue-meta{font-size:.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.35rem .75rem}
+.queue-badge{display:inline-block;border-radius:999px;padding:.05rem .55rem;font-size:.75rem;font-weight:600;background:#eef1f6;color:#344055}
+.queue-badge.warning{background:#fff1d6;color:#7a4b00}.queue-badge.danger{background:#fde2e1;color:#8f1d18}.queue-badge.info{background:#e3ecff;color:#1d3f8f}
+.queue-detail{border:1px solid var(--line);border-radius:16px;background:#fff;padding:1.25rem;min-height:20rem}
+.queue-detail h2{margin-top:0}
+.queue-viewer{border-radius:.5rem;overflow:hidden;background:#8a8f99;min-height:4rem;margin:.5rem 0}
+.queue-viewer canvas{display:block;width:100%;height:auto}
+.queue-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(7.5rem,1fr));gap:.4rem;margin:.4rem 0 1rem}
+.queue-shot{position:relative;border:0;padding:0;background:#e7eaf0;border-radius:.35rem;overflow:hidden;cursor:zoom-in;aspect-ratio:1}
+.queue-shot img{width:100%;height:100%;object-fit:contain;display:block}
+.queue-shot.blurred img{filter:blur(18px) saturate(.4)}
+.queue-shot.blurred::after{content:"Select to reveal";position:absolute;inset:auto 0 0 0;background:#000a;color:#fff;font-size:.72rem;padding:.2rem;text-align:center}
+.queue-findings{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem}
+.queue-finding{display:grid;grid-template-columns:7.5rem 1fr;gap:.6rem;border:1px solid var(--line);border-radius:.5rem;padding:.5rem}
+.queue-finding.band-reject{border-color:#e9a29f}.queue-finding.band-flag{border-color:#efc77a}
+.queue-finding canvas{width:7.5rem;height:7.5rem;border-radius:.35rem;background:#e7eaf0;display:block}
+.queue-finding canvas.blurred{filter:blur(14px)}
+.queue-coverage{background:#fff7e6;border:1px solid #f0d49a;border-radius:.5rem;padding:.5rem .75rem;font-size:.88rem}
+.queue-history{font-size:.85rem;padding-left:1.1rem}
+.queue-decision{display:flex;flex-direction:column;gap:.5rem;border-top:1px solid var(--line);padding-top:.75rem;margin-top:.75rem}
+.queue-decision textarea{min-height:4rem;font:inherit}
+.queue-keys{font-size:.78rem;color:var(--muted)}
+.queue-keys kbd{border:1px solid #c9cfda;border-bottom-width:2px;border-radius:.25rem;padding:0 .3rem;background:#f7f8fa}
+.queue-lightbox{position:fixed;inset:0;background:#000d;display:grid;place-items:center;z-index:50;cursor:zoom-out}
+.queue-lightbox img{max-width:94vw;max-height:94vh;image-rendering:auto}
+.queue-appeals{margin-top:2rem;display:grid;gap:.75rem}
+.queue-appeal-list{display:grid;gap:.75rem}
+.queue-appeal{border:1px solid var(--line);border-radius:8px;padding:.75rem;display:grid;gap:.4rem}
+.queue-appeal.filed{border-color:var(--warning,#c98a00)}
+.queue-appeal blockquote{margin:0;padding:.4rem .6rem;border-left:3px solid var(--line);white-space:pre-wrap}
+.queue-appeal textarea,.my-upload textarea{width:100%;resize:vertical}
+.my-uploads{display:grid;gap:.6rem;margin-top:1.5rem}
+.my-upload{display:grid;gap:.35rem;padding:.5rem 0;border-top:1px solid var(--line)}
+.queue-row:hover{border-color:#bfd2f4}.queue-finding canvas.blurred{cursor:pointer}.queue-finding canvas:focus-visible{outline:3px solid #83b2ff;outline-offset:2px}

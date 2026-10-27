@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Safe batch wrapper: per-worker --out dir, never deletes, non-zero exit on any failure.
+# Example: scripts/forge-batch --worker w1 --out forge-out/w1 --families barrel,signpost --palettes all --variants 2
+set -euo pipefail
+cd "$(dirname "$0")/.."
+exec npx tsx scripts/forge-batch.ts "$@"
