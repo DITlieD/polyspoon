@@ -1,6 +1,6 @@
 // Pure helpers for the live moderation queue (no DOM), shared by the page and its unit tests.
 export interface TopFinding{category:string;band:string;detector:string}
-export interface QueueItem{versionId:string;priority:number;reason:string;revision:number;enqueuedAt:number;claimExpiresAt:number|null;claimedBy:string|null;claimedByName:string|null;title:string;kind:string;contributorId:string;contributorName:string|null;safetyOutcome:string|null;mine:boolean;ownContent:boolean;thumbnails:string[];topFinding:TopFinding|null}
+export interface QueueItem{versionId:string;priority:number;reason:string;revision:number;enqueuedAt:number;claimExpiresAt:number|null;claimedBy:string|null;claimedByName:string|null;title:string;kind:string;contributorId:string;contributorName:string|null;safetyOutcome:string|null;safetyShadow:number|null;mine:boolean;ownContent:boolean;thumbnails:string[];topFinding:TopFinding|null}
 export interface QueueFinding{idx:number;category:string;detector:string;band:'low'|'flag'|'reject';artifactPath:string|null;bbox:[number,number,number,number]|null;textSpan:string|null}
 export interface QueueEvent{seq:number;versionId:string;actorId:string|null;kind:string;detail:Record<string,unknown>|null;createdAt:number}
 export interface QueueDetail{item:{version_id:string;revision:number;claimed_by:string|null;claim_expires_at:number|null;reason:string;priority:number;mine:boolean};version:{id:string;title:string;state:string;contributor_id:string;created_at:number}|null;history:QueueEvent[];safetyReports:{id:string;outcome:string;shadow:number;policyVersion:string;createdAt:number}[];findings:QueueFinding[];images:{name:string;mediaType:string}[];coverage:{notMachineChecked?:string[];ocrLanguages?:string[]}|null;upload:{source:string;format:string;bytes:number;provenance:unknown;category:string|null;description:string|null}|null;hasModel:boolean}
@@ -10,7 +10,16 @@ export const REASON_LABEL:Record<string,string>={flag:'Flagged',incomplete:'Chec
 export function sortQueue(items:QueueItem[]){return [...items].sort((a,b)=>b.priority-a.priority||a.enqueuedAt-b.enqueuedAt);}
 export function waiting(ms:number){const m=Math.max(0,Math.floor(ms/60000));if(m<1)return 'just now';if(m<60)return m+' min';const h=Math.floor(m/60);if(h<48)return h+' h';return Math.floor(h/24)+' d';}
 export function claimLabel(item:Pick<QueueItem,'claimedBy'|'claimedByName'|'claimExpiresAt'|'mine'>,now:number){if(!item.claimedBy||!item.claimExpiresAt||item.claimExpiresAt<now)return null;const left=Math.max(1,Math.ceil((item.claimExpiresAt-now)/60000));return (item.mine?'You are reviewing':(item.claimedByName??'Another reviewer')+' is reviewing')+' · '+left+' min left';}
-export function badge(item:Pick<QueueItem,'reason'|'safetyOutcome'>){if(item.safetyOutcome==='reject')return {label:'Auto-check: reject (shadow)',tone:'danger'};return {label:REASON_LABEL[item.reason]??item.reason,tone:item.reason==='flag'||item.reason==='incomplete'?'warning':item.reason==='appeal'?'info':'neutral'};}
+export function badge(item:Pick<QueueItem,'reason'|'safetyOutcome'|'topFinding'|'safetyShadow'>){
+ if(item.safetyOutcome==='reject'){
+  const validTop=item.topFinding&&!(item.topFinding.category==='child_like'&&item.topFinding.band==='low')?item.topFinding:null;
+  const finding=validTop?(CATEGORY_LABEL[validTop.category]??validTop.category):null;
+  const shadow=Number(item.safetyShadow)===1?'shadow':null;
+  const detail=[finding,shadow].filter(Boolean).join(', ');
+  return {label:detail?'Auto-check: reject ('+detail+')':'Auto-check: reject',tone:'danger' as const};
+ }
+ return {label:REASON_LABEL[item.reason]??item.reason,tone:item.reason==='flag'||item.reason==='incomplete'?'warning':item.reason==='appeal'?'info':'neutral'};
+}
 export type KeyAction='next'|'previous'|'open'|'approve'|'reject'|'changes'|'release';
 /** J/K move, Enter opens (and claims), A/R/C decide, Esc releases. Ignored while typing in a field. */
 export function keyAction(key:string,typing:boolean,hasClaim:boolean):KeyAction|null{

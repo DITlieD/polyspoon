@@ -13,7 +13,8 @@ export function brand(){const a=link('','/','hosted-brand');a.setAttribute('aria
 export function shell(navigation:Array<[string,string]>,member=false){
  document.body.className=member?'member-site':'public-site';
  const nav=el('nav','navigation',...navigation.map(([name,path])=>link(name,path)));nav.setAttribute('aria-label','Main');
- const main=el('main','page'),header=el('header','header',brand(),nav),footer=el('footer','footer',brand(),el('p','muted','Polyspoon · Open-source, human-reviewed 3D models'),link('Help','/help'),link('Legal','/legal'));
+ const donate=link('Keeping the site online costs money, and any help is appreciated.','https://ko-fi.com/ditlied');donate.target='_blank';donate.rel='noreferrer';
+ const main=el('main','page'),header=el('header','header',brand(),nav),footer=el('footer','footer',brand(),el('p','muted','Polyspoon · Open-source, human-reviewed 3D models'),donate,link('Help','/help'),link('Legal','/legal'));
  document.body.replaceChildren(header,main,footer);return main;
 }
 export function empty(title:string,copy:string){return el('section','empty',el('h2','',title),el('p','muted',copy));}

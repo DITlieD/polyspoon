@@ -15,8 +15,8 @@ import {el,button,link,field,input,status,heading,action} from '../shared/dom.ts
 import {verifyArtifact} from '../shared/http.ts';
 import type {Context,ModelDetail} from './types.ts';
 
-export async function editor(context:Context,id:string){
- const root=el('section','hosted-editor'),feedback=status('Checking this published recipe…');root.append(link('Back to published model','/asset/'+id,'back-link'),feedback);
+export async function editor(context:Context,id:string,embedded=false){
+ const root=el('section',embedded?'hosted-editor model-studio':'hosted-editor'),feedback=status('Checking this published recipe…');if(!embedded)root.append(link('Back to published model','/asset/'+id,'back-link'),feedback);else root.append(feedback);
  let active=true,session:DesignSession|undefined,stage:Stage|undefined;
  context.resources.add(()=>{active=false;stage?.dispose();session?.dispose();});
  const data=await context.api.json<ModelDetail>('/api/catalog/'+id),trusted=matchTrustedRecipe(records,data);
@@ -54,5 +54,5 @@ export async function editor(context:Context,id:string){
  exportControls.push(save,glb,bundle);
  const load=input('edited-design','file',false);load.accept='.json,application/json';load.addEventListener('change',()=>{void action(save,feedback,async()=>{const file=load.files?.[0];if(!file)return;invalidateDownloads();if(file.size>65536){feedback.textContent='Edited designs must be smaller than 64 KiB.';return;}const ticket=current.beginLoad();await readCurrentEditedDesign(file,()=>active&&ticket===current.revision,value=>{if(!value||typeof value!=='object'||Array.isArray(value)||!('origin' in value)||!sameDesign(value.origin,origin)){feedback.textContent='This edited design belongs to a different published version or recipe.';return;}const {origin:ignored,...design}=value as Record<string,unknown>;if(design.family!==trusted.id||design.familyVersion!==trusted.version){feedback.textContent='This design requires a different recipe version.';return;}const next=loadDesign(design);if(next.migration||!sameDesign(next,design)){feedback.textContent='This edited design does not match the current trusted recipe.';return;}const old=current.finishLoad(ticket,next);if(old)present(old,true);});});});
  tools.append(undo,redo,reset,frame);if(current.build.root.animations.length)sidebar.append(el('p','muted','Static preview. GLB exports include the bound skeleton and animation clips.'));sidebar.append(tabs,controls,dimensions,save,glb,bundle,downloads,field('Load an edited design from this published version',load),el('p','muted','These edits stay on this device. Download the model and notices together when sharing an edited export.'));
- root.replaceChildren(link('Back to published model','/asset/'+id,'back-link'),heading(data.title,'Edit parameters and export to your project.'),tools,feedback,el('div','editor-layout',viewport,sidebar));present(undefined,true);return root;
+ const layout=el('div','editor-layout',viewport,sidebar);root.replaceChildren(...(embedded?[tools,feedback,layout]:[link('Back to published model','/asset/'+id,'back-link'),heading(data.title,'Edit parameters and export to your project.'),tools,feedback,layout]));present(undefined,true);return root;
 }

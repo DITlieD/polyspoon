@@ -15,9 +15,9 @@
 .member-site .panel .empty{padding:20px 16px}
 .member-site .moderation-section.panel{margin-top:16px}
 .download-list{display:grid;gap:6px;margin:0;padding:0;list-style:none}.download-list li{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:6px 0}.download-list li:last-child{border-bottom:0}.download-list .button-secondary{min-width:0}
-.member-site .published-model .published-preview{height:min(520px,60vh)}
+.member-site .published-model .published-preview{aspect-ratio:auto;width:100%;height:auto;min-height:0;padding:0;overflow:hidden;display:block}.member-site .published-model .published-preview>img{display:block;width:100%;height:auto;max-height:none;object-fit:contain}
 .hosted-editor .editor-sidebar{max-height:calc(100vh - 140px);padding-bottom:24px}.hosted-editor .editor-controls{padding-bottom:12px}
-@media (max-width:820px){.stat-row{grid-template-columns:repeat(2,minmax(0,1fr))}.profile-head{flex-direction:column}.board-row{grid-template-columns:40px minmax(0,1fr) auto}.board-row .level-pill{display:none}.member-site .published-model .published-preview{height:300px}}
+@media (max-width:820px){.stat-row{grid-template-columns:repeat(2,minmax(0,1fr))}.profile-head{flex-direction:column}.board-row{grid-template-columns:40px minmax(0,1fr) auto}.board-row .level-pill{display:none}}
 .hosted-editor .editor-sidebar{-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 28px),transparent)}
 .stat span:last-child{color:var(--muted)}
 .profile-head{border-top:6px solid var(--accent,#246ce8)}
@@ -36,3 +36,7 @@
 .stat{align-content:start}.stat span{line-height:1.35}
 .avatar-edit-row{justify-content:flex-start;align-items:center;gap:16px;flex-wrap:nowrap}.avatar-edit-row p{margin:0}
 .design-details{margin-top:16px}.design-details pre{max-height:420px;overflow:auto}
+
+.member-site .published-model .published-preview:has(.orbit-stage){position:relative;display:block;aspect-ratio:1;width:100%;height:auto;min-height:0;max-height:none;padding:0;overflow:hidden}
+.member-site .published-model .published-preview .orbit-stage{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;min-height:0}
+.member-site .published-model .model-parameters{margin:8px 0 16px}

@@ -7,6 +7,7 @@ import type {Context} from './types.ts';
 import type {Report,Restriction} from './moderation-types.ts';
 
 export function modelReport(context:Context,versionId:string){
+ if(context.member.status==='guest')return el('details','panel moderation-section',el('summary','','Report this model'),el('p','',link('Sign in to report this model','/sign-in')));
  let active=true;context.resources.add(()=>{active=false;});const root=el('details','panel moderation-section',el('summary','','Report this model')),form=el('form'),category=el('select'),reason=messageInput('report-reason'),send=el('button','button-secondary','Send model report'),feedback=status();send.type='submit';category.name='category';for(const [value,label] of reportCategories){const option=el('option','',label);option.value=value;category.append(option);}form.append(field('Report category',category),field('Report reason',reason),el('p','muted','Describe the concern with this version. Reports do not automatically remove models or restrict accounts.'),send);root.append(form,feedback,link('Your report status','/catalog?view=account'));
  form.addEventListener('submit',event=>{event.preventDefault();void moderationAction(send,feedback,async()=>{const result=await reportModel(context.api,versionId,category.value,reason.value);if(!active)return;form.hidden=true;feedback.textContent='Your report is recorded. Status: '+moderationState(result.status)+'. Check your account for the current outcome.';});});return root;
 }

@@ -73,6 +73,7 @@ export async function leaderboardPage(context:Context){
 
 /** Creator, follow and favourite controls for a published model page. */
 export async function modelCommunity(context:Context,versionId:string){
+ if(context.member.status==='guest')return el('div','model-community',link('Sign in to follow or save','/sign-in','button-secondary'));
  const box=el('div','model-community'),feedback=status();
  try{
   const data=await context.api.json<ModelCommunity>('/api/community/versions/'+encodeURIComponent(versionId));
