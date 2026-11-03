@@ -2,6 +2,22 @@
 
 **Polyspoon is an open-source, AI-powered 3D asset community and an open alternative to Polyfork.**
 
+🌐 **Live Website:** [https://polyspoon.com](https://polyspoon.com)  
+☕ **Support & Donations:** [https://ko-fi.com/ditlied](https://ko-fi.com/ditlied)
+
+---
+
+### Featured Procedural Assets
+
+<p align="center">
+  <img src="docs/images/cottage.png" width="22%" alt="Cottage" />
+  <img src="docs/images/treasure-chest.png" width="22%" alt="Treasure Chest" />
+  <img src="docs/images/stylized-humanoid.png" width="22%" alt="Stylized Humanoid" />
+  <img src="docs/images/bench.png" width="22%" alt="Bench" />
+</p>
+
+---
+
 ## Vision
 
 We want to grow a large, open 3D asset community where people and their AI coding agents create, share and improve models together. Polyspoon starts with **low-poly procedural assets** and will expand to assets of every style and level of detail over time. The code, recipes and formats are open, so the community owns what it builds.

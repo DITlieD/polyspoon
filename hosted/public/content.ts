@@ -55,5 +55,5 @@ export const faq:Faq[]=[
  {question:'Can my agent read a model’s controls?',answer:'Yes. Each model comes with a controls JSON file listing every knob with its range, default, unit and current value, plus materials and real-world size. The toolkit writes the same file for local builds, and polyspoon.com/llms.txt and /prompt.txt explain the project to agents.'},
  {question:'How do I become a moderator?',answer:'Contribute good models and help with reports. Administrators invite trusted contributors to review or moderate. Roles cannot be requested through signup or votes.'},
  {question:'Is it free?',answer:'Yes. The toolkit and source are Apache-2.0, and membership is free. Each model shows its own licence and notices; keep them with your project.'},
- {question:'Where is the source code?',answer:'The toolkit archive contains the full engine and recipe sources. A public GitHub repository is being prepared for launch.'},
+ {question:'Where is the source code?',answer:'The toolkit archive contains the full engine and recipe sources. The entire project is open source and hosted on GitHub at https://github.com/DITlieD/polyspoon.'},
 ];
