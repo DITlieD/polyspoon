@@ -155,7 +155,7 @@ test('queue: expired claims are released and can be taken over; only moderators 
 test('queue list chunks follow-up binds below the D1 variable limit',async()=>{
  const s=setup();member(s.db,'maker');s.db.prepare('INSERT INTO official_catalog_seed(user_id,created_at) VALUES(?,0)').run('maker');const ana=member(s.db,'ana',['reviewer:visual']);
  for(let n=1;n<=101;n++)awaiting(s.db,'maker',n);
- const inner=s.env.DB as {prepare:(sql:string)=>{bind:(...args:unknown[])=>any;first:()=>Promise<unknown>;all:()=>Promise<{results:unknown[]}>;run:()=>Promise<unknown>;_rows:()=>unknown[]};batch:(list:{_rows:()=>unknown[]})=>Promise<unknown>};
+ const inner=(s.env as {DB:unknown}).DB as {prepare:(sql:string)=>{bind:(...args:unknown[])=>any;first:()=>Promise<unknown>;all:()=>Promise<{results:unknown[]}>;run:()=>Promise<unknown>;_rows:()=>unknown[]};batch:(list:{_rows:()=>unknown[]})=>Promise<unknown>};
  (s.env as {DB:unknown}).DB={batch:(list:{_rows:()=>unknown[]})=>inner.batch(list),prepare(sql:string){const base=inner.prepare(sql);const wrap=(stmt:typeof base)=>({bind(...args:unknown[]){if(args.length>100)throw new Error('too many SQL variables');return wrap(stmt.bind(...args));},first:()=>stmt.first(),all:()=>stmt.all(),run:()=>stmt.run(),_rows:()=>stmt._rows()});return wrap(base);}};
  const list=await q(s,ana,'GET','/api/moderation/queue');
  assert.equal(list.status,200);
@@ -166,7 +166,7 @@ test('queue list read does not reconcile and reads the latest safety report in o
  const s=setup();member(s.db,'maker');const ana=member(s.db,'ana',['reviewer:visual']);const v=awaiting(s.db,'maker',8);
   s.db.prepare("INSERT INTO safety_report(id,version_id,policy_version,outcome,shadow,summary,report_sha256,created_at) VALUES('old',?,'safety-v1.0','pass',1,'{}',?,1)").run(v,'c'.repeat(64));
  s.db.prepare("INSERT INTO safety_report(id,version_id,policy_version,outcome,shadow,summary,report_sha256,created_at) VALUES('new',?,'safety-v1.0','flag',0,'{}',?,2)").run(v,'d'.repeat(64));
- const sqls:string[]=[];const inner=s.env.DB as {prepare:(sql:string)=>unknown;batch:(list:unknown)=>Promise<unknown>};
+ const sqls:string[]=[];const inner=(s.env as {DB:unknown}).DB as {prepare:(sql:string)=>unknown;batch:(list:unknown)=>Promise<unknown>};
  (s.env as {DB:unknown}).DB={batch:(list:unknown)=>inner.batch(list),prepare(sql:string){sqls.push(sql);return inner.prepare(sql);}};
  const list=await q(s,ana,'GET','/api/moderation/queue');
  assert.equal(list.status,200);assert.equal(list.body.items.length,1);
@@ -208,7 +208,7 @@ test('admin can open a queue detail when the report is a real reject',async()=>{
 
 test('queue reads survive a failed safety lookup and a missing row stays missing',async()=>{
  const s=setup();member(s.db,'maker');const ana=member(s.db,'ana',['reviewer:visual']);const v=awaiting(s.db,'maker',9);
- const inner=s.env.DB as {prepare:(sql:string)=>Stmt;batch:(list:unknown)=>Promise<unknown>};
+ const inner=(s.env as {DB:unknown}).DB as {prepare:(sql:string)=>Stmt;batch:(list:unknown)=>Promise<unknown>};
  (s.env as {DB:unknown}).DB={batch:(list:unknown)=>inner.batch(list),prepare(sql:string){const stmt=inner.prepare(sql);if(sql.includes('LEFT JOIN safety_report')||sql.includes('FROM safety_artifact a'))return {bind(){return this;},all:async()=>{throw Error('d1_read_failed');},first:async()=>{throw Error('d1_read_failed');},run:async()=>{throw Error('d1_read_failed');},_rows(){throw Error('d1_read_failed');}};return stmt;}};
  const list=await q(s,ana,'GET','/api/moderation/queue');
  assert.equal(list.status,200);assert.equal(list.body.items.length,1);assert.equal(list.body.items[0].versionId,v);assert.equal(list.body.items[0].safetyOutcome,null);

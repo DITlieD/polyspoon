@@ -16,7 +16,7 @@ Every recipe builds on the shared generator in [src/engine](src/engine). A bette
 git clone https://github.com/DITlieD/polyspoon.git && cd polyspoon
 npm ci --ignore-scripts --no-audit --no-fund
 npx playwright-core install chromium      # once, for renders
-npm run dev                               # live preview at http://127.0.0.1:5173
+npm run dev                               # live preview at http://127.0.0.1:4173
 npm run recipe:render -- --family cottage --out renders/before
 ```
 

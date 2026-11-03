@@ -50,7 +50,7 @@ if(mode==='integration' || mode==='browser') {
   environment.APPEARANCE_INTEGRATION_EVIDENCE_ROOT=join(output,'appearance');
 }
 const before=await sourceProvenance();
-const child=spawnSync(process.execPath,['--import','tsx','--test','--test-concurrency=1',...suites[mode]!],{stdio:'inherit',env:environment});
+const child=spawnSync(process.execPath,['--import','tsx','--import','./tests/register-css-stub.mjs','--test','--test-concurrency=1',...suites[mode]!],{stdio:'inherit',env:environment});
 const after=await sourceProvenance();
 const stable=before.sourceHash===after.sourceHash;
 if(output)await writeFile(join(output,'run.json'),JSON.stringify({mode,files:suites[mode],before,after,stable,status:child.status,signal:child.signal,error:child.error?.message},null,2),{flag:'wx'});

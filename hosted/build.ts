@@ -14,7 +14,7 @@ async function inventory(root:string){
  await walk(root);return Object.fromEntries(Object.keys(files).sort().map(path=>[path,files[path]!]));
 }
 export async function buildHosted(output:string,options:{packageDirectory?:string}={}){
- const root=resolve(output);await mkdir(root,{recursive:false});const imports=new Set<string>();
+ const root=resolve(output);await mkdir(dirname(root),{recursive:true});await mkdir(root,{recursive:false});const imports=new Set<string>();
  await build({configFile:resolve('vite.hosted.public.ts'),logLevel:'error',build:{outDir:join(root,'public')},plugins:[{name:'public-boundary',generateBundle(){for(const id of this.getModuleIds()){const path=relative(process.cwd(),id).replaceAll('\\','/');if(/^(src\/(catalog|recipes|families|lantern|studio)\/|src\/site\/previews\/|examples\/recipes\/)/.test(path))throw Error('Private module in public build: '+path);if(!path.startsWith('node_modules/')&&!path.startsWith('\0'))imports.add(path);}}}]});
  const approved=['brand/supplied-v1/clean/logo.png','brand/supplied-v1/clean/wordmark.png','brand/supplied-v1/clean/lockup.png','brand/courtyard.png','brand/hero-fruit-stall.webp','agent-bundles/polyspoon-agent-3.zip','llms.txt','prompt.txt'];
  for(const path of approved){const target=join(root,'public',path);await mkdir(dirname(target),{recursive:true});await copyFile(join('public',path),target);}

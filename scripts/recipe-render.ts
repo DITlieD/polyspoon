@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
-import { resolve, join } from 'node:path';
+import { resolve, join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { chromium } from 'playwright-core';
 import { createServer } from 'vite';
@@ -67,7 +67,7 @@ export async function renderRecipe(options:RecipeRenderOptions) {
     ? resolveExport({family:options.family,preset:options.preset},savedText===undefined?undefined:JSON.parse(savedText))
     : {family:options.family,input:{},migration:undefined};
   const before=await sourceProvenance();
-  await mkdir(options.output,{recursive:false});
+  await mkdir(dirname(resolve(options.output)),{recursive:true});await mkdir(options.output,{recursive:false});
   const server=await createServer({root:fileURLToPath(new URL('../',import.meta.url)),server:{host:'127.0.0.1',port:0},logLevel:'error'});
   let browser:Awaited<ReturnType<typeof chromium.launch>>|undefined;
   const errors:string[]=[],captures:unknown[]=[],files:Record<string,string>={};
