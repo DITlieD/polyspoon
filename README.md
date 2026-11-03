@@ -67,7 +67,7 @@ The hosted service reads its configuration from environment variables listed in 
 - `docs/authoring/`: the agent brief, authoring guide and procedural modules
 - `docs/specs/`: feature specs (formats, review, moderation, community, hosted app, Unity bridge, …)
 - `docs/contributing/`: review guidance; also see [CONTRIBUTING.md](CONTRIBUTING.md)
-- [OUTPUTS.md](OUTPUTS.md), [docs/licensing.md](docs/licensing.md), [LICENSE](LICENSE) (Apache-2.0)
+- [docs/licensing.md](docs/licensing.md), [LICENSE](LICENSE) (Apache-2.0)
 
 ## Local toolkit details
 
@@ -229,4 +229,3 @@ Project software, parameter content and third-party dependencies have separate l
 - [Release preparation](docs/release.md) and [hosted operations](docs/specs/hosted-release-operations.md)
 - [Marketplace foundation](docs/specs/marketplace-foundation.md), [moderation](docs/specs/marketplace-moderation.md), [community](docs/specs/community.md), [collections](docs/specs/collections.md)
 - [Export formats](docs/specs/export-formats.md), [rigged assets](docs/specs/rigged-assets.md), [environment](docs/specs/environment-foundation.md)
-- [PLAN.md](PLAN.md): release gates and status
