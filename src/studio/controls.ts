@@ -24,7 +24,7 @@ export class ControlPanel {
   constructor(private host:HTMLElement,private actions:Actions) {}
   mount(d:Descriptor) {
     this.fields.clear();this.palettes=[];this.host.replaceChildren();
-    const paletteGroup=document.createElement('div');paletteGroup.className='palettes';paletteGroup.dataset.group='colors';
+    const paletteGroup=document.createElement('div');paletteGroup.className='palettes';paletteGroup.dataset.group='colors';paletteGroup.dataset.key='palette';
     for(const palette of d.palettes) {
       const button=document.createElement('button');button.className='colorway';button.dataset.colorway=palette.id;
       const swatches=document.createElement('span');swatches.className='swatches';swatches.setAttribute('aria-hidden','true');
@@ -118,6 +118,10 @@ export class ControlPanel {
   show(group:string) {
     this.group=group;
     for(const child of this.host.children) (child as HTMLElement).hidden=(child as HTMLElement).dataset.group!==group;
+  }
+  showAll() {
+    this.group='';
+    for(const child of this.host.children) (child as HTMLElement).hidden=false;
   }
   showControl(key?:string) {
     for(const child of this.host.children)(child as HTMLElement).hidden=key!==undefined&&(child as HTMLElement).dataset.key!==key;

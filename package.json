@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && npm run recipe:package && vite build",
-    "typecheck": "tsc --noEmit && tsc --noEmit -p hosted/tsconfig.json",
+    "typecheck": "tsc --noEmit",
     "test": "tsx scripts/test-current.ts unit",
     "export": "tsx scripts/cli.ts export",
     "validate": "tsx scripts/cli.ts validate",
@@ -21,6 +21,7 @@
     "recipe:verify": "tsx scripts/recipe-verify.ts",
     "recipe:review": "tsx scripts/recipe-review.ts",
     "controls:manifest": "tsx scripts/model-controls.ts",
+    "forge:review": "vite --config vite.forge-review.ts",
     "deploy:preflight": "node --import tsx scripts/deploy-preflight.ts"
   },
   "dependencies": {

@@ -5,5 +5,5 @@
     "strict": true, "noUncheckedIndexedAccess": true, "skipLibCheck": true,
     "verbatimModuleSyntax": true, "allowImportingTsExtensions": true, "noEmit": true
   },
-  "include": ["src", "scripts", "tests", "processor/safety", "vite.config.ts"]
+  "include": ["src", "scripts", "tests", "processor/safety", "vite.config.ts", "vite.forge-review.ts"]
 }

@@ -1,7 +1,7 @@
 import {Box3,CylinderGeometry,Mesh,Vector3} from 'three';
 import {rusticLantern} from './rustic.ts';
 import {colorways,saveConfiguration} from './config.ts';
-import {carryingBand,joinedSolids,profileSolid,taperedSweep} from '../engine/geometry.ts';
+import {carryingBand,profileSolid,taperedSweep} from '../engine/geometry.ts';
 import {Assembly} from '../families/assembly.ts';
 import {protectiveGuard} from './geometry.ts';
 export function generateLantern(input:unknown){
@@ -10,13 +10,11 @@ export function generateLantern(input:unknown){
  const assembly=new Assembly(config,colorways[p.colorway]),root=assembly.root,materials=assembly.materials;
  const add=assembly.mesh.bind(assembly),heavy=p.frameWeight==='heavy',octagonal=p.enclosureProfile==='octagonal',frame=w*(heavy?.078:.058),flare=Number(p.hoodFlare);
  add('foot',profileSolid([{y:0,width:w*1.04,depth:d*1.06,chamfer:w*.08},{y:w*.055,width:w*1.10,depth:d*1.12,chamfer:w*.08}]),'structure');
- add('base',profileSolid([{y:w*.04,width:w*1.06,depth:d*1.08,chamfer:w*.08},{y:w*.095,width:w*1.14,depth:d*1.16,chamfer:w*.09},{y:baseTop,width:w*.94,depth:d*.96,chamfer:w*.07}]),'body');
+ add('base',profileSolid([{y:w*.04,width:w*1.08,depth:d*1.10,chamfer:w*.08},{y:w*.095,width:w*1.14,depth:d*1.16,chamfer:w*.09},{y:baseTop,width:w*.94,depth:d*.96,chamfer:w*.07}]),'body');
  const chamfer=octagonal?w*.23:w*.06;
  add('enclosure',profileSolid([{y:baseTop,width:w*.87,depth:d*.88,chamfer:chamfer*.85},{y:baseTop+h*.16,width:w,depth:d,chamfer},{y:hoodBottom-h*.18,width:w*.96,depth:d*.96,chamfer:chamfer*.94},{y:hoodBottom,width:w*.86,depth:d*.88,chamfer:chamfer*.82}]),'enclosure');
  for(const [name,y,width,depth] of [['lower-frame',baseTop,w*.93,d*.98],['upper-frame',hoodBottom-w*.025,w*.91,d*.98]] as const){
-  const ring=profileSolid([{y,width,depth,chamfer:octagonal?w*.18:w*.035},{y:y+w*.045,width,depth,chamfer:octagonal?w*.18:w*.035}]); // corner chamfer clear of the globe's (equal chamfers notched at the corners)
-  // The upper frame also carries a band ring over the globe's upper shoulder joint (it read as a jagged notch line); joined so the published part list is unchanged.
-  add(name,name==='upper-frame'?joinedSolids(ring,profileSolid([{y:hoodBottom-h*.18-w*.016,width:w*1.02,depth:d*1.02,chamfer:chamfer*.9},{y:hoodBottom-h*.18+w*.016,width:w*1.02,depth:d*1.02,chamfer:chamfer*.9}])):ring,'body');
+  add(name,profileSolid([{y,width,depth,chamfer:octagonal?w*.18:w*.05},{y:y+w*.045,width,depth,chamfer:octagonal?w*.18:w*.05}]),'body');
  }
  const support=(angle:number)=>{
   const x=Math.cos(angle),z=Math.sin(angle),cut=octagonal?w*.19:w*.045;
@@ -25,7 +23,7 @@ export function generateLantern(input:unknown){
  };
  for(let i=0;i<Number(p.guardCount);i++){
   const angle=(i+.5)*Math.PI*2/Number(p.guardCount),[x,z]=support(angle);
-  add('guard-upright-'+i,protectiveGuard([[x*.88,baseTop+w*.012,z*.88],[x,baseTop+h*.19,z],[x*.96,baseTop+h*.82,z*.96],[x*.87,hoodBottom-w*.015,z*.87]],frame*(4/Number(p.guardCount))**.3,w*.032,angle),'structure');
+  add('guard-upright-'+i,protectiveGuard([[x*.88,baseTop+w*.012,z*.88],[x,baseTop+h*.19,z],[x*.96,baseTop+h*.82,z*.96],[x*.87,hoodBottom-w*.002,z*.87]],frame*(4/Number(p.guardCount))**.3,w*.032,angle),'structure');
  }
  if(p.guardLayout==='crossbar')for(const side of [-1,1])assembly.beam('guard-crossbar-'+side,[-w*.40,baseTop+h*.44,side*d*.50],[w*.40,baseTop+h*.55,side*d*.50],frame*.60,frame*.44,'structure',w*.005);
  add('vent-core',profileSolid([{y:hoodBottom,width:w*.63,depth:d*.64,chamfer:w*.07},{y:hoodBottom+w*.12,width:w*.59,depth:d*.6,chamfer:w*.065}]),'structure');
@@ -61,7 +59,7 @@ export function generateLantern(input:unknown){
   for(let i=0;i<position.count;i++)if(Math.abs(position.getY(i)-bottom)<w*1e-5)position.setY(i,hoodSurface(position.getX(i)+side*seatX,position.getZ(i))-w*.012);
   seat.computeVertexNormals();
   add('handle-seat-'+side,seat,'body',[side*seatX,0,0]);
-  if(p.detail==='inspection'){const pin=add('handle-rivet-'+side,new CylinderGeometry(w*.02,w*.02,w*.02,8),'accent',[side*seatX,handleBase-w*.02,w*.078]);pin.rotation.x=Math.PI/2;}
+  if(p.detail==='inspection'){const pin=add('handle-rivet-'+side,new CylinderGeometry(w*.02,w*.02,w*.02,8),'accent',[side*seatX,handleBase-w*.02,w*.085]);pin.rotation.x=Math.PI/2;}
  }
  const plateDepth=w*.025,buttonDepth=w*.025,plateZ=d*.57;
  assembly.box('switch-plate',[w*.18,w*.10,plateDepth],'structure',[0,w*.115,plateZ]);

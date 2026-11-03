@@ -18,10 +18,7 @@ const builtinDescriptors: Descriptor[] = [{
   id,version:familyVersion(id as Family),title:d.label,description:descriptions[id as Family],
   controls:familyControls(id as Family),defaults:saveFamilyConfiguration(id as Family,{}).applied,
   presets:d.presets.map(p=>({...p,description:p.name+' proportions'})),
-  // Tree foliage follows the season control, so a bare {colorway} never reached the crown (ember trees came out green).
-  // Non-forest tree palettes therefore carry their foliage triad explicitly; forest keeps the seasonal greens.
-  palettes:Object.entries(palettes).map(([way,colors])=>{const parameters=id==='tree'&&way!=='forest'?{'color.foliage':colors.foliage,'color.foliageShade':colors.foliageShade,'color.foliageLight':colors.foliageLight}:undefined;
-   return {id:way,label:way[0]!.toUpperCase()+way.slice(1),colors:d.paletteRoles.map(role=>String(saveFamilyConfiguration(id as Family,{colorway:way,...parameters}).applied['color.'+role])),...(parameters?{parameters}:{})};}),
+  palettes:Object.entries(palettes).map(([way])=>({id:way,label:way[0]!.toUpperCase()+way.slice(1),colors:d.paletteRoles.map(role=>String(saveFamilyConfiguration(id as Family,{colorway:way}).applied['color.'+role]))})),
   save:input=>saveFamilyConfiguration(id as Family,input),state:input=>familyState(id as Family,input),
 }))];
 function builtinCases(id: string) {

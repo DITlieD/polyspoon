@@ -75,7 +75,6 @@ test('family swatches represent used roles and relationship errors name repair c
   const directColors:Record<string,Record<string,string>>={
     'stylized-humanoid':{skin:'#c49375',tunic:'#657764',boots:'#473c36',hair:'#3b302b'},
     'stylized-fox':{fur:'#b95b32',cream:'#eadbc4',dark:'#332c2a'},
-    'rigged-rabbit':{fur:'#9a7b5c',cream:'#efe6d6',dark:'#2b2624'},
   };
   for (const family of catalog) {
     const palette=family.palettes[0],usesColorway=family.controls.some(c=>c.key==='colorway');

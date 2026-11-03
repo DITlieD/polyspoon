@@ -1,4 +1,3 @@
-import { forgeRecipes } from '../src/recipes/forge.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {pathToFileURL} from 'node:url';
@@ -14,23 +13,18 @@ import type {Family} from '../src/families/config.ts';
 import {legacyFamilies} from '../src/families/legacy-config.ts';
 import {loadTypedLegacyConfiguration} from '../src/families/legacy-typed-config.ts';
 import type {Design} from '../src/engine/parameters.ts';
-// Forge families (src/recipes/forge.ts) are new, unpublished additions with no prior baseline.
-// Forge families come from the registry list so each new forge family does not need three test edits.
-const forgeIds=forgeRecipes.map(r=>r.descriptor.id);
 const builtins=['work-lantern','cottage','tree','fence','crate','boulder'];
 const publishedPriorFamilies=[...builtins,'bench','planter','treasure-chest','wheelbarrow','stone-well','conifer'];
 const priorVersion=(id:string)=>{if(!publishedPriorFamilies.includes(id))throw Error('No published construction baseline for '+id);return builtins.includes(id)?'0.5.0':'1.0.0';};
 async function prior(id:string,input={}){const module=await import(pathToFileURL(resolve('public/procedural-modules',id,priorVersion(id),'asset.mjs')).href),root=module.createAsset(input);try{return structuredClone(root.userData.configuration) as Design;}finally{module.disposeAsset(root);}}
-// 1.2.0 revisions only add controls whose defaults keep the accepted construction (stone-well roofStyle, conifer lean, planter foot pads and fill).
-const addedControls:Record<string,string[]>={'stone-well':['roofStyle'],conifer:['lean'],planter:['footPads','fill']};
 const appearance={version:1 as const,palette:'None' as const,shading:'None' as const,partColors:{'ridge-cap-0':'#aabbcc','roof-left-band-0':'#112233','actually-missing':'#123456'}};
 test('new construction revisions validate prior public designs and current reloads',async()=>{
  assert.equal(publishedPriorFamilies.length,12);
- assert.deepEqual(catalog.map(d=>d.id).sort(),[...publishedPriorFamilies,'stylized-humanoid','stylized-fox','rigged-rabbit',...forgeIds].sort());
- for(const id of publishedPriorFamilies){const d=descriptor(id);assert.equal(d.version,builtins.includes(d.id)?'0.6.0':['stone-well','conifer','planter'].includes(d.id)?'1.2.0':'1.1.0');const old=await prior(d.id),next=loadDesign(old);assert.equal(next.familyVersion,d.version);{const added=addedControls[d.id]??[],applied=Object.fromEntries(Object.entries(next.applied).filter(([k])=>!added.includes(k)));assert.deepEqual(applied,old.applied);if(d.id==='stone-well')assert.equal(next.applied.roofStyle,'gable');if(d.id==='conifer')assert.equal(next.applied.lean,0);if(d.id==='planter'){assert.equal(next.applied.fill,'none');assert.equal(next.applied.footPads,false);}}assert.equal(next.migration?.fromVersion,old.familyVersion);assert.equal(next.migration?.toVersion,d.version);assert.match(next.migration!.notice,d.id==='fence'?/fence geometry is unchanged/:/prior geometry is not reproduced/);assert.match(next.migration!.notice,/Indexed part layouts/);assert.deepEqual(loadDesign(JSON.parse(JSON.stringify(next))),next);assert.equal(resolveExport({},old).migration?.notice,next.migration?.notice);assert.equal(descriptor(d.id).save({}).migration,undefined);}
+ assert.deepEqual(catalog.map(d=>d.id).sort(),[...publishedPriorFamilies,'stylized-humanoid','stylized-fox'].sort());
+ for(const id of publishedPriorFamilies){const d=descriptor(id);assert.equal(d.version,builtins.includes(d.id)?'0.6.0':'1.1.0');const old=await prior(d.id),next=loadDesign(old);assert.equal(next.familyVersion,d.version);assert.deepEqual(next.applied,old.applied);assert.equal(next.migration?.fromVersion,old.familyVersion);assert.equal(next.migration?.toVersion,d.version);assert.match(next.migration!.notice,d.id==='fence'?/fence geometry is unchanged/:/prior geometry is not reproduced/);assert.match(next.migration!.notice,/Indexed part layouts/);assert.deepEqual(loadDesign(JSON.parse(JSON.stringify(next))),next);assert.equal(resolveExport({},old).migration?.notice,next.migration?.notice);assert.equal(descriptor(d.id).save({}).migration,undefined);}
 });
 test('reviewed rig current versions reload without an invented prior publication',()=>{
- for(const [id,version] of Object.entries({'stylized-humanoid':'1.1.0','stylized-fox':'1.2.0'})){
+ for(const [id,version] of Object.entries({'stylized-humanoid':'1.0.0','stylized-fox':'1.1.0'})){
   const d=descriptor(id),saved=d.save({});assert.equal(d.version,version);assert.equal(saved.familyVersion,version);assert.equal(saved.migration,undefined);assert.deepEqual(loadDesign(saved),saved);
  }
 });

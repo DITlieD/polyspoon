@@ -1,12 +1,10 @@
 // Minimal, dependency-free GLB reader used by format conversion. It runs in
 // Node and in Cloudflare Workers. It bakes node transforms into world space
 // (meters, +Y up, right handed, as glTF requires) and keeps base-color
-// materials. Textures, skins, animations, vertex colors, morph targets and
-// non-triangle primitives are not carried over; every such loss is listed in
-// ReadScene.dropped so callers can warn instead of shipping a silent downgrade.
-export interface ReadMaterial {name:string;color:[number,number,number,number];metallic:number;roughness:number;doubleSided:boolean;/** Linear emissive RGB (emissiveFactor x KHR_materials_emissive_strength); absent when the material does not glow. */emissive?:[number,number,number]}
-export interface ReadMesh {/** Source node+mesh; primitives sharing it are one object with several materials. */group?:string;name:string;positions:Float64Array;normals:Float64Array|null;uvs:Float64Array|null;indices:Uint32Array;material:number}
-export interface ReadScene {meshes:ReadMesh[];materials:ReadMaterial[];skinned:boolean;animated:boolean;textured:boolean;dropped:string[]}
+// materials. Textures, skins and animations are not carried over.
+export interface ReadMaterial {name:string;color:[number,number,number,number];metallic:number;roughness:number;doubleSided:boolean}
+export interface ReadMesh {name:string;positions:Float64Array;normals:Float64Array|null;uvs:Float64Array|null;indices:Uint32Array;material:number}
+export interface ReadScene {meshes:ReadMesh[];materials:ReadMaterial[];skinned:boolean;animated:boolean;textured:boolean}
 type Matrix=Float64Array;
 const identity=():Matrix=>Float64Array.of(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);
 function multiply(a:Matrix,b:Matrix):Matrix{const out=new Float64Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++){let sum=0;for(let k=0;k<4;k++)sum+=a[k*4+r]!*b[c*4+k]!;out[c*4+r]=sum;}return out;}
@@ -44,17 +42,15 @@ function accessor(json:any,bin:Uint8Array,index:number):{values:Float64Array;siz
 }
 export function readGlb(input:Uint8Array):ReadScene{
  const {json,bin}=parseGlb(input),meshes:ReadMesh[]=[];
- const materials:ReadMaterial[]=(json.materials??[]).map((m:any,i:number)=>({name:String(m.name||'material_'+i),color:(m.pbrMetallicRoughness?.baseColorFactor??[1,1,1,1]) as ReadMaterial['color'],metallic:m.pbrMetallicRoughness?.metallicFactor??1,roughness:m.pbrMetallicRoughness?.roughnessFactor??1,doubleSided:!!m.doubleSided,...(m.emissiveFactor?.some((v:number)=>v>0)?{emissive:(m.emissiveFactor as number[]).map(v=>v*(m.extensions?.KHR_materials_emissive_strength?.emissiveStrength??1)) as [number,number,number]}:{})}));
+ const materials:ReadMaterial[]=(json.materials??[]).map((m:any,i:number)=>({name:String(m.name||'material_'+i),color:(m.pbrMetallicRoughness?.baseColorFactor??[1,1,1,1]) as ReadMaterial['color'],metallic:m.pbrMetallicRoughness?.metallicFactor??1,roughness:m.pbrMetallicRoughness?.roughnessFactor??1,doubleSided:!!m.doubleSided}));
  const sourceMaterials=materials.length;let fallback=-1;const fallbackMaterial=()=>{if(fallback<0){fallback=materials.length;materials.push({name:'default',color:[0.8,0.8,0.8,1],metallic:0,roughness:1,doubleSided:false});}return fallback;};
- const dropped=new Set<string>();let skippedPrimitives=0;
  const scene=json.scenes?.[json.scene??0],used=new Map<string,number>([['Materials',1]]),visiting=new Set<number>();
  const visit=(index:number,parent:Matrix)=>{
   const node=json.nodes?.[index];if(!node)throw Error('glb_node_missing');if(visiting.has(index))throw Error('glb_node_cycle');visiting.add(index);
   const local=node.matrix?Float64Array.from(node.matrix):compose(node.translation,node.rotation,node.scale),world=multiply(parent,local);
   if(node.mesh!==undefined){const mesh=json.meshes?.[node.mesh];if(!mesh)throw Error('glb_mesh_missing');const n=normalMatrix(world);
    mesh.primitives.forEach((p:any,pi:number)=>{
-    if((p.mode??4)!==4||p.attributes.POSITION===undefined){skippedPrimitives++;return;}
-    if(p.attributes.COLOR_0!==undefined)dropped.add('vertex colors');if(p.targets?.length)dropped.add('morph targets');if(p.attributes.TEXCOORD_1!==undefined)dropped.add('secondary UV sets');
+    if((p.mode??4)!==4||p.attributes.POSITION===undefined)return;
     const position=accessor(json,bin,p.attributes.POSITION);if(position.size!==3)throw Error('glb_position_type');const pos=position.values,count=pos.length/3,positions=new Float64Array(count*3);
     for(let v=0;v<count;v++){const x=pos[v*3]!,y=pos[v*3+1]!,z=pos[v*3+2]!;for(let r=0;r<3;r++)positions[v*3+r]=world[r]!*x+world[4+r]!*y+world[8+r]!*z+world[12+r]!;}
     let normals:Float64Array|null=null;if(p.attributes.NORMAL!==undefined){const src=accessor(json,bin,p.attributes.NORMAL).values;normals=new Float64Array(count*3);for(let v=0;v<count;v++){const x=src[v*3]!,y=src[v*3+1]!,z=src[v*3+2]!;let nx=n[0]![0]!*x+n[0]![1]!*y+n[0]![2]!*z,ny=n[1]![0]!*x+n[1]![1]!*y+n[1]![2]!*z,nz=n[2]![0]!*x+n[2]![1]!*y+n[2]![2]!*z;const l=Math.hypot(nx,ny,nz)||1;normals[v*3]=nx/l;normals[v*3+1]=ny/l;normals[v*3+2]=nz/l;}}
@@ -65,17 +61,13 @@ export function readGlb(input:Uint8Array):ReadScene{
     // 'Materials' is reserved: the USD writer puts its material Scope beside the meshes.
     let base=String(node.name||mesh.name||'mesh').replace(/[^A-Za-z0-9_]/g,'_')||'mesh';if(/^[0-9]/.test(base))base='m_'+base;if(mesh.primitives.length>1)base+='_'+pi;
     const seen=used.get(base)??0;used.set(base,seen+1);
-    meshes.push({group:index+':'+node.mesh,name:seen?base+'_'+seen:base,positions,normals,uvs,indices,material:Number.isInteger(p.material)&&p.material>=0&&p.material<sourceMaterials?p.material:fallbackMaterial()});
+    meshes.push({name:seen?base+'_'+seen:base,positions,normals,uvs,indices,material:Number.isInteger(p.material)&&p.material>=0&&p.material<sourceMaterials?p.material:fallbackMaterial()});
    });
   }
   for(const child of node.children??[])visit(child,world);
   visiting.delete(index);
  };
  for(const root of scene?.nodes??[])visit(root,identity());
- const skinned=!!json.skins?.length,animated=!!json.animations?.length,textured=!!json.textures?.length;
- if(skinned)dropped.add('skins (exported as the bind-pose static mesh)');if(animated)dropped.add('animations');if(textured)dropped.add('textures (base-color factors only)');
- if(skippedPrimitives)dropped.add(skippedPrimitives+' non-triangle primitive(s)');
- if((json.materials??[]).some((m:any)=>m.alphaMode==='MASK'||Object.keys(m.extensions??{}).some(k=>k!=='KHR_materials_emissive_strength')))dropped.add('alpha-mask or extension material properties');
- return {meshes,materials,skinned,animated,textured,dropped:[...dropped]};
+ return {meshes,materials,skinned:!!json.skins?.length,animated:!!json.animations?.length,textured:!!json.textures?.length};
 }
 export function bounds(scene:Pick<ReadScene,'meshes'>){const min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];for(const m of scene.meshes)for(let i=0;i<m.positions.length;i+=3)for(let c=0;c<3;c++){min[c]=Math.min(min[c]!,m.positions[i+c]!);max[c]=Math.max(max[c]!,m.positions[i+c]!);}return {min,max};}

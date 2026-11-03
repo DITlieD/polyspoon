@@ -8,7 +8,7 @@ import {gunzipSync} from 'node:zlib';
 const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 const verificationInputs=new Set(['evidence/revision5/recipes/legacy-baseline.json','evidence/revision7/catalog/seven-family-baseline.json','evidence/revision7/catalog/reviewed-defaults.json','evidence/revision7/catalog/scene-inputs.json']);
 const blocked=/^(?:\.git(?:\/|$)|\.env(?:\.|\/|$)|PLAN\.md$|OUTPUTS\.md$|AGENTS\.md$|docs\/(?:references|review|implementation|pilot)(?:\/|$)|(?:hosted|server)\/\.local(?:\/|$)|(?:evidence|exports|dist|node_modules|\.runtime|\.wrangler)(?:\/|$))/;
-const rules=[['credential',/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|github_pat_[A-Za-z0-9_]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|\bAKIA[A-Z0-9]{16}\b|\b(?:cfat_|sb_secret_|re_)[A-Za-z0-9_-]{20,}\b/],['private-path',/\/home\/[a-z][a-z0-9_-]*\/|\.codex\/task-state/],['private-context',/\b01[a-f0-9]{6}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\b|codex[_]delegation|source[_]thread[_]id|vendor\/polyfork/i]];
+const rules=[['credential',/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|github_pat_[A-Za-z0-9_]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|\bAKIA[A-Z0-9]{16}\b|\b(?:cfat_|sb_secret_|re_)[A-Za-z0-9_-]{20,}\b/],['private-path',/\/home\/(?:lied|raian)\b|\.codex\/task-state|teikoku\/brain|work[_]games/],['private-context',/\b01[a-f0-9]{6}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\b|codex[_]delegation|source[_]thread[_]id|vendor\/polyfork/i]];
 
 export function validateReleasePaths(paths){
  if(!Array.isArray(paths)||!paths.length||new Set(paths).size!==paths.length)throw Error('Invalid release file list');

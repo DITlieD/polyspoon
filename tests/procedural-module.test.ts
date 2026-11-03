@@ -18,8 +18,7 @@ import { proceduralPackageFor, verifiedModule } from '../src/site/procedural-dow
 test('all registered recipes publish synchronous modules and typed pinned metadata',async()=>{
   const directory=join(process.cwd(),'.runtime/procedural-module');await mkdir(directory,{recursive:true});const output=await mkdtemp(join(directory,'packages-'));
   const index=await buildProceduralModules(output,{retainPublished:true});
-  // Every current recipe has a package; older published releases of bumped recipes are retained alongside.
-  assert.ok(index.packages.length>=catalog.length);for(const d of catalog)assert.ok(index.packages.some((p:{id:string;version:string})=>p.id===d.id&&p.version===d.version),d.id);
+  assert.equal(index.packages.length,catalog.length);
   for(const d of catalog){
     const p=proceduralPackageFor(index,d.id,d.version);
     assert.ok(p);

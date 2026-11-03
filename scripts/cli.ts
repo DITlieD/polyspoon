@@ -9,7 +9,7 @@ import type { MigrationNotice } from '../src/engine/parameters.ts';
 import { measurements } from '../src/catalog/measure.ts';
 import { geometrySnapshot, inspectGeometry } from '../src/lantern/inspect.ts';
 import { sha256, sourceProvenance } from './provenance.ts';
-import { convertGlbReport, exportFormats, type ExportFormat } from '../src/formats/index.ts';
+import { convertGlb, exportFormats, type ExportFormat } from '../src/formats/index.ts';
 import { controlsDocument } from '../src/formats/controls.ts';
 
 const [command,...args] = process.argv.slice(2);
@@ -25,7 +25,7 @@ async function exportOne(family: string,input: unknown,output: string,provenance
   try {
     const geometry=inspectGeometry(build.root);
     if (geometry.errors.length) throw new Error(geometry.errors.join('; '));
-    const bytes=await exportDeliverable(build,{stripUnusedUvs:command==='export'});
+    const bytes=await exportDeliverable(build);
     const validation=await validateBytes(bytes,{uri:output,maxIssues:100});
     if (validation.issues.numErrors || validation.issues.numWarnings) throw new Error('glTF validation failed: '+JSON.stringify(validation.issues));
     const measured=measurements(build), configHash=sha256(JSON.stringify(build.config));
@@ -53,11 +53,9 @@ async function main() {
     const result=await exportOne(resolved.family,resolved.input,output,provenance,false,resolved.migration);
     await writeFile(output+'.provenance.json',JSON.stringify(provenance,null,2));
     const glb=new Uint8Array(await readFile(output)),stem=output.slice(0,-4),name=stem.split('/').at(-1)!,extra:Record<string,string>={};
-    const dropped=new Set<string>();
-    for(const format of new Set(requested))if(format!=='glb'){const path=stem+exportFormats[format as ExportFormat].extension,converted=convertGlbReport(glb,format as ExportFormat,name);await writeFile(path,converted.bytes);extra[format]=path;converted.dropped.forEach(d=>dropped.add(d));}
-    if(dropped.size)console.error('WARNING: OBJ/FBX/USDZ are lossy for '+resolved.family+': dropped '+[...dropped].join('; ')+'. Ship the GLB for full fidelity.');
+    for(const format of new Set(requested))if(format!=='glb'){const path=stem+exportFormats[format as ExportFormat].extension;await writeFile(path,convertGlb(glb,format as ExportFormat,name));extra[format]=path;}
     await writeFile(stem+'.controls.json',JSON.stringify(controlsDocument({design:result.configuration,glb}),null,2)+'\n');
-    console.log(JSON.stringify({output,formats:extra,controls:stem+'.controls.json',triangles:result.geometry.triangles,bytes:result.glbBytes,issues:result.validation.issues,derivedFormatLosses:[...dropped]},null,2));
+    console.log(JSON.stringify({output,formats:extra,controls:stem+'.controls.json',triangles:result.geometry.triangles,bytes:result.glbBytes,issues:result.validation.issues},null,2));
     return;
   }
   if (command!=='validate') throw new Error('Use export or validate');

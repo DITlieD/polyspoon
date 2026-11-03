@@ -1,5 +1,4 @@
 import { humanoidRecipe as rawHumanoidRecipe } from '../../examples/recipes/stylized-humanoid/index.ts';
-import { rabbitRecipe as rawRabbitRecipe } from '../../examples/recipes/rigged-rabbit/index.ts';
 import { foxRecipe as rawFoxRecipe } from '../../examples/recipes/stylized-fox/index.ts';
 import { disposeAsset } from '../catalog/build.ts';
 import { createHumanoidMotion } from '../rigging/motion.ts';
@@ -21,4 +20,3 @@ function riggedRecipe(raw:Recipe,createMotion:(build:RiggedAssetBuild)=>void,exp
 }
 export const humanoidRecipe=riggedRecipe(rawHumanoidRecipe,createHumanoidMotion,'humanoidRecipe');
 export const foxRecipe=riggedRecipe(rawFoxRecipe,createFoxMotion,'foxRecipe');
-export const rabbitRecipe=riggedRecipe(rawRabbitRecipe,createFoxMotion,'rabbitRecipe');

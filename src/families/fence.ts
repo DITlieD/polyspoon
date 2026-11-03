@@ -17,7 +17,7 @@ export function fence(config:Configuration){
     const peg=a.mesh('joint-peg-'+i+'-'+level+'-'+end,new CylinderGeometry(railHeight*.105,railHeight*.105,.018,7),'timber',[x+end*span+(end?-1:1)*post*.31,y,railDepth*.55]);peg.rotation.x=Math.PI/2;
    }
   }
-  if(p.railStyle==='cross-braced')a.beam('brace-'+i,[x+post*.2,h*.24,-railDepth*.55],[x+span-post*.2,h*.77,-railDepth*.55],railHeight*.7,railDepth*.65,'wood',.006);
+  if(p.railStyle==='cross-braced')a.beam('brace-'+i,[x+post*.2,h*.24,-railDepth*.72],[x+span-post*.2,h*.77,-railDepth*.72],railHeight*.7,railDepth*.65,'wood',.006);
   if(p.infill==='pickets'){
    const width=(.055+h*.018)*(heavy?1:.86),space=Math.max(Number(p.picketSpacing),width+.02),usable=span-post*1.15,count=Math.max(1,Math.floor(usable/space));
    const actual=usable/count;

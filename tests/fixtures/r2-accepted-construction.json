@@ -67,7 +67,7 @@
       "family": "work-lantern",
       "version": "0.6.0",
       "input": {},
-      "geometryHash": "d42d97c47210356a28ef8744dcef0ecf9a3e47f21846c18e81eb2c76805434cf",
+      "geometryHash": "27073676a0c3b3934b76d7b8cf4a18a45c4b1e6dbd18269ae468d1a3fe9a018d",
       "materialsHash": "cfe6fe0a35c7ed6b0341f2e269d21c2597faa588f38e4d87d64215d3f944d9bb",
       "config": {
         "formatVersion": 1,
@@ -97,7 +97,7 @@
       },
       "dimensions": [
         0.40639999508857727,
-        0.742275059223175,
+        0.7413318753242493,
         0.33324798941612244
       ],
       "parts": 22
@@ -106,7 +106,7 @@
       "family": "cottage",
       "version": "0.6.0",
       "input": {},
-      "geometryHash": "dff7d3266a2a75cbae369ac3882d1f37a22d1c6c03eb438a22168cff07c89dc5",
+      "geometryHash": "0b625315d3559c1d7d6b9be58e8e9b20ebd8c12e44a36257b340f93a969e62f9",
       "materialsHash": "b63de1884764fa562d4e6b6d482b3902888c5400f11f7b98283085e53879e7e2",
       "config": {
         "formatVersion": 1,
@@ -156,7 +156,7 @@
       "family": "tree",
       "version": "0.6.0",
       "input": {},
-      "geometryHash": "9d05e0272ea1d42b2e4bdd8ed881e6ae8120423a2c0053bf5ab145bac1292757",
+      "geometryHash": "dffe037d466a207c37f6fff6fec9e74691b75b4083ae4a90e192ae6d7c27cea6",
       "materialsHash": "8ff9a916e26231c73f7a202faf5c7cc880f168bb8b2488e8baba2d5ffbbeb085",
       "config": {
         "formatVersion": 1,
@@ -230,7 +230,7 @@
       "family": "crate",
       "version": "0.6.0",
       "input": {},
-      "geometryHash": "7642e8e333482f0e6e549df13f0538ff3e066e96eca9e23a06c5a628e902a225",
+      "geometryHash": "7c189bc036949d844607994d6bc8057feae1d1136a1120481484c350d30470a3",
       "materialsHash": "4644c2d2128854d332762ae176015db316a1d54b1fec0de9b8f00a2a5e8af620",
       "config": {
         "formatVersion": 1,
@@ -303,7 +303,7 @@
       "family": "bench",
       "version": "1.1.0",
       "input": {},
-      "geometryHash": "2d252b114ce02c84933e443c64d03dcedaa7e6c56c6f33e2e6e06f245f5ce1ff",
+      "geometryHash": "4f3963ccccebc7de47b35d46c530cebdaa675566c8e9624bd389dbd2af433308",
       "materialsHash": "98218f9355208a61b6474d1e6e216637a83e8dd6efc3eeec496c4e1b9b04b876",
       "config": {
         "formatVersion": 1,
@@ -324,7 +324,7 @@
       },
       "dimensions": [
         1.600000023841858,
-        0.8000000132322311,
+        0.8000000037252903,
         0.4500000011324883
       ],
       "parts": 16
@@ -333,7 +333,7 @@
       "family": "planter",
       "version": "1.1.0",
       "input": {},
-      "geometryHash": "5306f958f21ed93864c6f8b5caa431383ece3a46a227b795af947e728d809e9c",
+      "geometryHash": "982dd925fccf9519f63b0d6f33f0767cee76f502da5e1ebcb9a9e7beaed60d38",
       "materialsHash": "3e59be85326304737b990a1bcf84cfbdf8c76059373f6c7c7a9d18d54f680a47",
       "config": {
         "formatVersion": 1,
@@ -362,7 +362,7 @@
       "family": "treasure-chest",
       "version": "1.1.0",
       "input": {},
-      "geometryHash": "29674dfc14fc9c2f11a04b45774d251f14592ff7cf13d9c416c87b3347a53c04",
+      "geometryHash": "4fdac7d924030612e208e726c1059738829b5921f9637344ae360c6bab58064e",
       "materialsHash": "9955ea70125185e3f156dd9ad3e5d987db97f9854e5a6ae264d3210e720132f6",
       "config": {
         "formatVersion": 1,
@@ -384,7 +384,7 @@
         }
       },
       "dimensions": [
-        1.218000001400709,
+        1.2000000476837158,
         0.8867059353739023,
         0.7550000015459954
       ],
@@ -394,7 +394,7 @@
       "family": "wheelbarrow",
       "version": "1.1.0",
       "input": {},
-      "geometryHash": "e45b9d06c41c8600ea0128e3c63c27d6aaca39178a166fcdf33c9076c29e1334",
+      "geometryHash": "c4ee675d1d7195776efbd985ab18d2f36b7008749cdd3a3ffc762766fcd9f4c6",
       "materialsHash": "9c873a25e938f09563ab6af435ea216fa3d13a08a9ce304e36f84b730ea4b884",
       "config": {
         "formatVersion": 1,
@@ -415,8 +415,8 @@
         }
       },
       "dimensions": [
-        0.7008227705955505,
-        0.9400000045448543,
+        0.7007982730865479,
+        0.9400000087171794,
         2.005978803038597
       ],
       "parts": 51
@@ -425,7 +425,7 @@
       "family": "stone-well",
       "version": "1.1.0",
       "input": {},
-      "geometryHash": "895d7b37d0e5bdbe5db6806ee8b53fd588912a10ae4735286d3891b97440e2ff",
+      "geometryHash": "e9f6ca94e81787ed9a7f93572d7e7e17102df0ddc9b53cf927557926073933ba",
       "materialsHash": "831adbb1e182a5e938f66766240e27ad5f526b6b4216589aebbcccc6ca8ad31c",
       "config": {
         "formatVersion": 1,
@@ -449,7 +449,7 @@
         }
       },
       "dimensions": [
-        2.9860000610351562,
+        2.9700000286102295,
         3.237104892730713,
         2.6150179651550234
       ],
@@ -483,200 +483,6 @@
         3.8000000715255737
       ],
       "parts": 109
-    }
-  ],
-  "revisions": [
-    {
-      "family": "cottage",
-      "date": "2026-10-27",
-      "previousGeometryHash": "0b625315d3559c1d7d6b9be58e8e9b20ebd8c12e44a36257b340f93a969e62f9",
-      "geometryHash": "4b2eeef2c2eea88c9666afce52e1b5732473ab13c2cae075ea0c2cfed3b36e1e",
-      "reason": "Review round 3: eave wall-plate ends stop under the roof deck (pierced tiles on compact roofs); jamb posts 1 cm proud of plaster piers, sill/fascia/rake ends trimmed so no mixed-material faces are coplanar (z-fighting).",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "tree",
-      "date": "2026-10-27",
-      "previousGeometryHash": "dffe037d466a207c37f6fff6fec9e74691b75b4083ae4a90e192ae6d7c27cea6",
-      "geometryHash": "b7836d1a44887a0e1eeaaad818f25105cb9a3a3265859e913a168f333f518784",
-      "reason": "Review round 3: side branches start on the trunk axis at their height with radius <= 0.78x the local trunk radius (branch butt overshot the trunk at the fork).",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "crate",
-      "date": "2026-10-27",
-      "previousGeometryHash": "7c189bc036949d844607994d6bc8057feae1d1136a1120481484c350d30470a3",
-      "geometryHash": "95b1accc7943e05282811691f139682cbeefc4b82b9b4a9639e12a098bc9dac3",
-      "reason": "Review round 3: closed-lid upper rim and corner-post tops sink 3 mm below the lid planks, floor boards stop 3 mm short of the rims (coplanar z-fighting); diagonal brace ends pulled inside the corner posts.",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "crate",
-      "date": "2026-10-27",
-      "previousGeometryHash": "95b1accc7943e05282811691f139682cbeefc4b82b9b4a9639e12a098bc9dac3",
-      "geometryHash": "328b48c648e34689bd947fb0c1c87b35dbfe19e5df92e82aa1604e9b002896d5",
-      "reason": "Review round 4: wall planks whose outer faces would sit flush with the rim outer faces are recessed 4 mm (plank/rim z-fighting, found on crate-c-tall; the default proportions hit the same flush plane).",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "bench",
-      "date": "2026-10-27",
-      "previousGeometryHash": "4f3963ccccebc7de47b35d46c530cebdaa675566c8e9624bd389dbd2af433308",
-      "geometryHash": "38b3cc48f4ef47741196bdf5d1b71347f2f077dc5b4b5ed1509e18efa1a0115d",
-      "reason": "Review round 4: back slats top out 6 mm below the back posts so their top faces are no longer coplanar (z-fighting).",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true,
-      "dimensionsNote": "Height now read from the back posts instead of the slats: 0.8000000037 -> 0.8 (float rounding only, no visible size change)."
-    },
-    {
-      "family": "planter",
-      "date": "2026-10-27",
-      "previousGeometryHash": "982dd925fccf9519f63b0d6f33f0767cee76f502da5e1ebcb9a9e7beaed60d38",
-      "geometryHash": "5306f958f21ed93864c6f8b5caa431383ece3a46a227b795af947e728d809e9c",
-      "reason": "Review round 4: posts sink 4 mm into the feet so post bottoms are no longer coplanar with the floor underside (z-fighting).",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "stone-well",
-      "date": "2026-10-27",
-      "previousGeometryHash": "e9f6ca94e81787ed9a7f93572d7e7e17102df0ddc9b53cf927557926073933ba",
-      "geometryHash": "bc34f1b99c9efb020b1d8acd1c3ca469b9e5b9812ddcea895b5e2b99875e4a1a",
-      "reason": "Review round 4: gable ridge beam and fascia boards are inset 6 mm from the roof-board ends (coplanar end faces z-fought).",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "cottage",
-      "date": "2026-10-27",
-      "previousGeometryHash": "4b2eeef2c2eea88c9666afce52e1b5732473ab13c2cae075ea0c2cfed3b36e1e",
-      "geometryHash": "547c3de58daa130cc7768e06a6f5a35ab3e6b98796063c8d985109a78c1abb17",
-      "reason": "Review round 5: shutters 6 mm further out and shutter bands 6 mm out (shutter faces were 1.5 mm from the corner-post faces), shutter edges kept 6 mm clear of front-bay posts, door latch moved 1 cm, work-bay worktop widened 2 cm and posts moved 15 mm in depth (all near-coplanar mixed-material faces under the 3 mm detector tolerance).",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "tree",
-      "date": "2026-10-27",
-      "previousGeometryHash": "b7836d1a44887a0e1eeaaad818f25105cb9a3a3265859e913a168f333f518784",
-      "geometryHash": "8a5b8f9646bf262af35ce1eec6c6a28d485ea470498f2c454ec58c728f7a3408",
-      "reason": "Review round 5: side branches root one socket radius lower inside the trunk (wedge at the fork) and taper evenly into the crown through an extra station (pinch under the canopy).",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "crate",
-      "date": "2026-10-27",
-      "previousGeometryHash": "328b48c648e34689bd947fb0c1c87b35dbfe19e5df92e82aa1604e9b002896d5",
-      "geometryHash": "0a501c7bc0e4eae288cd7f7d9f420e173bb643961321471796dedb1563d5a3a7",
-      "reason": "Review round 5: closed-lid corner caps and upper rim sink 6 mm (3 mm still z-fought at distance), floor boards trimmed 6 mm, planks keep every face 5 mm from rim, corner-post and crossing-plank planes, and side planks butt against the front planks instead of overlapping them.",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "stone-well",
-      "date": "2026-10-27",
-      "previousGeometryHash": "bc34f1b99c9efb020b1d8acd1c3ca469b9e5b9812ddcea895b5e2b99875e4a1a",
-      "geometryHash": "9a51f009c04a201f9f134c4fe2efd709a2cde514e60aa8a5aecf040228830244",
-      "reason": "Review round 5: gable rafters sit 12 mm lower and run 12 mm longer at the eave, so their tops and end cuts no longer coincide with roof-board faces.",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "work-lantern",
-      "date": "2026-10-27",
-      "previousGeometryHash": "14b442e81e08ab9255fb6ec2fa27287446fa1d116e918b79303edf4873ef51f6",
-      "geometryHash": "d42d97c47210356a28ef8744dcef0ecf9a3e47f21846c18e81eb2c76805434cf",
-      "reason": "Review round 6: a band ring (joined into the upper-frame part, part list unchanged) covers the globe shoulder seam; utility frames use 3.5% corner chamfers; rivets re-seated.",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "cottage",
-      "date": "2026-10-27",
-      "previousGeometryHash": "547c3de58daa130cc7768e06a6f5a35ab3e6b98796063c8d985109a78c1abb17",
-      "geometryHash": "dff7d3266a2a75cbae369ac3882d1f37a22d1c6c03eb438a22168cff07c89dc5",
-      "reason": "Review round 6 (z-fight detector now compares same-material faces): side-wall piers, rear/front walls and pier ends trimmed 6 mm off the plaster faces; step, lintel, door boards, corner posts, sills, gable braces, roof courses/thatch bands and deck ends offset 4.5-18 mm; chimney courses bed 4 mm into the course above (12 mm gaps floated).",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "tree",
-      "date": "2026-10-27",
-      "previousGeometryHash": "8a5b8f9646bf262af35ce1eec6c6a28d485ea470498f2c454ec58c728f7a3408",
-      "geometryHash": "9d05e0272ea1d42b2e4bdd8ed881e6ae8120423a2c0053bf5ab145bac1292757",
-      "reason": "Review round 6: branch roots sit 0.5x the fork trunk radius on the trunk axis and rise to the fork before turning out, tapering 0.7/0.5/0.32; the main branch starts inside the upper trunk and crosses the trunk top just under its radius (no collar, no butt cap).",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "crate",
-      "date": "2026-10-27",
-      "previousGeometryHash": "0a501c7bc0e4eae288cd7f7d9f420e173bb643961321471796dedb1563d5a3a7",
-      "geometryHash": "7642e8e333482f0e6e549df13f0538ff3e066e96eca9e23a06c5a628e902a225",
-      "reason": "Review round 6: side planks embed 2 mm into the front planks, closed upper rim 10 mm below the top, side rims 8 mm lower, diagonal brace runs post to post.",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": true
-    },
-    {
-      "family": "bench",
-      "date": "2026-10-27",
-      "previousGeometryHash": "38b3cc48f4ef47741196bdf5d1b71347f2f077dc5b4b5ed1509e18efa1a0115d",
-      "geometryHash": "2d252b114ce02c84933e443c64d03dcedaa7e6c56c6f33e2e6e06f245f5ce1ff",
-      "reason": "Review round 6: legs stop 14 mm under the seat underside, back posts start 8 cm lower (same-material flush faces).",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": false,
-      "previousDimensions": [
-        1.600000023841858,
-        0.8,
-        0.4500000011324883
-      ]
-    },
-    {
-      "family": "treasure-chest",
-      "date": "2026-10-27",
-      "previousGeometryHash": "4fdac7d924030612e208e726c1059738829b5921f9637344ae360c6bab58064e",
-      "geometryHash": "29674dfc14fc9c2f11a04b45774d251f14592ff7cf13d9c416c87b3347a53c04",
-      "reason": "Review round 6: base inset 6 mm, front/side rims re-seated, cheeks 2 mm into the rim, lid rails moved off the lid underside (front rail 4 mm proud of the lid front so the latch seats), hinge barrels 10 cm long; width grows 18 mm from the front rim overhang.",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": false,
-      "previousDimensions": [
-        1.2000000476837158,
-        0.8867059353739023,
-        0.7550000015459954
-      ]
-    },
-    {
-      "family": "wheelbarrow",
-      "date": "2026-10-27",
-      "previousGeometryHash": "c4ee675d1d7195776efbd985ab18d2f36b7008749cdd3a3ffc762766fcd9f4c6",
-      "geometryHash": "e45b9d06c41c8600ea0128e3c63c27d6aaca39178a166fcdf33c9076c29e1334",
-      "reason": "Review round 6: tray boards bear on each other, straps run from under the floor up the splayed sides with a foot beam joined into each strap (part list unchanged), leg braces embed into the leg and handle rail, wheel braces/spokes offset off the hub faces.",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": false,
-      "previousDimensions": [
-        0.7007982730865479,
-        0.9400000087171794,
-        2.005978803038597
-      ]
-    },
-    {
-      "family": "stone-well",
-      "date": "2026-10-27",
-      "previousGeometryHash": "9a51f009c04a201f9f134c4fe2efd709a2cde514e60aa8a5aecf040228830244",
-      "geometryHash": "895d7b37d0e5bdbe5db6806ee8b53fd588912a10ae4735286d3891b97440e2ff",
-      "reason": "Review round 6: mortar top 6 mm under the top course, gable rafters 132/96 mm (6 mm off the tie and roof-board end faces), braces 90/78 mm, lapped roof-board joints/ends offset, ridge inset 16 mm and ridge cover 8 mm past the boards (width +16 mm), fascia raised, rope coils bed into the drum, hanging rope reaches the drum; hipped ties bed 6 mm into the cap and stop 12 mm short.",
-      "materialsUnchanged": true,
-      "dimensionsUnchanged": false,
-      "previousDimensions": [
-        2.9700000286102295,
-        3.237104892730713,
-        2.6150179651550234
-      ]
     }
   ]
 }

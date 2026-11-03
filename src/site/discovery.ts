@@ -5,13 +5,8 @@ const styles:Record<string,string>={
  'stylized-humanoid':'faceted-low-poly','stylized-fox':'faceted-low-poly',
  'work-lantern':'faceted-low-poly',cottage:'faceted-low-poly',tree:'faceted-low-poly',fence:'faceted-low-poly',crate:'faceted-low-poly',boulder:'faceted-low-poly',
  bench:'faceted-low-poly',planter:'faceted-low-poly','treasure-chest':'faceted-low-poly',wheelbarrow:'faceted-low-poly','stone-well':'faceted-low-poly',conifer:'faceted-low-poly',
- 'smithy-anvil':'faceted-low-poly',bookcase:'faceted-low-poly','dining-set':'faceted-low-poly','campfire-cookpot':'faceted-low-poly','alchemy-bench':'faceted-low-poly','weapon-rack':'faceted-low-poly',
- windmill:'faceted-low-poly',watchtower:'faceted-low-poly',footbridge:'faceted-low-poly','market-stall':'faceted-low-poly',pier:'faceted-low-poly','stone-arch':'faceted-low-poly',tent:'faceted-low-poly',
- barrel:'faceted-low-poly',signpost:'faceted-low-poly','lamp-post':'faceted-low-poly','mushroom-cluster':'faceted-low-poly','rock-cluster':'faceted-low-poly','bamboo-clump':'faceted-low-poly','pond':'faceted-low-poly','log-pile':'faceted-low-poly','crystal-cluster':'faceted-low-poly','shrub':'faceted-low-poly','flower-bed':'faceted-low-poly','cactus':'faceted-low-poly','palm-tree':'faceted-low-poly',
- rowboat:'faceted-low-poly','cart-wagon':'faceted-low-poly',sailboat:'faceted-low-poly','hot-air-balloon':'faceted-low-poly','rigged-rabbit':'faceted-low-poly',slime:'faceted-low-poly',
- 'scifi-cargo':'clean-hard-surface',
 };
-export const styleLabels:Record<string,string>={'faceted-low-poly':'Faceted low poly','clean-hard-surface':'Clean hard surface',unclassified:'Unclassified'};
+export const styleLabels:Record<string,string>={'faceted-low-poly':'Faceted low poly',unclassified:'Unclassified'};
 export function modelStyle(id:string):string{return Object.hasOwn(styles,id)?styles[id]!:'unclassified';}
 export interface DiscoveryModel { id:string;title:string;description:string;type:string;style:string;poseable:boolean;triangles:number }
 export interface DiscoveryState { query:string;type:string;style:string;capability:string;sort:string }

@@ -1,31 +1,10 @@
 import { readSemantics } from './semantics.ts';
 import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
-import { Mesh } from 'three';
-import type { Object3D, BufferGeometry, BufferAttribute, InterleavedBufferAttribute } from 'three';
 import type { Preview, AssetBuild, Design } from './index.ts';
-const textureSlots=['map','normalMap','roughnessMap','metalnessMap','aoMap','emissiveMap','alphaMap','bumpMap','lightMap','displacementMap'];
-/**
- * Run an export with TEXCOORD_0 temporarily removed from every mesh whose
- * materials sample no texture, so GLBs do not carry dead UV data. The build's
- * geometries are restored afterwards, untouched.
- */
-export async function withoutUnusedUvs<T>(root:Object3D,run:()=>Promise<T>):Promise<T>{
-  const removed:Array<[BufferGeometry,BufferAttribute|InterleavedBufferAttribute]>=[];
-  root.traverse(object=>{
-    if(!(object instanceof Mesh))return;const geometry=object.geometry as BufferGeometry,uv=geometry.getAttribute('uv');if(!uv)return;
-    const materials=(Array.isArray(object.material)?object.material:[object.material]) as unknown as Record<string,unknown>[];
-    if(materials.some(m=>textureSlots.some(slot=>m[slot])))return;
-    if(removed.some(([g])=>g===geometry))return;
-    removed.push([geometry,uv]);geometry.deleteAttribute('uv');
-  });
-  try{return await run();}finally{for(const [geometry,uv] of removed)geometry.setAttribute('uv',uv);}
-}
-export interface ExportOptions { /** Drop TEXCOORD_0 from untextured meshes. Off by default so accepted historical GLB bytes stay identical. */ stripUnusedUvs?: boolean }
-export async function exportAsset(build: Pick<Preview, 'root'>, options: ExportOptions = {}): Promise<Uint8Array> {
+export async function exportAsset(build: Pick<Preview, 'root'>): Promise<Uint8Array> {
   const semantic=build.root.userData.openpoly!==undefined;
   if(semantic)readSemantics(build.root);
-  const exporter=()=>new GLTFExporter().parseAsync(build.root, { binary: true, onlyVisible: !semantic, trs: false });
-  const result = options.stripUnusedUvs ? await withoutUnusedUvs(build.root, exporter) : await exporter();
+  const result = await new GLTFExporter().parseAsync(build.root, { binary: true, onlyVisible: !semantic, trs: false });
   if (!(result instanceof ArrayBuffer)) throw new Error('Exporter did not produce binary glTF');
   return new Uint8Array(result);
 }
