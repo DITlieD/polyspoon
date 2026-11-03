@@ -12,7 +12,7 @@
 <p align="center">
   <img src="docs/images/cottage.png" width="22%" alt="Cottage" />
   <img src="docs/images/treasure-chest.png" width="22%" alt="Treasure Chest" />
-  <img src="docs/images/stylized-humanoid.png" width="22%" alt="Stylized Humanoid" />
+  <img src="docs/images/work-lantern.png" width="22%" alt="Work Lantern" />
   <img src="docs/images/bench.png" width="22%" alt="Bench" />
 </p>
 
