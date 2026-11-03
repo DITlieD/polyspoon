@@ -72,18 +72,18 @@ function build(input: unknown): AssetBuild {
   }
   const legX = width/2 - 0.12, legZ = depth/2 - 0.075, seatBottom = height - 0.055;
   for (const side of [-1,1]) {
-    for (const end of [-1,1]) part('leg-' + side + '-' + end, 'frame', [0.09,seatBottom-0.014,0.085], [side*legX,(seatBottom-0.014)/2,end*legZ], 'leg'); // top 16 mm under the support top, 6 mm under the apron top (was 2 mm: coplanar-close)
+    for (const end of [-1,1]) part('leg-' + side + '-' + end, 'frame', [0.09,seatBottom,0.085], [side*legX,seatBottom/2,end*legZ], 'leg');
     part('seat-support-' + side, 'frame', [0.105,0.075,depth-0.04], [side*legX,seatBottom-0.0355,0]);
     part('apron-' + side, 'frame', [2*legX,0.085,0.05], [0,seatBottom-0.0505,side*legZ]);
   }
   const gap = 0.012, slatDepth = (depth-gap*(count-1))/count;
   for (let i=0;i<count;i++) part('seat-slat-' + i, 'wood', [width,0.055,slatDepth], [0,height-0.0275,-depth/2+slatDepth/2+i*(slatDepth+gap)]);
   if (p.backrest) {
-    const backHeight = Number(p.backHeight), top = height+backHeight, bottom = seatBottom-0.08, z = -legZ; // foot 7 mm below the support underside (was 2 mm)
+    const backHeight = Number(p.backHeight), top = height+backHeight, bottom = seatBottom-0.075, z = -legZ;
     for (const side of [-1,1]) part('back-post-' + side, 'frame', [0.07,top-bottom,0.065], [side*legX,(top+bottom)/2,z], 'back');
     for (let i=0;i<2;i++) {
       const boardHeight = backHeight*0.3;
-      part('back-slat-' + i, 'wood', [width,boardHeight,0.045], [0,top-0.006-boardHeight/2-i*(boardHeight+0.025),z+0.047], 'back');
+      part('back-slat-' + i, 'wood', [width,boardHeight,0.045], [0,top-boardHeight/2-i*(boardHeight+0.025),z+0.047], 'back');
     }
   }
   root.updateMatrixWorld(true);

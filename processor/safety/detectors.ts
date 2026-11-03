@@ -139,6 +139,9 @@ export function childLikeScan(px:Pixels):Detection{
  if(transparent<n*0.05)return {score:0};
  const {label,out}=components(mask,w,h);const big=out.sort((a,b)=>b.count-a.count)[0];if(!big||big.count<n*0.01)return {score:0};
  const [x0,y0,x1,y1]=big.box,H=y1-y0+1,W=x1-x0+1;if(H<48||H<1.3*W)return {score:0};
+ let separated=false;
+ for(let y=y0+Math.floor(H*0.6);y<=y1;y++){let inBlob=false,transitions=0;for(let x=x0;x<=x1;x++){const hit=label[y*w+x]===big.id;if(hit!==inBlob){transitions++;inBlob=hit;}}if(transitions>2){separated=true;break;}}
+ if(!separated)return {score:0};
  const rows=new Array<number>(H).fill(0);for(let y=y0;y<=y1;y++){let a=-1,b=-1;for(let x=x0;x<=x1;x++)if(label[y*w+x]===big.id){if(a<0)a=x;b=x;}rows[y-y0]=a<0?0:b-a+1;}
  const smooth=rows.map((_,i)=>{let s=0,c=0;for(let k=Math.max(0,i-1);k<=Math.min(H-1,i+1);k++){s+=rows[k]!;c++;}return s/c;});
  let headMax=0,best=0;

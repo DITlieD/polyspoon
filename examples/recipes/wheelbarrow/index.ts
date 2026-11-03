@@ -2,7 +2,7 @@ import {loadConstructionDesign} from '../../../src/engine/construction-migration
 import {load as loadPrior} from '../../../src/recipes/legacy-v1/wheelbarrow.ts';
 import { jointGroup } from '../../../src/catalog/semantics.ts';
 import { Box3, Group, Mesh, MeshStandardMaterial, Vector3, BufferGeometry, CylinderGeometry, LatheGeometry, Vector2, Quaternion } from 'three';
-import { profileSolid, profiledBeam, facetedLoft, joinedSolids } from '../../../src/engine/geometry.ts';
+import { profileSolid, profiledBeam, facetedLoft } from '../../../src/engine/geometry.ts';
 import { parseControls, parameterState, plainRecord } from '../../../src/engine/parameters.ts';
 import type { Control, Design, Descriptor, Parameters } from '../../../src/engine/parameters.ts';
 import type { AssetBuild } from '../../../src/catalog/types.ts';
@@ -69,7 +69,7 @@ function build(input: unknown): AssetBuild {
   for(let i=0;i<5;i++)box('floor-'+i,'wood',[baseWidth/5-0.0015,0.05,baseLength],[-baseWidth/2+(i+0.5)*baseWidth/5,floor+0.025,baseZ]);
   for(const side of [-1,1]) {
     for(let i=0;i<Number(p.boardCount);i++) {
-      const lower=i/Number(p.boardCount),upper=(i+1)/Number(p.boardCount); // boards bear on each other (a 1.5 mm gap left them hanging off the straps)
+      const lower=i/Number(p.boardCount)+(i?0.00075/wallHeight:0),upper=(i+1)/Number(p.boardCount)-(i<Number(p.boardCount)-1?0.00075/wallHeight:0);
       wall('tray-side-'+side+'-'+i,side,false,lower,upper);
       wall('tray-end-'+side+'-'+i,side,true,lower,upper);
     }
@@ -84,15 +84,9 @@ function build(input: unknown): AssetBuild {
       const z=end*l*0.26,bottom=handleY(z)+0.02,top=floor-0.045;
       box('tray-riser-'+side+'-'+end,'frame',[0.052,top-bottom,0.07],[side*forkX,(top+bottom)/2,z]);
     }
-    box('leg-'+side,'frame',[0.060,floor-0.052,0.078],[side*forkX,(floor-0.052)/2,-l*0.26]); // top 7 mm under the rear riser's; sides 4 mm outside it and 5 mm inside the bearer ends (flush faces z-fought)
-    beam('leg-brace-'+side,'iron',[side*forkX,0.11,-l*0.26-0.012],[side*forkX,handleY(l*0.26+0.03),l*0.26+0.03],0.022,0.028); // both ends run well into the leg and the handle rail
-    for(const [index,z] of [-l*0.31,l*0.31].entries()){
-      // Straps lie on the splayed side boards and wrap under the floor (their lower ends hovered beside the floor edge).
-      const zb=baseZ+(index?1:-1)*baseLength*0.31,t0=-0.052/wallHeight,zt=zb+(z-zb)*t0;
-      let zf=zt;for(const c of [-l*0.26,l*0.26])if(Math.abs(zf-c)<0.0605)zf=c+(zf>=c?1:-1)*0.0605; // the foot (and the strap's lower end with it) runs fully clear of the bearer, 4 mm off its face (a half-overlapping foot poked out of the bearer)
-      // The foot (top 4 mm into the floor, 4 mm above the bearer tops) is joined into the strap so the published part list is unchanged.
-      mesh('strap-'+side+'-'+z.toFixed(3),'iron',joinedSolids(profiledBeam([side*((baseWidth+(w-baseWidth)*t0)/2+0.004),floor-0.002,zf],[side*(w/2+0.004),floor+0.05+wallHeight,z],0.012,0.028,0.004),profiledBeam([side*(baseWidth/2+0.006),floor-0.002,zf],[side*(baseWidth/2-0.11),floor-0.002,zf],0.012,0.028,0.004))).userData.partId='strap-'+side+'-'+index;
-    }
+    box('leg-'+side,'frame',[0.058,floor-0.045,0.078],[side*forkX,(floor-0.045)/2,-l*0.26]);
+    beam('leg-brace-'+side,'iron',[side*forkX,0.11,-l*0.26],[side*forkX,handleY(l*0.26),l*0.26],0.022,0.028);
+    for(const [index,z] of [-l*0.31,l*0.31].entries())beam('strap-'+side+'-'+z.toFixed(3),'iron',[side*(baseWidth/2+0.004),floor+0.045,baseZ+(index?1:-1)*baseLength*0.31],[side*(w/2+0.004),floor+0.05+wallHeight,z],0.012,0.028).userData.partId='strap-'+side+'-'+index;
     box('under-tray-bearer-'+side,'frame',[2*forkX+0.07,0.075,0.085],[0,floor-0.0375,side*l*0.26]);
   }
   box('leg-crossbar','frame',[2*forkX,0.05,0.052],[0,0.15,-l*0.26]);
@@ -107,7 +101,7 @@ function build(input: unknown): AssetBuild {
     const disk=new CylinderGeometry(r*0.86,r*0.86,0.018,12);disk.rotateZ(Math.PI/2);
     mesh('wheel-wood-'+side,'wood',disk).position.set(side*0.048,r,wheelZ);
     for(let i=0;i<3;i++) {
-      const brace=box('wheel-brace-'+side+'-'+i,'frame',[0.016+i*0.009,r*1.53,0.029],[side*(0.0525-i*0.004+(0.016+i*0.009)/2),r,wheelZ]); // beds 4.5-12.5 mm into the disk; crossing battens' faces 4-5 mm apart (flush crossings z-fought)
+      const brace=box('wheel-brace-'+side+'-'+i,'frame',[0.016,r*1.53,0.029],[side*0.064,r,wheelZ]);
       brace.rotation.x=i*Math.PI/3;
     }
   }
@@ -115,7 +109,7 @@ function build(input: unknown): AssetBuild {
     mesh('wheel-rim','wood',ring(r*0.86,r*0.70,0.105)).position.set(0,r,wheelZ);
     for(let i=0;i<12;i++) {
       const angle=i*Math.PI/6;
-      beam('wheel-spoke-'+i,'wood',[0,r+Math.cos(angle)*hubRadius*0.82,wheelZ+Math.sin(angle)*hubRadius*0.82],[0,r+Math.cos(angle)*r*0.75,wheelZ+Math.sin(angle)*r*0.75],Math.min(0.032,r*0.14),0.04-(i%2)*0.008); // alternate spokes 4 mm thinner each side: neighbours overlap near the hub
+      beam('wheel-spoke-'+i,'wood',[0,r+Math.cos(angle)*hubRadius*0.82,wheelZ+Math.sin(angle)*hubRadius*0.82],[0,r+Math.cos(angle)*r*0.75,wheelZ+Math.sin(angle)*r*0.75],Math.min(0.032,r*0.14),0.04);
     }
   }
   const hub=new CylinderGeometry(hubRadius,hubRadius,0.19,10);hub.rotateZ(Math.PI/2);mesh('wheel-hub','frame',hub).position.set(0,r,wheelZ);

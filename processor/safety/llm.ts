@@ -4,21 +4,27 @@
 // outcome STRICTER (pass→flag→reject); an injected "this is clean" achieves nothing. A malformed or failed answer
 // is reported as `analysis_incomplete` (→ human review), never as a pass.
 // If the bridge is enabled but unreachable or answers off-schema, the model is flagged `analysis_incomplete` for a human.
+import {readFileSync} from 'node:fs';
 import type {ImageScore,SafetyImage} from './types.ts';
 // The id names the bridge path, not a model version: the exact model is ANTIGRAVITY_BRIDGE_MODEL and is recorded
 // in the report summary, so switching 3.5 ↔ 3.8 needs no code change.
 export const LLM_DETECTOR='antigravity-vision-flash-low-v1';
 export type LlmResult={used:false;reason:string}|{used:true;ok:false;reason:string;model?:string}|{used:true;ok:true;model?:string;scores:ImageScore[];suspicious:boolean;slurText:number};
 export interface LlmConfig{endpoint:string;model:string;key:string;provider:'antigravity'|'openai';effort?:'low'}
-export const ANTIGRAVITY_DEFAULTS={url:'http://127.0.0.1:8811/v1',model:'gemini-3.8-flash-low',key:'antigravity'};
+// ZenoV serves Antigravity models on its loopback gateway. Gemini 3.8 Flash is published there as
+// antigravity/gemini-3.8-flash-tiered; reasoning_effort:'low' selects the low thinking tier.
+export const ANTIGRAVITY_DEFAULTS={url:'http://127.0.0.1:9020/v1',model:'antigravity/gemini-3.8-flash-tiered',key:'antigravity'};
+const keyFromFile=(path:string|undefined)=>{if(!path)return undefined;try{const v=readFileSync(path,'utf8').trim();return v||undefined;}catch{return undefined;}};
 const loopback=(u:URL)=>['127.0.0.1','localhost','[::1]'].includes(u.hostname);
 /** Vision second opinion configuration.
  *  Default provider: Gemini 3.8 Flash (low effort) through the zenov antigravity bridge, an OpenAI-compatible
- *  endpoint on the processor host (zenov convention: http://127.0.0.1:8811/v1, bearer "antigravity").
+ *  endpoint on the processor host (the ZenoV gateway, http://127.0.0.1:9020/v1).
  *    SAFETY_VISION_PROVIDER   antigravity (default) | openai | off
- *    ANTIGRAVITY_BRIDGE_URL   default http://127.0.0.1:8811/v1  (or the ZenoV gateway http://127.0.0.1:9020/v1)
- *    ANTIGRAVITY_BRIDGE_MODEL default gemini-3.8-flash-low      (via the ZenoV gateway: antigravity/gemini-3.8-flash-low)
- *    ANTIGRAVITY_BRIDGE_KEY   default "antigravity"             (via the ZenoV gateway: the ZENOV_MASTER_KEY value)
+ *    ANTIGRAVITY_BRIDGE_URL      default http://127.0.0.1:9020/v1 (ZenoV gateway; a standalone bridge also works)
+ *    ANTIGRAVITY_BRIDGE_MODEL    default antigravity/gemini-3.8-flash-tiered (sent with reasoning_effort low)
+ *    ANTIGRAVITY_BRIDGE_KEY      a ZenoV client key for this processor; or ANTIGRAVITY_BRIDGE_KEY_FILE, a 0600 file
+ *                                holding it. Without one the gateway answers 401 and every model goes to a human
+ *                                as analysis_incomplete (fail safe). Use a dedicated client key, not the master key.
  *  The bridge must be loopback or https. `openai` keeps the generic path (SAFETY_LLM_* + zero-retention flag).
  *  The key is read from the environment and never logged. */
 export function llmConfig(env:Record<string,string|undefined>=process.env):LlmConfig|null{
@@ -26,7 +32,7 @@ export function llmConfig(env:Record<string,string|undefined>=process.env):LlmCo
  if(provider==='antigravity'){
   const base=(env.ANTIGRAVITY_BRIDGE_URL??ANTIGRAVITY_DEFAULTS.url).replace(/\/+$/,'');let u:URL;try{u=new URL(base);}catch{return null;}
   if(u.protocol!=='https:'&&!(u.protocol==='http:'&&loopback(u)))return null;
-  return {provider,endpoint:base+'/chat/completions',model:env.ANTIGRAVITY_BRIDGE_MODEL??ANTIGRAVITY_DEFAULTS.model,key:env.ANTIGRAVITY_BRIDGE_KEY??ANTIGRAVITY_DEFAULTS.key,effort:'low'};
+  return {provider,endpoint:base+'/chat/completions',model:env.ANTIGRAVITY_BRIDGE_MODEL??ANTIGRAVITY_DEFAULTS.model,key:env.ANTIGRAVITY_BRIDGE_KEY??keyFromFile(env.ANTIGRAVITY_BRIDGE_KEY_FILE)??ANTIGRAVITY_DEFAULTS.key,effort:'low'};
  }
  const endpoint=env.SAFETY_LLM_ENDPOINT,model=env.SAFETY_LLM_MODEL,key=env.SAFETY_LLM_KEY;
  if(provider!=='openai'||!endpoint||!model||!key||env.SAFETY_LLM_ZERO_RETENTION!=='1')return null;

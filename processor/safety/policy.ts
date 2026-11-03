@@ -20,7 +20,7 @@ export function mergeOutcome(input:MergeInput):{outcome:Outcome;findings:Finding
  for(const [image,slot] of byImage){
   const sx=slot.sexual,cl=slot.child_like,hs=slot.hate_symbol,vi=slot.violence;
   if(sx){const band:Band=sx.score>=t.reject.sexual_single||(sx.score>=t.reject.sexual_multi&&sexualMulti>=t.reject.sexual_multi_count)?'reject':sx.score>=t.flag.sexual?'flag':'low';if(band!=='low'||sx.score>=0.2)push({category:'sexual',detector:sx.detector,band,score:sx.score,artifact:image,bbox:sx.bbox});}
-  if(cl&&cl.score>0){const s=sx?.score??0;const band:Band=cl.score>=t.reject.child_like&&s>=t.reject.child_like_sexual?'reject':cl.score>=t.flag.child_like&&s>=t.flag.child_like_sexual?'flag':'low';if(band!=='low'||cl.score>=0.2)push({category:'child_like',detector:cl.detector,band,score:cl.score,artifact:image,bbox:cl.bbox});}
+  if(cl&&cl.score>0){const s=sx?.score??0;const band:Band=cl.score>=t.reject.child_like&&s>=t.reject.child_like_sexual?'reject':cl.score>=t.flag.child_like&&s>=t.flag.child_like_sexual?'flag':'low';if(band!=='low')push({category:'child_like',detector:cl.detector,band,score:cl.score,artifact:image,bbox:cl.bbox});}
   if(hs){const band:Band=hs.score>=t.reject.hate_symbol?'reject':hs.score>=t.flag.hate_symbol?'flag':'low';if(band!=='low'||hs.score>=0.25)push({category:'hate_symbol',detector:hs.detector,band,score:hs.score,artifact:image,bbox:hs.bbox});}
   if(vi&&vi.score>=t.flag.violence)push({category:'violence',detector:vi.detector,band:'flag',score:vi.score,artifact:image,bbox:vi.bbox});
  }

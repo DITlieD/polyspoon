@@ -12,26 +12,16 @@ const controls: Control[] = [
   {key:'height',label:'Height',kind:'range',group:'shape',unit:'m',min:2,max:12,step:0.1,default:6,hint:'Ground to highest needle.',affects:['geometry'],targets:['trunk','branch','foliage']},
   {key:'crownSpread',label:'Crown spread',kind:'range',group:'shape',unit:'m',min:1,max:7,step:0.1,default:3.8,hint:'Larger horizontal bounding-box dimension.',affects:['geometry'],targets:['trunk','branch','foliage']},
   {key:'seed',label:'Variation seed',kind:'integer',group:'construction',unit:'seed',min:0,max:65535,step:1,default:317,hint:'Repeatable trunk bends, branch spacing and foliage variation.',affects:['geometry'],targets:['trunk','branch','foliage']},
-  {key:'lean',inputUnit:'degrees',label:'Wind lean',kind:'range',group:'shape',unit:'none',min:0,max:20,step:1,default:0,hint:'Bends the crown downwind (+X) and trims the windward branches; 0 keeps the upright 1.1.0 construction.',affects:['geometry'],targets:['trunk','branch','foliage']},
   {key:'tierCount',label:'Crown tiers',kind:'integer',group:'construction',unit:'count',min:5,max:10,step:1,default:8,hint:'Redistributes five to ten connected branch tiers through the same crown envelope, with fewer branches and smaller lobes toward the leader.',affects:['topology','geometry'],targets:['branch','foliage']},
   ...Object.entries({bark:'#70523a',needles:'#365c43',tips:'#55754c',shade:'#284c3c'}).map(([role,color]):Control=>({key:'color.'+role,label:role,kind:'color',group:'colors',unit:'color',default:color,role,hint:'Opaque faceted '+role+' material.',affects:['material'],targets:[role]})),
 ];
 const parse=(input:unknown)=>parseControls(controls,plainRecord(input));
 function save(input:unknown):Design {
   const requested={...plainRecord(input)};
-  return {formatVersion:1,family:'conifer',familyVersion:'1.2.0',requested,applied:parse(requested)};
+  return {formatVersion:1,family:'conifer',familyVersion:'1.1.0',requested,applied:parse(requested)};
 }
 function load(input:unknown):Design {
-  return loadConstructionDesign(input,'conifer','1.2.0',['1.0.0','1.1.0'],save,loadV11);
-}
-// 1.1.0 had every 1.2.0 control except lean; 1.0.0 designs keep their own loader.
-const v11Controls=controls.filter(c=>c.key!=='lean');
-function loadV11(input:unknown):Design {
-  const v=plainRecord(input);
-  if(v.familyVersion==='1.0.0')return loadPrior(input);
-  const requested={...plainRecord(v.requested)},applied=parseControls(v11Controls,requested),stored=plainRecord(v.applied);
-  if(Object.keys(stored).length!==Object.keys(applied).length||Object.entries(applied).some(([k,x])=>stored[k]!==x))throw new Error('Conifer 1.1.0 applied parameters mismatch');
-  return {formatVersion:1,family:'conifer',familyVersion:'1.1.0',requested,applied};
+  return loadConstructionDesign(input,'conifer','1.1.0',['1.0.0'],save,loadPrior);
 }
 
 function build(input:unknown):AssetBuild {
@@ -50,14 +40,14 @@ function build(input:unknown):AssetBuild {
     return spine[index]!.clone().lerp(spine[index+1]!,y/6*7-index);
   };
   add('trunk','bark',taperedSweep(spine.map((v,i)=>({center:v.toArray(),radius:.14*(1-i/8)**1.3+.008})),7));
-  function spray(name:string,start:Vector3,end:Vector3,width:number,depth:number,role:string,parent:string,phase=0) {
+  function spray(name:string,start:Vector3,end:Vector3,width:number,depth:number,role:string,parent:string) {
     const axis=end.clone().sub(start),length=axis.length();axis.normalize();
     const side=new Vector3(axis.z,0,-axis.x);
     if(side.lengthSq()<1e-8)side.set(0,0,1);else side.normalize();
     const needle=(from:Vector3,to:Vector3,w:number,d:number)=>{
       const direction=to.clone().sub(from),run=direction.length();direction.normalize();
       const up=direction.clone().cross(side).normalize(),cross=up.clone().cross(direction).normalize();
-      const outline=Array.from({length:6},(_,i):[number,number]=>[Math.cos(i*Math.PI/3+phase)*d,Math.sin(i*Math.PI/3+phase)*w]);
+      const outline=Array.from({length:6},(_,i):[number,number]=>[Math.cos(i*Math.PI/3)*d,Math.sin(i*Math.PI/3)*w]);
       const g=facetedLoft([[0,.45],[.22,1],[1,.008]].map(([t,r])=>({center:[0,run*t!,0] as [number,number,number],outline:outline.map(([x,z]):[number,number]=>[x*r!,z*r!])})));
       g.applyMatrix4(new Matrix4().makeBasis(up,direction,cross));g.translate(from.x,from.y,from.z);return g;
     };
@@ -71,7 +61,7 @@ function build(input:unknown):AssetBuild {
     for(const piece of pieces)piece.dispose();
     add(name,role,geometry,parent);
   }
-  const phase=random()*Math.PI*2,lean=Number(p.lean)*Math.PI/180,wind=Math.min(1,Number(p.lean)/15);
+  const phase=random()*Math.PI*2;
   for(let tier=0;tier<Number(p.tierCount);tier++){
     const t=tier/(Number(p.tierCount)-1),levelIndex=t*7;
     const y=1.3+3.85*(1-(1-t)**1.3)+Math.sin(t*Math.PI*2+phase)*Math.sin(t*Math.PI)*.13;
@@ -79,15 +69,15 @@ function build(input:unknown):AssetBuild {
     for(let j=0;j<n;j++){
       const angle=tierPhase+j*Math.PI*2/n+(random()-.5)*.22;
       const level=y+(random()-.5)*.16;
-      const start=centerAt(level),length=(1.6*(1-t)**.65+.32)*(.91+random()*.18)*(1-.3*wind*Math.max(0,-Math.cos(angle))+.12*wind*Math.max(0,Math.cos(angle)));
+      const start=centerAt(level),length=(1.6*(1-t)**.65+.32)*(.91+random()*.18);
       const dir=new Vector3(Math.cos(angle),0,Math.sin(angle));
       const pointAt=(distance:number)=>start.clone().addScaledVector(dir,length*distance).add(new Vector3(0,-length*.24*distance,0));
       const elbow=pointAt(.52),tip=pointAt(1);
       const branchName='branch-'+tier+'-'+j;
       add(branchName,'bark',taperedSweep([{center:start.toArray(),radius:.052*(1-levelIndex*.09)},{center:elbow.toArray(),radius:.032*(1-levelIndex*.09)},{center:tip.toArray(),radius:.008}],5),'trunk');
       const depth=(.13+.26*t)*(.55+.45*length);
-      spray('foliage-'+tier+'-'+j+'-0',pointAt(wind>0?.02:.08),pointAt(.84),length*(.15+.015*Math.sin(angle)),depth,t<.18?'shade':'needles',branchName);
-      spray('foliage-'+tier+'-'+j+'-1',pointAt(.53),pointAt(1.20),length*(.12+.012*Math.cos(angle)),depth*.78,t>.62?'tips':'needles',branchName,Math.PI/12); // outer spray turned 15 deg (off both the inner spray's and the branch's facets): collinear with the inner one, its faces met the inner spray's faces where their radii cross
+      spray('foliage-'+tier+'-'+j+'-0',pointAt(.08),pointAt(.84),length*(.15+.015*Math.sin(angle)),depth,t<.18?'shade':'needles',branchName);
+      spray('foliage-'+tier+'-'+j+'-1',pointAt(.53),pointAt(1.20),length*(.12+.012*Math.cos(angle)),depth*.78,t>.62?'tips':'needles',branchName);
     }
   }
   for(let i=0;i<3;i++){
@@ -95,15 +85,11 @@ function build(input:unknown):AssetBuild {
     const end=start.clone().add(new Vector3(Math.cos(phase+i*2.4)*(.08-i*.02),.80-i*.13,Math.sin(phase+i*2.4)*(.08-i*.02)));
     spray('foliage-leader-'+i,start,end,.19-i*.045,.17-i*.04,'needles','trunk');
   }
-  // Wind lean: a curved shear that leaves the base upright and moves the top downwind by height*tan(lean).
-  let leanTop=0;
-  if(lean>0){root.updateMatrixWorld(true);const top=new Box3().setFromObject(root,true).max.y,k=Math.tan(lean)/top;leanTop=Math.tan(lean)*top;
-    root.traverse(o=>{if(o instanceof Mesh){const pos=o.geometry.getAttribute('position');for(let i=0;i<pos.count;i++){const y=pos.getY(i);pos.setX(i,pos.getX(i)+k*y*Math.max(0,y));}pos.needsUpdate=true;o.geometry.computeVertexNormals();}});}
   root.updateMatrixWorld(true);
   const raw=new Box3().setFromObject(root,true),size=raw.getSize(new Vector3());
   const sx=Number(p.crownSpread)/Math.max(size.x,size.z),sy=Number(p.height)/size.y;
   root.traverse(o=>{if(o instanceof Mesh){o.geometry.translate(0,-raw.min.y,0);o.geometry.scale(sx,sy,sx);}});
-  const anchors={ground:[0,0,0],tip:[(spine[7]!.x+leanTop)*sx,Number(p.height),spine[7]!.z*sx]};
+  const anchors={ground:[0,0,0],tip:[spine[7]!.x*sx,Number(p.height),spine[7]!.z*sx]};
   root.userData={configuration:config,units:'meters',up:'+Y',forward:'+Z',origin:'ground-center',anchors};
   root.updateMatrixWorld(true);
   const bounds=new Box3().setFromObject(root,true);
@@ -112,14 +98,14 @@ function build(input:unknown):AssetBuild {
 const presets:Descriptor['presets']=[
   {id:'woodland',name:'Woodland pine',description:'Uneven open crown with exposed branch joints.',parameters:{}},
   {id:'slender',name:'Slender pine',description:'Tall narrow silhouette with ten close-set tiers.',parameters:{height:9,crownSpread:3,seed:901,tierCount:10}},
-  {id:'windswept',name:'Windswept pine',description:'Short broad crown with five open tiers, leaning 12 degrees downwind with trimmed windward branches.',parameters:{height:4.5,crownSpread:4.7,seed:42,tierCount:5,lean:12}},
+  {id:'windswept',name:'Broad pine',description:'Short broad crown with five open tiers.',parameters:{height:4.5,crownSpread:4.7,seed:42,tierCount:5}},
 ];
 export const coniferRecipe:Recipe={
-  descriptor:{id:'conifer',version:'1.2.0',title:'Wild pine',description:'Faceted pine with irregular branch tiers and visible connected woody structure.',controls,defaults:parse({}),presets,palettes:[{id:'forest',label:'Forest',colors:['#70523a','#365c43','#55754c','#284c3c'],parameters:{'color.bark':'#70523a','color.needles':'#365c43','color.tips':'#55754c','color.shade':'#284c3c'}}],save,state:input=>parameterState(controls,input)},
+  descriptor:{id:'conifer',version:'1.1.0',title:'Wild pine',description:'Faceted pine with irregular branch tiers and visible connected woody structure.',controls,defaults:parse({}),presets,palettes:[{id:'forest',label:'Forest',colors:['#70523a','#365c43','#55754c','#284c3c'],parameters:{'color.bark':'#70523a','color.needles':'#365c43','color.tips':'#55754c','color.shade':'#284c3c'}}],save,state:input=>parameterState(controls,input)},
   build,load,
   validationCases:[...presets,...controls.flatMap(c=>c.kind==='range'||c.kind==='integer'?[{id:c.key.toLowerCase()+'-min',name:c.label+' minimum',parameters:{[c.key]:c.min}},{id:c.key.toLowerCase()+'-max',name:c.label+' maximum',parameters:{[c.key]:c.max}}]:[]),{id:'short-wide',name:'Short wide boundary',parameters:{height:2,crownSpread:7,seed:0}},{id:'tall-narrow',name:'Tall narrow boundary',parameters:{height:12,crownSpread:1,seed:65535}}],
   integrationCases:[{id:'default',name:'Default pine',parameters:{}},{id:'slender',name:'Slender pine',parameters:presets[1]!.parameters}],
-  constraints:['Height is ground to highest geometry; crown spread is max X/Z span. Five to ten tiers share the original crown envelope and taper; eight tiers retain the default construction. Extreme aspect ratios are supported but stylized. Lean shears the crown downwind (+X) by up to 20 degrees inside the same bounds; lean 0 is the 1.1.0 construction. Branch meshes intersect the trunk and foliage; they are not welded. No wind, collision or LOD.'],
+  constraints:['Height is ground to highest geometry; crown spread is max X/Z span. Five to ten tiers share the original crown envelope and taper; eight tiers retain the default construction. Extreme aspect ratios are supported but stylized. Branch meshes intersect the trunk and foliage; they are not welded. No wind, collision or LOD.'],
   presentation:{category:'Nature',order:110,kitIds:[],thumbnails:Object.fromEntries(presets.map(p=>[p.id,'conifer-'+p.id+'.png']))},
   source:{entry:'examples/recipes/conifer/index.ts',exportName:'coniferRecipe'},
 };
