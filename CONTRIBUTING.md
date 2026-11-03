@@ -8,6 +8,27 @@ There are two ways to make a model, with different rules.
 
 New recipes are executable code, so they also need maintainer code review before they run on the service. Locally, review sources and dependencies yourself and run untrusted code in isolation. Read the [authoring guide](docs/authoring/guide.md), give your agent the [coding-agent brief](docs/authoring/coding-agent.md), and use the [bench example](examples/recipes/bench/index.ts) as a model. Any coding assistant or plain editor works; the toolkit needs no provider account or API key.
 
+## Improve the engine
+
+Every recipe builds on the shared generator in [src/engine](src/engine). A better roof, timber joint or stone shape improves every model that uses it. To change it:
+
+```sh
+git clone https://github.com/DITlieD/polyspoon.git && cd polyspoon
+npm ci --ignore-scripts --no-audit --no-fund
+npx playwright-core install chromium      # once, for renders
+npm run dev                               # live preview at http://127.0.0.1:5173
+npm run recipe:render -- --family cottage --out renders/before
+```
+
+Edit a file in `src/engine`, watch the preview update, then render the same recipe again and run the checks:
+
+```sh
+npm run recipe:render -- --family cottage --out renders/after
+npm run typecheck && npm test
+```
+
+Open a pull request on GitHub with the change, and attach the matching before and after images from `renders/`. Render every recipe your change touches. Keep `renders/` out of the commit.
+
 ## Checks
 
 Use Node.js 22.22.1 from a clean checkout of this directory:
