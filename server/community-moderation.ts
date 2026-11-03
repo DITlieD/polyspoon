@@ -31,6 +31,7 @@ export async function communityModeration(request:Request,env:Env,actor:Principa
   const row=await env.DB.prepare('SELECT id,status FROM model_report WHERE version_id=? AND reporter_id=?').bind(report[1],actor.id).first<{id:string;status:string}>();if(!row)throw new HttpError(404,'model_not_found');return json(row,row.id===id?201:200);
  }
  if(['/api/moderation/reports','/api/moderation/appeals'].includes(path)&&request.method==='GET'){
+  if(path==='/api/moderation/appeals'&&new URL(request.url).searchParams.get('upload')==='1')return null;
   reviewer(actor);const offset=page(request),reports=path.endsWith('/reports');const sql=reports?'SELECT r.id,r.version_id AS versionId,v.title,r.category,r.reason,r.status,r.created_at AS createdAt,r.resolution_reason AS decisionReason FROM model_report r JOIN asset_version v ON v.id=r.version_id ORDER BY (r.status!=\'open\'),r.created_at,r.id LIMIT 50 OFFSET ?':'SELECT id,member_id AS memberId,message,current_status AS status,created_at AS createdAt,decision_reason AS decisionReason,restriction_reason AS restrictionReason,restricted_at AS restrictedAt,actionable FROM appeal_state ORDER BY actionable DESC,created_at,id LIMIT 50 OFFSET ?';const rows=(await env.DB.prepare(sql).bind(offset).all()).results;return json({[reports?'reports':'appeals']:reports?rows:rows.map(row=>({...row,actionable:!!row.actionable})),nextOffset:rows.length===50?offset+50:null});
  }
  const resolve=/^\/api\/moderation\/(reports|appeals)\/([^/]+)\/resolve$/.exec(path);

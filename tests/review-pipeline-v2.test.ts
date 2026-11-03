@@ -8,7 +8,7 @@ import {spawnSync} from 'node:child_process';
 import {DatabaseSync} from 'node:sqlite';
 import {realpathSync} from 'node:fs';
 const realNode=()=>realpathSync(process.execPath);
-import {uploadRoutes,DAILY_UPLOAD_CAP} from '../server/uploads.ts';
+import {uploadRoutes,DAILY_UPLOAD_CAP,OFFICIAL_SEED_DAILY_UPLOAD_CAP} from '../server/uploads.ts';
 import {reviewQueueRoutes,CLAIM_MS} from '../server/review-queue.ts';
 import {validateUpload,sniffFormat} from '../server/upload-validation.ts';
 import {jailArgs,sandboxedCheck} from '../processor/ingest-sandbox.ts';
@@ -35,7 +35,7 @@ function member(db:DatabaseSync,id:string,caps:string[]=[],scopes?:string[]){
 }
 function awaiting(db:DatabaseSync,creator:string,n:number){
  const id=String(n).padStart(64,'a');db.prepare("INSERT INTO asset_version(id,asset_id,contributor_id,title,kind,subject,created_at) VALUES(?,?,?,?,'static','{}',0)").run(id,'asset-'+n,creator,'Model '+n);
- for(const s of ['submitted','processing','awaiting_review'])db.prepare('UPDATE asset_version SET state=? WHERE id=?').run(s,id);return id;
+ for(const s of ['submitted','processing','awaiting_review'])db.prepare('UPDATE asset_version SET state=? WHERE id=?').run(s,id);db.prepare("INSERT INTO queue_event_log(version_id,actor_id,kind,detail,created_at) VALUES(?,NULL,'enqueued',json_object('reason','legacy'),?)").run(id,n);db.prepare("INSERT INTO review_queue(version_id,priority,reason,enqueued_at) VALUES(?,10,'legacy',?)").run(id,n);return id;
 }
 function glb(doc:Record<string,unknown>,bin=new Uint8Array(36)){
  let json=Buffer.from(JSON.stringify(doc));const pad=(4-json.length%4)%4;json=Buffer.concat([json,Buffer.alloc(pad,0x20)]);
@@ -109,6 +109,15 @@ test('daily upload cap',async()=>{
  assert.equal((await up(s,a,'POST','/api/uploads',{format:'glb',bytes:d.length,sha256:sha(d)})).body.error,'daily_upload_cap');
 });
 
+test('official catalog seed can reserve one prepared set in a day',async()=>{
+ const s=setup(),seed=member(s.db,'seed'),other=member(s.db,'other'),d=triangle();
+ s.db.prepare('INSERT INTO official_catalog_seed(user_id,created_at) VALUES(?,0)').run(seed.id);
+ for(let i=0;i<DAILY_UPLOAD_CAP;i++)assert.equal((await up(s,other,'POST','/api/uploads',{format:'glb',bytes:d.length,sha256:sha(d)})).status,201);
+ assert.equal((await up(s,other,'POST','/api/uploads',{format:'glb',bytes:d.length,sha256:sha(d)})).body.error,'daily_upload_cap');
+ for(let i=0;i<OFFICIAL_SEED_DAILY_UPLOAD_CAP;i++)assert.equal((await up(s,seed,'POST','/api/uploads',{format:'glb',bytes:d.length,sha256:sha(d)})).status,201);
+ assert.equal((await up(s,seed,'POST','/api/uploads',{format:'glb',bytes:d.length,sha256:sha(d)})).body.error,'daily_upload_cap');
+});
+
 test('queue: claim lock, heartbeat, no double decision, own content, history, polling events',async()=>{
  const s=setup(),maker=member(s.db,'maker'),ana=member(s.db,'ana',['reviewer:visual']),ben=member(s.db,'ben',['moderator']),plain=member(s.db,'plain');
  const v=awaiting(s.db,'maker',1),own=awaiting(s.db,'ana',2);
@@ -121,7 +130,7 @@ test('queue: claim lock, heartbeat, no double decision, own content, history, po
  assert.equal((await q(s,ana,'POST','/api/moderation/queue/'+v+'/heartbeat',{revision:c.body.revision})).status,200);
  const seen=await q(s,ben,'GET','/api/moderation/queue');assert.equal(seen.body.items.find((i:any)=>i.versionId===v).claimedByName,'Member ana');
  assert.equal((await q(s,ana,'POST','/api/moderation/queue/'+v+'/decision',{revision:c.body.revision,decision:'reject'})).body.error,'note_required');
- const d=await q(s,ana,'POST','/api/moderation/queue/'+v+'/decision',{revision:c.body.revision,decision:'approve'});assert.equal(d.body.next,'publisher_review_required');
+ const d=await q(s,ana,'POST','/api/moderation/queue/'+v+'/decision',{revision:c.body.revision,decision:'approve'});assert.equal(d.body.decided,true);
  assert.equal((await q(s,ana,'POST','/api/moderation/queue/'+v+'/decision',{revision:c.body.revision,decision:'approve'})).status,409);
  assert.equal(s.db.prepare('SELECT state FROM asset_version WHERE id=?').get(v)!.state,'awaiting_review');
  assert.equal((await q(s,ben,'GET','/api/moderation/queue')).body.items.length,1);
@@ -141,6 +150,72 @@ test('queue: expired claims are released and can be taken over; only moderators 
  assert.equal(s.db.prepare('SELECT state FROM asset_version WHERE id=?').get(v)!.state,'awaiting_review');
  assert.ok(CLAIM_MS===600000);
  s.db.prepare("UPDATE asset_version SET state='changes_requested' WHERE id=?").run(v);assert.equal((await q(s,ben,'GET','/api/moderation/queue')).body.items.length,0);
+});
+
+test('queue list chunks follow-up binds below the D1 variable limit',async()=>{
+ const s=setup();member(s.db,'maker');s.db.prepare('INSERT INTO official_catalog_seed(user_id,created_at) VALUES(?,0)').run('maker');const ana=member(s.db,'ana',['reviewer:visual']);
+ for(let n=1;n<=101;n++)awaiting(s.db,'maker',n);
+ const inner=s.env.DB as {prepare:(sql:string)=>{bind:(...args:unknown[])=>any;first:()=>Promise<unknown>;all:()=>Promise<{results:unknown[]}>;run:()=>Promise<unknown>;_rows:()=>unknown[]};batch:(list:{_rows:()=>unknown[]})=>Promise<unknown>};
+ (s.env as {DB:unknown}).DB={batch:(list:{_rows:()=>unknown[]})=>inner.batch(list),prepare(sql:string){const base=inner.prepare(sql);const wrap=(stmt:typeof base)=>({bind(...args:unknown[]){if(args.length>100)throw new Error('too many SQL variables');return wrap(stmt.bind(...args));},first:()=>stmt.first(),all:()=>stmt.all(),run:()=>stmt.run(),_rows:()=>stmt._rows()});return wrap(base);}};
+ const list=await q(s,ana,'GET','/api/moderation/queue');
+ assert.equal(list.status,200);
+ assert.equal(list.body.items.length,101);
+});
+
+test('queue list read does not reconcile and reads the latest safety report in one join',async()=>{
+ const s=setup();member(s.db,'maker');const ana=member(s.db,'ana',['reviewer:visual']);const v=awaiting(s.db,'maker',8);
+  s.db.prepare("INSERT INTO safety_report(id,version_id,policy_version,outcome,shadow,summary,report_sha256,created_at) VALUES('old',?,'safety-v1.0','pass',1,'{}',?,1)").run(v,'c'.repeat(64));
+ s.db.prepare("INSERT INTO safety_report(id,version_id,policy_version,outcome,shadow,summary,report_sha256,created_at) VALUES('new',?,'safety-v1.0','flag',0,'{}',?,2)").run(v,'d'.repeat(64));
+ const sqls:string[]=[];const inner=s.env.DB as {prepare:(sql:string)=>unknown;batch:(list:unknown)=>Promise<unknown>};
+ (s.env as {DB:unknown}).DB={batch:(list:unknown)=>inner.batch(list),prepare(sql:string){sqls.push(sql);return inner.prepare(sql);}};
+ const list=await q(s,ana,'GET','/api/moderation/queue');
+ assert.equal(list.status,200);assert.equal(list.body.items.length,1);
+ assert.equal(list.body.items[0].safetyOutcome,'flag');assert.equal(list.body.items[0].safetyShadow,0);
+ const listSql=sqls.find(sql=>sql.includes('FROM review_queue q'))??'';
+ assert.match(listSql,/LEFT JOIN safety_report/);
+ assert.equal((listSql.match(/SELECT outcome FROM safety_report/g)??[]).length,0);
+ assert.equal((listSql.match(/SELECT shadow FROM safety_report/g)??[]).length,0);
+ assert.deepEqual(sqls.filter(sql=>/resolved_elsewhere|INSERT OR IGNORE INTO review_queue|'expired'|claim_expires_at</.test(sql)),[]);
+ assert.equal(sqls.length,4);
+ sqls.length=0;
+ const ev=await q(s,ana,'GET','/api/moderation/queue/events?after=0&wait=0');
+ assert.equal(ev.status,200);assert.deepEqual(ev.body.events.map((event:{kind:string})=>event.kind),['enqueued']);
+ assert.equal(sqls.length,1);assert.match(sqls[0]??'',/WHERE seq>\?.*ORDER BY seq/);
+ assert.equal(/resolved_elsewhere|INSERT OR IGNORE INTO review_queue/.test(sqls[0]??''),false);
+ sqls.length=0;
+ const waited=await Promise.race([q(s,ana,'GET','/api/moderation/queue/events?after='+ev.body.cursor+'&wait=20'),new Promise<never>((_,reject)=>setTimeout(()=>reject(Error('events_polled')),1500))]);
+ assert.equal(waited.status,200);assert.deepEqual(waited.body.events,[]);
+ assert.equal(sqls.length,1);assert.match(sqls[0]??'',/FROM queue_event_log/);
+ const plan=s.db.prepare('EXPLAIN QUERY PLAN SELECT seq,version_id,actor_id,kind,detail,created_at FROM queue_event_log WHERE seq>? ORDER BY seq LIMIT 200').all(0) as {detail:string}[];
+ assert.match(plan.map(row=>row.detail).join('\n'),/INTEGER PRIMARY KEY/);
+});
+
+test('admin can open a queue detail when the report is a real reject',async()=>{
+ const s=setup();member(s.db,'maker');const admin=member(s.db,'ada',['admin']);const v=awaiting(s.db,'maker',4);
+ s.db.prepare("INSERT INTO safety_report(id,version_id,policy_version,outcome,shadow,summary,report_sha256,created_at) VALUES('rep',?,'safety-v1.0-shadow','reject',0,?,?,3)").run(v,JSON.stringify({coverage:{notMachineChecked:['sexual']}}),'b'.repeat(64));
+ s.db.prepare("INSERT INTO safety_finding(report_id,idx,category,detector,band,text_span) VALUES('rep',0,'slur_text','wordlist','reject','nope')").run();
+ s.db.prepare("INSERT INTO queue_event_log(version_id,actor_id,kind,detail,created_at) VALUES(?,NULL,'auto_outcome',?,4)").run(v,JSON.stringify({outcome:'reject',shadow:false}));
+ const list=await q(s,admin,'GET','/api/moderation/queue');
+ assert.equal(list.status,200);
+ const item=list.body.items.find((row:any)=>row.versionId===v);
+ assert.equal(item.safetyOutcome,'reject');assert.equal(item.safetyShadow,0);assert.equal(item.topFinding.category,'slur_text');
+ const detail=await q(s,admin,'GET','/api/moderation/queue/'+v);
+ assert.equal(detail.status,200,JSON.stringify(detail.body));
+ assert.equal(detail.body.safetyReports[0].outcome,'reject');assert.equal(detail.body.safetyReports[0].shadow,0);
+ assert.equal(detail.body.findings[0].category,'slur_text');assert.deepEqual(detail.body.coverage.notMachineChecked,['sexual']);
+ assert.equal(detail.body.version.title,'Model 4');assert.equal(detail.body.history.some((event:any)=>event.kind==='auto_outcome'),true);
+});
+
+test('queue reads survive a failed safety lookup and a missing row stays missing',async()=>{
+ const s=setup();member(s.db,'maker');const ana=member(s.db,'ana',['reviewer:visual']);const v=awaiting(s.db,'maker',9);
+ const inner=s.env.DB as {prepare:(sql:string)=>Stmt;batch:(list:unknown)=>Promise<unknown>};
+ (s.env as {DB:unknown}).DB={batch:(list:unknown)=>inner.batch(list),prepare(sql:string){const stmt=inner.prepare(sql);if(sql.includes('LEFT JOIN safety_report')||sql.includes('FROM safety_artifact a'))return {bind(){return this;},all:async()=>{throw Error('d1_read_failed');},first:async()=>{throw Error('d1_read_failed');},run:async()=>{throw Error('d1_read_failed');},_rows(){throw Error('d1_read_failed');}};return stmt;}};
+ const list=await q(s,ana,'GET','/api/moderation/queue');
+ assert.equal(list.status,200);assert.equal(list.body.items.length,1);assert.equal(list.body.items[0].versionId,v);assert.equal(list.body.items[0].safetyOutcome,null);
+ const detail=await q(s,ana,'GET','/api/moderation/queue/'+v);
+ assert.equal(detail.status,200,JSON.stringify(detail.body));assert.deepEqual(detail.body.images,[]);assert.equal(detail.body.version.title,'Model 9');
+ const gone=await q(s,ana,'GET','/api/moderation/queue/'+'b'.repeat(64));
+ assert.equal(gone.status,404);assert.equal(gone.body.error,'queue_item_not_found');
 });
 
 const hasBwrap=spawnSync('bwrap',['--unshare-all','--ro-bind','/','/','--dev','/dev','true']).status===0;

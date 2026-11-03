@@ -17,6 +17,11 @@ export async function principal(request:Request,env:Env,allowRestricted=false):P
  const row=await env.DB.prepare('SELECT m.status,COALESCE(json_group_array(c.name) FILTER (WHERE c.name IS NOT NULL),\'[]\') AS capabilities FROM member m LEFT JOIN capability c ON c.user_id=m.user_id WHERE m.user_id=? GROUP BY m.user_id').bind(id).first<{status:string;capabilities:string}>();
  const result={id,status:row?.status??'missing',verified,capabilities:JSON.parse(row?.capabilities??'[]'),scopes,sessionId};if(result.status==='suspended'){if(!allowRestricted||scopes||!verified)throw new HttpError(403,'account_restricted');result.capabilities=[];}else requireActive(result);return result;
 }
+export async function optionalPrincipal(request:Request,env:Env):Promise<Principal|null>{
+ if(request.headers.get('authorization'))return principal(request,env,true);
+ const session=await authentication(env).api.getSession({headers:authenticationHeaders(request,env),query:{disableCookieCache:true}});
+ if(!session)return null;return principal(request,env,true);
+}
 export function mutationOrigin(request:Request,env:Env,actor:Principal){
  if(['GET','HEAD','OPTIONS'].includes(request.method))return;
  if(!actor.scopes&&request.headers.get('origin')!==env.APP_ORIGIN)throw new HttpError(403,'same_origin_required');

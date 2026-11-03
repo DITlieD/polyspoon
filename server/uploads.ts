@@ -9,7 +9,7 @@ import {audit} from './repository.ts';
 import {fileAppeal} from './appeals.ts';
 import {UPLOAD_LIMITS,validateUpload,type UploadFormat} from './upload-validation.ts';
 
-export const DAILY_UPLOAD_CAP=20,DAILY_AUTO_REJECT_CAP=5,SLOT_TTL_MS=15*60*1000;
+export const DAILY_UPLOAD_CAP=20,OFFICIAL_SEED_DAILY_UPLOAD_CAP=160,DAILY_AUTO_REJECT_CAP=5,SLOT_TTL_MS=15*60*1000;
 const DAY=86400000;
 type UploadRow={id:string;owner_id:string;source:string;format:UploadFormat;object_key:string;declared_bytes:number;declared_sha256:string;status:string;reason:string|null;title:string|null;expires_at:number;created_at:number};
 /** Owner-facing status. Never scores, detectors, or raw validator reasons, so thresholds can't be probed. */
@@ -19,6 +19,10 @@ const shape=(row:UploadRow&{appeal_status?:string|null})=>({appeal:row.appeal_st
 function uploader(actor:Principal){
  if(actor.status!=='active'||!actor.verified)throw new HttpError(403,'verified_member_required');
  if(actor.scopes){requireScope(actor,'uploads:write');}
+}
+async function uploadCap(env:Env,actor:Principal){
+ const seed=await env.DB.prepare('SELECT 1 AS n FROM official_catalog_seed WHERE user_id=?').bind(actor.id).first<{n:number}>();
+ return seed?OFFICIAL_SEED_DAILY_UPLOAD_CAP:DAILY_UPLOAD_CAP;
 }
 async function owned(env:Env,actor:Principal,id:string){const row=await env.DB.prepare('SELECT * FROM uploads WHERE id=?').bind(id).first<UploadRow>();if(!row||row.owner_id!==actor.id)throw new HttpError(404,'upload_not_found');return row;}
 
@@ -36,7 +40,7 @@ export async function uploadRoutes(request:Request,env:Env,actor:Principal,path:
   const source=input.source==='zenov'?'zenov':actor.scopes?'token':'web';
   const counts=await env.DB.prepare("SELECT count(*) AS total,sum(status='rejected_auto') AS rejected FROM uploads WHERE owner_id=? AND created_at>?").bind(actor.id,now-DAY).first<{total:number;rejected:number|null}>();
   if(Number(counts?.rejected??0)>=DAILY_AUTO_REJECT_CAP)throw new HttpError(429,'upload_restricted');
-  if(Number(counts?.total??0)>=DAILY_UPLOAD_CAP)throw new HttpError(429,'daily_upload_cap');
+  if(Number(counts?.total??0)>=await uploadCap(env,actor))throw new HttpError(429,'daily_upload_cap');
   const id=crypto.randomUUID(),key='ingest/'+id+'/original',expiresAt=now+SLOT_TTL_MS,store=objects();
   const putUrl=store.signedUpload?await store.signedUpload(key):'/api/uploads/'+id+'/content';
   await env.DB.batch([env.DB.prepare('INSERT INTO uploads(id,owner_id,source,format,object_key,declared_bytes,declared_sha256,expires_at,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)').bind(id,actor.id,source,input.format,key,input.bytes,input.sha256,expiresAt,now,now),await audit(env,actor.id,'upload_reserved',id,{source,format:input.format})]);

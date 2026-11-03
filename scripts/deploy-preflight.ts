@@ -2,7 +2,7 @@
 // Usage (from the product checkout, on the operator machine):
 //   node --import tsx scripts/deploy-preflight.ts            # full deploy to https://preflight.polyspoon.com
 //   node --import tsx scripts/deploy-preflight.ts --dry-run  # build + prepare + checks only, no remote writes
-// Private inputs live in $POLYSPOON_DEPLOY_DIR (default ~/.config/polyspoon/deploy): bindings.json and storage-service-key, mode 0600; never printed.
+// Private inputs live in ~/.polyspoon-deploy (bindings.json, supabase-service-key); never printed.
 import {mkdir,readFile,writeFile,lstat} from 'node:fs/promises';
 import {join,resolve,dirname} from 'node:path';
 import {homedir} from 'node:os';
@@ -18,7 +18,7 @@ export function preflightConfiguration(config:Config,host=PREFLIGHT_HOST):Config
 }
 export type SmokeCheck={path:string;status:number};
 export function smokePlan(references:string[]):SmokeCheck[]{
- return [{path:'/',status:200},{path:'/docs',status:200},...references.map(path=>({path,status:200})),{path:'/api/catalog',status:401}];
+ return [{path:'/',status:200},{path:'/docs',status:200},...references.map(path=>({path,status:200})),{path:'/api/catalog',status:200}];
 }
 export async function runSmoke(origin:string,checks:SmokeCheck[],fetcher:typeof fetch=fetch){
  const failures:string[]=[];for(const check of checks){let status=0;try{status=(await fetcher(new URL(check.path,origin),{redirect:'manual',headers:{'cache-control':'no-cache'}})).status;}catch{status=-1;}if(status!==check.status)failures.push(`${check.path} expected ${check.status} got ${status}`);}return failures;
@@ -29,7 +29,7 @@ function run(cmd:string,args:string[],opts:{cwd:string;input?:string;capture?:bo
  if(r.status!==0)throw Error(`command_failed: ${cmd} ${args.filter(a=>!a.startsWith('/home')).slice(0,3).join(' ')}`);return r.stdout??'';
 }
 async function main(){
- const dryRun=process.argv.includes('--dry-run'),root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),server=join(root,'server'),secrets=process.env.POLYSPOON_DEPLOY_DIR??join(homedir(),'.config','polyspoon','deploy'),id=stamp();
+ const dryRun=process.argv.includes('--dry-run'),root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),server=join(root,'server'),secrets=join(homedir(),'.polyspoon-deploy'),id=stamp();
  const wrangler=join(server,'node_modules/.bin/wrangler'),origin='https://'+PREFLIGHT_HOST;
  console.log('1/6 build hosted release');const releaseDir=join(root,'.release','hosted-'+id);
  run(process.execPath,['--import','tsx','hosted/build.ts','--out',releaseDir],{cwd:root});
@@ -45,7 +45,7 @@ async function main(){
  console.log('3/6 register private app release if new');
  const count=run(wrangler,['d1','execute','polyspoon-production','--remote','--json','-c',cfg,'--command',`SELECT COUNT(*) AS n FROM app_asset WHERE release_hash='${release.releaseHash}'`],{cwd:server,capture:true});
  const n=Number((JSON.parse(count) as {results:{n:number}[]}[])[0]?.results[0]?.n??0);
- if(n!==Object.keys(release.privateFiles).length){const sql=join(secrets,`app-${release.releaseHash.slice(0,8)}-${id}.sql`),key=await readFile(join(secrets,'storage-service-key'),'utf8');
+ if(n!==Object.keys(release.privateFiles).length){const sql=join(secrets,`app-${release.releaseHash.slice(0,8)}-${id}.sql`),key=await readFile(join(secrets,'supabase-service-key'),'utf8');
   run(process.execPath,['--import','tsx','scripts/upload-private-release.ts','--release',releaseDir,'--bindings',bindingsPath,'--sql',sql],{cwd:root,input:key});
   run(wrangler,['d1','execute','polyspoon-production','--remote','-c',cfg,'--file',sql,'-y'],{cwd:server});}
  console.log('4/6 record current version for rollback');

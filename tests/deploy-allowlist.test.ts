@@ -32,7 +32,7 @@ test('preflight config only swaps host; smoke plan and runner',async()=>{
  const base={routes:[{pattern:'polyspoon.com',custom_domain:true}],vars:{APP_ORIGIN:'https://polyspoon.com',PUBLIC_FILES:'["/index.html"]'}} as never;
  const c=preflightConfiguration(base) as {routes:unknown;vars:Record<string,string>};
  assert.deepEqual(c.routes,[{pattern:'preflight.polyspoon.com',custom_domain:true}]);assert.equal(c.vars.APP_ORIGIN,'https://preflight.polyspoon.com');assert.equal(c.vars.PUBLIC_FILES,'["/index.html"]');
- const plan=smokePlan(['/public-assets/a.js']);assert.deepEqual(plan.map(p=>p.path),['/','/docs','/public-assets/a.js','/api/catalog']);assert.equal(plan.at(-1)!.status,401);
- const fake=(async(url:URL)=>new Response(null,{status:url.pathname==='/api/catalog'?401:url.pathname==='/public-assets/a.js'?404:200})) as unknown as typeof fetch;
+ const plan=smokePlan(['/public-assets/a.js']);assert.deepEqual(plan.map(p=>p.path),['/','/docs','/public-assets/a.js','/api/catalog']);assert.equal(plan.at(-1)!.status,200);
+ const fake=(async(url:URL)=>new Response(null,{status:url.pathname==='/public-assets/a.js'?404:200})) as unknown as typeof fetch;
  assert.deepEqual(await runSmoke('https://h',plan,fake),['/public-assets/a.js expected 200 got 404']);
 });

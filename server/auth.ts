@@ -27,7 +27,7 @@ function createAuthentication(env:AuthenticationConfiguration){
   basePath:'/api/auth',
   secret:env.AUTH_SECRET,
   trustedOrigins:[env.APP_ORIGIN],
-  session:{cookieCache:{enabled:false},expiresIn:86400,disableSessionRefresh:true},
+  session:{cookieCache:{enabled:false},expiresIn:30*86400,updateAge:86400},
   rateLimit:{enabled:true,storage:'database',window:60,max:60},
   advanced:{ipAddress:{ipAddressHeaders:['x-polyspoon-client-ip']},cookiePrefix:'polyspoon',useSecureCookies:new URL(env.APP_ORIGIN).protocol==='https:'},
   plugins:[magicLink({expiresIn:300,storeToken:'hashed',rateLimit:{window:60,max:5},sendMagicLink:async({email,url})=>{try{await sendLoginMail(env,email,url);}catch(error){if(error instanceof HttpError)throw new APIError(error.status===429?'TOO_MANY_REQUESTS':'SERVICE_UNAVAILABLE',{message:error.code});throw error;}}})],

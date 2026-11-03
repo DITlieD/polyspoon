@@ -3,7 +3,7 @@ import {addressBlockRoutes,enforceAddress} from './address-blocks.ts';
 import {admissionError} from './budgets.ts';
 import type {Env} from './types.ts';
 import {authentication,authenticationHeaders} from './auth.ts';
-import {principal,mutationOrigin} from './access.ts';
+import {principal,mutationOrigin,optionalPrincipal} from './access.ts';
 import {HttpError} from './domain.ts';
 import {processingRoutes} from './processing.ts';
 import {processorAdminRoutes} from './processors.ts';
@@ -18,7 +18,7 @@ import {reviewQueueRoutes} from './review-queue.ts';
 import {appealRoutes} from './appeals.ts';
 import {privateObjects} from './storage.ts';
 import {mailConfigured} from './mail.ts';
-import {publicResponse,protectedDocument,documentNavigation} from './public.ts';
+import {publicResponse,protectedDocument,documentNavigation,publicCatalogRead} from './public.ts';
 
 export function json(value:unknown,status=200):Response{return new Response(JSON.stringify(value),{status,headers:{'content-type':'application/json; charset=utf-8'}});}
 function secured(response:Response):Response {
@@ -40,7 +40,10 @@ export default {
    if((['POST','PUT'].includes(request.method)||(request.method==='DELETE'&&(url.pathname.startsWith('/api/community/')||url.pathname.startsWith('/api/collections'))))&&(url.pathname.startsWith('/api/versions')||url.pathname.startsWith('/api/review-evidence/')||url.pathname==='/api/account/tokens'||url.pathname.endsWith('/reports')||url.pathname.startsWith('/api/community/')||url.pathname.startsWith('/api/collections')||url.pathname.startsWith('/api/uploads')||url.pathname.startsWith('/api/processor/')))await enforceAddress(request,env);
    const processing=await processingRoutes(request,env,url.pathname,()=>privateObjects(env));if(processing)return secured(processing);
    if(unknownPage(request,url.pathname))return secured(new Response(NOT_FOUND_PAGE,{status:404,headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store'}}));
-   const actor=await principal(request,env,true);mutationOrigin(request,env,actor);
+   const open=publicCatalogRead(request.method,url.pathname);
+   const actor=open?await optionalPrincipal(request,env):await principal(request,env,true);
+   if(!actor){const response=await catalogRoutes(request,env,null,url.pathname,()=>privateObjects(env));if(response)return secured(response);throw new HttpError(404,'not_found');}
+   mutationOrigin(request,env,actor);
    if(url.pathname==='/api/me'&&request.method==='GET'){const user=await env.DB.prepare('SELECT email,name FROM user WHERE id=?').bind(actor.id).first<{email:string;name:string}>();if(!user)throw new HttpError(401,'authentication_required');return secured(json({id:actor.id,email:user.email,displayName:user.name,status:actor.status,verified:actor.verified,capabilities:actor.capabilities,scopes:actor.scopes??null}));}
    const restrictedPath=['/api/account/restriction','/api/account/appeals'].includes(url.pathname);
    const shell=['/app','/catalog'].includes(url.pathname)||url.pathname.startsWith('/app/');

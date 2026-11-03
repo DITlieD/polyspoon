@@ -3,6 +3,7 @@ import {HttpError,safeArtifactPath} from './domain.ts';
 
 const publicDocuments=new Set(['/','/docs','/sign-in','/help','/legal']);
 export function protectedDocument(path:string){return ['/catalog','/contribute','/editor'].includes(path)||/^\/asset\/[a-f0-9]{64}$/.test(path);}
+export function publicCatalogRead(method:string,path:string){return (method==='GET'||method==='HEAD')&&(path==='/catalog'||path.startsWith('/app/')||/^\/asset\/[a-f0-9]{64}$/.test(path)||path==='/api/catalog'||/^\/api\/catalog\/[a-f0-9]{64}$/.test(path)||/^\/api\/catalog\/[a-f0-9]{64}\/files$/.test(path));}
 export function documentNavigation(request:Request){return request.method==='GET'&&!request.headers.has('range')&&request.headers.get('accept')?.split(',').some(value=>value.trim().split(';')[0]==='text/html');}
 export async function publicResponse(request:Request,env:Env):Promise<Response|null>{
  if(!['GET','HEAD'].includes(request.method))return null;

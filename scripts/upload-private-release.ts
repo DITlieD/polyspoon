@@ -1,5 +1,5 @@
 // Operator step "upload-and-readback-immutable-private-release" + "register-private-manifest".
-// Usage: node --import tsx scripts/upload-private-release.ts --release .release/hosted-X --bindings $POLYSPOON_DEPLOY_DIR/bindings.json --sql OUT.sql < service-key
+// Usage: node --import tsx scripts/upload-private-release.ts --release .release/hosted-X --bindings ~/.polyspoon-deploy/bindings.json --sql OUT.sql < service-key
 // Reads the Supabase service key from stdin only, uploads each private app file to
 // applications/<releaseHash>/<path>, reads it back and checks SHA-256 and size,
 // then writes the app_asset INSERT statements to --sql for `wrangler d1 execute --remote --file`.

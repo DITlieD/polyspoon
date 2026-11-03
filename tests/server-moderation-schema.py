@@ -70,6 +70,26 @@ class ModerationSchema(unittest.TestCase):
    self.db.execute("INSERT INTO agent_token VALUES('over','owner','Token','over','[]',9999999999999,NULL)")
   self.db.execute("UPDATE member SET status='suspended' WHERE user_id='owner'")
   self.assertEqual(self.db.execute('SELECT count(*) FROM agent_token WHERE revoked_at IS NULL').fetchone()[0],0)
+ def test_official_seed_admits_prepared_set_only(self):
+  self.db.execute('INSERT INTO user(id,name,email,emailVerified,createdAt,updatedAt) VALUES(?,?,?,1,0,0)',('seed','seed','seed@example.test'))
+  self.db.execute("INSERT INTO member VALUES(?,'active',0)",('seed',))
+  self.db.execute('INSERT INTO official_catalog_seed(user_id,created_at) VALUES(?,0)',('seed',))
+  with self.assertRaisesRegex(sqlite3.IntegrityError,'official_seed_singleton'):
+   self.db.execute('INSERT INTO official_catalog_seed(user_id,created_at) VALUES(?,0)',('owner',))
+  for i in range(144):
+   self.db.execute("INSERT INTO asset_version(id,asset_id,contributor_id,title,kind,subject,created_at) VALUES(?,'asset','seed','Asset','static','{}',0)",(f'seed{i:060x}',))
+  with self.assertRaisesRegex(sqlite3.IntegrityError,'submission_budget_exhausted'):
+   self.db.execute("INSERT INTO asset_version(id,asset_id,contributor_id,title,kind,subject,created_at) VALUES(?,'asset','seed','Asset','static','{}',0)",('e'*64,))
+  for n in range(10):
+   who=f'crowd{n}'
+   self.db.execute('INSERT INTO user(id,name,email,emailVerified,createdAt,updatedAt) VALUES(?,?,?,1,0,0)',(who,who,who+'@example.test'))
+   self.db.execute("INSERT INTO member VALUES(?,'active',0)",(who,))
+   for i in range(10):
+    self.db.execute("INSERT INTO asset_version(id,asset_id,contributor_id,title,kind,subject,created_at) VALUES(?,'asset',?,'Asset','static','{}',0)",(f'{n:02d}{i:062x}',who))
+  self.db.execute('INSERT INTO user(id,name,email,emailVerified,createdAt,updatedAt) VALUES(?,?,?,1,0,0)',('extra','extra','extra@example.test'))
+  self.db.execute("INSERT INTO member VALUES(?,'active',0)",('extra',))
+  with self.assertRaisesRegex(sqlite3.IntegrityError,'submission_budget_exhausted'):
+   self.db.execute("INSERT INTO asset_version(id,asset_id,contributor_id,title,kind,subject,created_at) VALUES(?,'asset','extra','Asset','static','{}',0)",('d'*64,))
  def test_job_daily_limit(self):
   for i in range(101):
    version=format(i,'064x')
