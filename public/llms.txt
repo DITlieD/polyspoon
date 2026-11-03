@@ -28,6 +28,6 @@ node .polyspoon/runtime.mjs build --family bench --parameters '{"width":2.2}' --
 
 OBJ, FBX and USDZ are static meshes converted from the GLB. Change a model by editing controls and rebuilding, not by editing the mesh.
 
-## Hosted catalog (members only)
+## Hosted catalog (open to read)
 
-The catalog at polyspoon.com is for signed-in members (free, email link sign-in). Each published model offers the same formats plus its controls JSON. Every published model is reviewed by an independent human; nobody reviews their own work. There is no anonymous model API.
+Published models at https://polyspoon.com/catalog can be browsed and downloaded without an account. Sign in with a free email link to vote, follow, save a favourite, report a model, or submit one. Every published model is reviewed by an independent human; nobody reviews their own work.

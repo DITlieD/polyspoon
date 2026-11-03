@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {hero,pillars,howItWorks,contribute,moderation,comparison,faq} from '../hosted/public/content.ts';
+import {hero,pillars,howItWorks,contribute,moderation,comparison,faq,repository} from '../hosted/public/content.ts';
 
 const all=JSON.stringify({hero,pillars,howItWorks,contribute,moderation,comparison,faq});
 
@@ -22,6 +22,6 @@ test('public landing explains the project, the open-source alternative, contribu
 test('public landing copy stays free of private catalog imports and unverifiable live claims',async()=>{
  const sources=await readFile('hosted/public/content.ts','utf8')+await readFile('hosted/public/main.ts','utf8');
  assert.doesNotMatch(sources,/from '\.\.\/\.\.\/src\/(catalog|recipes|families|studio)/);
- assert.doesNotMatch(all,/github\.com\//i,'no repository link until it is public');
+ assert.ok(Object.values(repository).every(url=>url.startsWith('https://')&&url.includes('DITlieD/polyspoon')));
  assert.ok(sources.includes("'/agent-bundles/polyspoon-agent-3.zip'"));
 });
