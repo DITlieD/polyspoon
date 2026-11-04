@@ -5,6 +5,8 @@
 🌐 **Live Website:** [https://polyspoon.com](https://polyspoon.com)  
 ☕ **Support & Donations:** [https://ko-fi.com/ditlied](https://ko-fi.com/ditlied)
 
+![Polyspoon — reshape a free 3D model in the browser, then take it into your engine](docs/images/polyspoon-demo.gif)
+
 ---
 
 ### I am improving the engine
