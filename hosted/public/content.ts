@@ -16,6 +16,15 @@ export const repository={
  api:'https://api.github.com/repos/DITlieD/polyspoon',
 };
 
+export const rabbitCompare={
+ image:'/brand/rabbit-engine-compare.png',
+ alt:'Polyfork forest rabbit beside the Polyspoon rabbit, three-quarter and side.',
+ eyebrow:'In progress',
+ title:'I am improving the engine.',
+ lead:'The rabbit is how I check the generator. The Polyfork forest rabbit is on the left. The Polyspoon rabbit is on the right. The sculpt engine builds it as one closed mesh: body, legs, ears and tail share one surface.',
+ note:'The shape is closer. The ears, eyes, mouth and tail still need work. If you can make the generator better, please help. One pull request improves every model that uses it.',
+};
+
 export const engineLoop:Step[]=[
  {title:'Improve the engine',body:'Anyone can make the shared generator better: smoother roofs, better timber, new parts.'},
  {title:'Open a pull request',body:'Changes land through public review on GitHub, with renders before and after.'},

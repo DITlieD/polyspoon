@@ -3,7 +3,7 @@ import './home.css';
 import {createAgentSetup} from '../../src/site/docs.ts';
 import {MarketplaceClient,explain} from '../shared/http.ts';
 import {el,link,field,input,status,heading,shell} from '../shared/dom.ts';
-import {hero,howItWorks,contribute,moderation,comparison,faq,engineLoop,repository,type Step} from './content.ts';
+import {hero,howItWorks,contribute,moderation,comparison,faq,engineLoop,rabbitCompare,repository,type Step} from './content.ts';
 import {mountHeroStage,rotatingWord,latestModels,communityNumbers} from './home.ts';
 const main=shell([['Models','/catalog'],['Community','/#engine'],['Contribute','/#contribute'],['Docs','/docs'],['Sign in','/sign-in']]);
 const route=location.pathname;
@@ -31,8 +31,10 @@ if(route==='/sign-in'){
  const table=el('table','compare');table.append(el('thead','',el('tr','',el('th','',''),el('th','','Polyspoon'),el('th','','Polyfork'))),el('tbody','',...comparison.map(([row,ours,theirs])=>el('tr','',el('th','',row),el('td','yes',ours),el('td','',theirs)))));
  const questions=el('div','faq',...faq.map(item=>el('details','',el('summary','',item.question),el('p','muted',item.answer),...(item.links?.length?[el('p','faq-links',...item.links.map(([label,href])=>external(label,href,'')))]:[]))));
  const title=el('h1','',hero.title+' ',rotatingWord(hero.words));
+ const rabbit=el('img','rabbit-compare');rabbit.src=rabbitCompare.image;rabbit.alt=rabbitCompare.alt;rabbit.width=1014;rabbit.height=1056;rabbit.decoding='async';
  main.append(
   el('section','hero',el('div','hero-copy',el('p','eyebrow',hero.eyebrow),title,el('p','muted hero-lead',hero.lead),el('div','actions',link('Browse models','/catalog','button'),link('Get the free toolkit','/docs','button-secondary')),el('p','compatible','Works with ',el('strong','','three.js'),' · ',el('strong','','Unity'),' · ',el('strong','','Godot'),' · ',el('strong','','Blender'),' · any glTF engine')),mountHeroStage()),
+  section('rabbit',rabbitCompare.eyebrow,rabbitCompare.title,rabbitCompare.lead,rabbit,el('p','muted rabbit-note',rabbitCompare.note),el('div','actions',external('Help improve the engine',repository.contributing+'#improve-the-engine','button'),external('Browse the engine',repository.engine,'button-secondary'))),
   section('latest','Latest','Latest free models.','Fresh from the community and reviewed by people. Open any of them to turn its knobs.',latestModels(),el('div','actions',link('Browse all models','/catalog','button-secondary'))),
   section('engine','Community engine','One pull request improves every model.','The generator behind every recipe is open source. When someone makes it better, the whole catalog rebuilds better.',el('ol','engine-loop',...engineLoop.map(item=>el('li','',el('h3','',item.title),el('p','muted',item.body)))),communityNumbers(repository.api),el('div','actions',external('View on GitHub',repository.home,'button'),external('Read CONTRIBUTING.md',repository.contributing,'button-secondary'),external('Browse the engine',repository.engine,'button-secondary'),link('Download the toolkit','/agent-bundles/polyspoon-agent-3.zip','button-secondary'))),
   section('how','How it works','From a request to a model in your project.','Your agent does the work locally with the open-source toolkit. You keep everything it makes.',steps(howItWorks)),

@@ -4,6 +4,8 @@
 .public-site .hero h1{font-size:64px;line-height:1.04;letter-spacing:-2.4px;font-weight:800;margin-bottom:20px}
 .rotating-word{display:block;color:#1f9d8f;white-space:nowrap}.rotating-word>span{display:inline-block;transition:opacity .26s ease,transform .26s ease}.rotating-word>span.out{opacity:0;transform:translateY(12px)}
 .public-site .hero-lead{font-size:18px;max-width:560px;color:#4b5a70}
+.rabbit-compare{width:min(100%,820px);height:auto;display:block;border-radius:20px;background:#f3ece0}
+.rabbit-note{max-width:720px;margin-top:18px}
 .compatible{font-size:14px;color:var(--muted);margin-top:22px}.compatible strong{color:var(--ink);font-weight:650}
 .hero-stage{position:relative;aspect-ratio:1;width:100%;border-radius:28px;overflow:hidden;touch-action:pan-y}
 .hero-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .4s ease}
